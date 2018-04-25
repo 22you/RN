@@ -19,6 +19,10 @@ import Buyinfo from '../pages/product/buyinfo' //购买信息
 import Chaohe from  '../pages/product/chaohe' //朝禾优品
 import Upload from '../pages/product/upload' //上传材料
 import Suggest from '../pages/product/suggest'//意见与说明
+import BankList from '../pages/user/banklist'//用户 银行账户信息
+import AddBank from '../pages/user/addBank'//添加银行卡
+import ChangeUserInfo from '../pages/user/changeUserInfo'//修改基本信息
+import Login from '../pages/login' //登录页面
 import { TabNavigator,TabBarBottom,StackNavigator } from 'react-navigation'
 import {
   Platform,
@@ -57,7 +61,7 @@ const Navigator=TabNavigator({
     }
   },
   account:{
-    screen:Adduser,
+    screen:Login,
     navigationOptions:{
       title:'账户中心',
       tabBarIcon: ({tintColor})=> (<Icon name="user" size={matchsize(35)} color={tintColor} />)
@@ -180,6 +184,24 @@ const Addnavigator=StackNavigator({
       navigationOptions:{
         headerTitle:'意见与说明'
       } 
+    },
+    BankList:{
+      screen:BankList,
+      navigationOptions:{
+        headerTitle:"银行卡账户信息"
+      }
+    },
+    AddBank:{
+      screen:AddBank,
+      navigationOptions:{
+        headerTitle:"添加银行卡"
+      }
+    },
+    ChangeUserInfo:{
+      screen:ChangeUserInfo,
+      navigationOptions:{
+        headerTitle:"修改基本信息"
+      }
     }
 },{
   tabBarPosition:'top',

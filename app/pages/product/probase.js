@@ -6,10 +6,9 @@ import {
     View,
     TouchableOpacity,
     ScrollView,
-    Button,
     Alert
   } from 'react-native';
-
+  import {Button} from 'teaset'
   export default class Probase extends Component {
     static navigationOptions = {
         headerStyle: {
@@ -141,7 +140,7 @@ import {
             </View>
             <TouchableOpacity style={{marginTop:15,marginHorizontal:'5%'}}>
               <Button title="购买"
-            accessibilityLabel="购买" onPress={()=>this.props.navigation.navigate('Apply')} />
+            accessibilityLabel="购买" type="primary" onPress={()=>this.props.navigation.navigate('Apply')} />
            
             </TouchableOpacity>
             </ScrollView>

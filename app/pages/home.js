@@ -66,7 +66,7 @@ componentWillMount(){
       
       <View style={[styles.indexBox,{flex: 1}]}>
      <StatusBar
-          backgroundColor='#ff0000'
+          backgroundColor='transparent'
           translucent={true}
           hidden={false}
           animated={true}  

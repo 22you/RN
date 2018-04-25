@@ -38,7 +38,7 @@ import {
             <Text>身份证上传</Text>
             <Text>></Text>
             </TouchableOpacity>
-            <TouchableOpacity style={add.item} onPress={()=>this.props.navigation.navigate('UploadId')}>
+            <TouchableOpacity style={add.item} onPress={()=>this.props.navigation.navigate('BankList')}>
             <Text>银行账户信息</Text>
             <Text>></Text>
             </TouchableOpacity>

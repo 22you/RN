@@ -8,7 +8,8 @@ import {
     Text,
     View,
     TouchableOpacity,
-    Button
+    Button,
+    Alert
   } from 'react-native';
 
   export default class Suggest extends Component {

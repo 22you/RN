@@ -150,7 +150,7 @@ import {
             <TouchableOpacity style={{marginTop:matchsize(15),marginHorizontal:'5%'}}>
               <Button title="下一步" type="primary"
             accessibilityLabel="下一步" onPress={()=>{
-              this.props.navigation.navigate('')
+              this.props.navigation.navigate('BankList')
               console.log(this.state)
             }
               } />

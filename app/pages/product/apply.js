@@ -6,9 +6,9 @@ import {
     View,
     TouchableOpacity,
     ScrollView,
-    Button
   } from 'react-native';
-
+  import {Button} from 'teaset'
+import matchsize from '../../components/matchsize';
   export default class Adduser extends Component {
     static navigationOptions = {
         headerStyle: {
@@ -69,12 +69,9 @@ import {
             <Text>流程示意图</Text>
             <Text>></Text>
             </TouchableOpacity>
+           
             </ScrollView>
-            <Button
-            title="下一步"
-            accessibilityLabel="下一步"
-            onPress={()=>Alert.alert('aaa')}
-          />
+           
           </View>
       )
       }

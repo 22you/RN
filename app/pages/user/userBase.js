@@ -10,6 +10,7 @@ import {
     ScrollView,
     Alert
   } from 'react-native';
+  import DatePicker from 'react-native-datepicker'
   import matchsize from '../../components/matchsize'
   import {Button} from 'teaset'
   export default class Probase extends Component {
@@ -18,6 +19,7 @@ import {
         super(props);
         // 初始状态
         this.state = {
+          date:'2018-01-01',
           maritalStatusValue:'男',
           cardType:'身份证'
         };
@@ -90,10 +92,32 @@ import {
                         })
                         }} />
 
-            <View style={base.item}>
+            <TouchableOpacity style={base.item}>
             <Text>出生日期</Text>
-            <Text>1992-01-14</Text>
-            </View>
+            <DatePicker
+              date={this.state.date}
+              mode="date"
+              placeholder="select date"
+              format="YYYY-MM-DD"
+              minDate="2016-05-01"
+              maxDate="2016-06-01"
+              confirmBtnText="Confirm"
+              showIcon="false"
+              cancelBtnText="Cancel"
+              customStyles={{
+                dateIcon: {
+                  display:'none'
+                 
+                },
+                dateInput: {
+                  marginLeft: 36,
+                  borderWidth:0
+                }
+          
+        }}
+        onDateChange={(date) => {this.setState({date: date})}}
+      />
+            </TouchableOpacity>
             <DefaultInput placeholder={'请输入...'} name={'邮政编码'} style={base.item}
 					              onChangeText={(text)=>{
                           this.setState({
@@ -152,7 +176,8 @@ import {
     flexDirection:'row',
     justifyContent:'space-between',
     borderBottomWidth:1,
-    borderBottomColor:'#ddd'
+    borderBottomColor:'#ddd',
+    alignItems:'center'
 
   }
   })

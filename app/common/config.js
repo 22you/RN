@@ -3,12 +3,12 @@
 //const baseUrl = 'http://173c97n523.iok.la:35703/hurong_proj_bj_byph/mobileApi/'
 
 //外网
-//const serverUrl = 'http://47.94.226.224:8181/hurong_proj_bj_byph/'
-//const baseUrl = serverUrl + 'mobileApi/'
+const serverUrl = 'http://47.94.226.224:8181/hurong_proj_bj_byph/'
+const baseUrl = serverUrl + 'mobileApi/'
 
 //正式环境地址
-const serverUrl = 'http://erp.xiaojinqb.com/'
-const baseUrl = 'http://erp.xiaojinqb.com/mobileApi/'
+// const serverUrl = 'http://erp.xiaojinqb.com/'
+// const baseUrl = 'http://erp.xiaojinqb.com/mobileApi/'
 
 
 // const serverUrl = 'http://172.16.100.111:8001/hurong_bj_byph/'
