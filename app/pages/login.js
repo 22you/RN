@@ -40,7 +40,7 @@ import {
                     secureTextEntry = {true}
                     placeholder="请输入密码"
                     value={this.state.password}
-                    onChangeText={text => this.setState({value: text})}
+                    onChangeText={text => this.setState({password: text})}
                     />
                     <Button type='primary' style={{height:matchsize(80),marginTop:matchsize(60)}}  >
                         <Label style={{color: '#fff', fontSize: 16, paddingLeft: 8}} text='登录' />
