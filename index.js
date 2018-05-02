@@ -1,4 +1,5 @@
 import { AppRegistry } from 'react-native';
+import './app/storeUtils'
 import App from './App';
 import request from './app/common/request'
 import config from './app/common/config'

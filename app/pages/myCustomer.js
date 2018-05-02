@@ -11,7 +11,9 @@ import {
   } from 'react-native';
 
   export default class Mycustomer extends Component {
-
+    static navigationOptions={
+        headerLeft:null
+       }
       render(){
       return(
           <View>

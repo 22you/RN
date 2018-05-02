@@ -8,7 +8,9 @@ import {
   } from 'react-native';
 
   export default class Mybusiness extends Component {
- 
+    static navigationOptions={
+        headerLeft:null
+       }
       render(){
       return(
           <View>

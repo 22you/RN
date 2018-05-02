@@ -23,6 +23,8 @@ import BankList from '../pages/user/banklist'//用户 银行账户信息
 import AddBank from '../pages/user/addBank'//添加银行卡
 import ChangeUserInfo from '../pages/user/changeUserInfo'//修改基本信息
 import Login from '../pages/login' //登录页面
+import UserCenter from '../pages/user/usercenter'//账户中心
+import '../Global'
 import { TabNavigator,TabBarBottom,StackNavigator } from 'react-navigation'
 import {
   Platform,
@@ -61,7 +63,7 @@ const Navigator=TabNavigator({
     }
   },
   account:{
-    screen:Login,
+    screen:UserCenter,
     navigationOptions:{
       title:'账户中心',
       tabBarIcon: ({tintColor})=> (<Icon name="user" size={matchsize(35)} color={tintColor} />)
@@ -202,6 +204,9 @@ const Addnavigator=StackNavigator({
       navigationOptions:{
         headerTitle:"修改基本信息"
       }
+    },
+    Login:{
+      screen:Login
     }
 },{
   tabBarPosition:'top',
@@ -242,6 +247,24 @@ const Addnavigator=StackNavigator({
     },
   },
 })
+///
+
+const defaultGetStateForAction = Addnavigator.router.getStateForAction;
+Addnavigator.router.getStateForAction = (action, state) => {
+  if (action.routeName ==='account'&& !global.user.loginState) {  
+    this.routes = [  
+        ...state.routes,  
+        {key: 'id-'+Date.now(), routeName: 'Login', params: { name: 'name1'}},  
+    ];  
+    return {  
+        ...state,  
+        routes,  
+        index: this.routes.length - 1,  
+    };  
+}  
+return defaultGetStateForAction(action, state); 
+ }
+///
 export default class FooterComponent extends Component {
   constructor(props){
     super(props);
