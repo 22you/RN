@@ -16,14 +16,10 @@ import {
   
   export default class Applybase extends Component {
     static navigationOptions = {
-        headerStyle: {
-          backgroundColor: '#34a1ff',
-        },
-        headerTintColor: '#fff',
-        headerTitleStyle: {
-            fontSize: 16,
-          },
-      };
+      headerRight: (
+        <View style={{height: 44,width: 55,justifyContent: 'center',paddingRight:15} }/>
+    ),
+    };
     constructor(props) {
         super(props);
         // 初始状态

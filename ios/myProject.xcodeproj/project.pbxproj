@@ -5,6 +5,10 @@
 	};
 	objectVersion = 46;
 	objects = {
+<<<<<<< HEAD
+=======
+
+>>>>>>> f9985f843589a513678c9b67bd7993b9fb3dcf4d
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -52,7 +56,10 @@
 		E09068088E1C47C7A3F39E44 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD098BF419194C3E85C6FF78 /* Octicons.ttf */; };
 		E23A2FE50C924DC288B4F8EA /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 896B2030EC154BE0B31FA227 /* libRNImagePicker.a */; };
 		EEB29161DD1B48C1AFD7692E /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A60B092A85894FE79F8A07BE /* MaterialCommunityIcons.ttf */; };
+<<<<<<< HEAD
 		A47674DE59C5433E98A7BDEF /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05E33ADD9D2A4EB8AB2025B9 /* libBVLinearGradient.a */; };
+=======
+>>>>>>> f9985f843589a513678c9b67bd7993b9fb3dcf4d
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -413,8 +420,11 @@
 		D189B460AFF44BA19D2A27FA /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		D67C0457012A480BB86C8512 /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNImagePicker.xcodeproj; path = "../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = "<group>"; };
 		DD098BF419194C3E85C6FF78 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
+<<<<<<< HEAD
 		4091E948BDA74A2592B03D9D /* BVLinearGradient.xcodeproj */ = {isa = PBXFileReference; name = "BVLinearGradient.xcodeproj"; path = "../node_modules/react-native-linear-gradient/BVLinearGradient.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		05E33ADD9D2A4EB8AB2025B9 /* libBVLinearGradient.a */ = {isa = PBXFileReference; name = "libBVLinearGradient.a"; path = "libBVLinearGradient.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+=======
+>>>>>>> f9985f843589a513678c9b67bd7993b9fb3dcf4d
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -447,7 +457,10 @@
 				6C9B310802544D92893E4D21 /* libRNVectorIcons.a in Frameworks */,
 				0C0ABF59D19D4FA98C4CD134 /* libRCTBEEPickerManager.a in Frameworks */,
 				E23A2FE50C924DC288B4F8EA /* libRNImagePicker.a in Frameworks */,
+<<<<<<< HEAD
 				A47674DE59C5433E98A7BDEF /* libBVLinearGradient.a in Frameworks */,
+=======
+>>>>>>> f9985f843589a513678c9b67bd7993b9fb3dcf4d
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -701,7 +714,10 @@
 				A9A913EF98764832B4C34913 /* RNVectorIcons.xcodeproj */,
 				8370A2E7B3E44509BB9BE1D2 /* RCTBEEPickerManager.xcodeproj */,
 				D67C0457012A480BB86C8512 /* RNImagePicker.xcodeproj */,
+<<<<<<< HEAD
 				4091E948BDA74A2592B03D9D /* BVLinearGradient.xcodeproj */,
+=======
+>>>>>>> f9985f843589a513678c9b67bd7993b9fb3dcf4d
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1387,7 +1403,10 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-picker/ios/RCTBEEPickerManager",
 					"$(SRCROOT)/../node_modules/react-native-image-picker/ios",
+<<<<<<< HEAD
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
+=======
+>>>>>>> f9985f843589a513678c9b67bd7993b9fb3dcf4d
 				);
 				INFOPLIST_FILE = myProjectTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1399,7 +1418,10 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+<<<<<<< HEAD
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+=======
+>>>>>>> f9985f843589a513678c9b67bd7993b9fb3dcf4d
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1421,7 +1443,10 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-picker/ios/RCTBEEPickerManager",
 					"$(SRCROOT)/../node_modules/react-native-image-picker/ios",
+<<<<<<< HEAD
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
+=======
+>>>>>>> f9985f843589a513678c9b67bd7993b9fb3dcf4d
 				);
 				INFOPLIST_FILE = myProjectTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1433,7 +1458,10 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+<<<<<<< HEAD
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+=======
+>>>>>>> f9985f843589a513678c9b67bd7993b9fb3dcf4d
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1456,7 +1484,10 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-picker/ios/RCTBEEPickerManager",
 					"$(SRCROOT)/../node_modules/react-native-image-picker/ios",
+<<<<<<< HEAD
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
+=======
+>>>>>>> f9985f843589a513678c9b67bd7993b9fb3dcf4d
 				);
 				INFOPLIST_FILE = myProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1481,7 +1512,10 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-picker/ios/RCTBEEPickerManager",
 					"$(SRCROOT)/../node_modules/react-native-image-picker/ios",
+<<<<<<< HEAD
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
+=======
+>>>>>>> f9985f843589a513678c9b67bd7993b9fb3dcf4d
 				);
 				INFOPLIST_FILE = myProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1513,7 +1547,10 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-picker/ios/RCTBEEPickerManager",
 					"$(SRCROOT)/../node_modules/react-native-image-picker/ios",
+<<<<<<< HEAD
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
+=======
+>>>>>>> f9985f843589a513678c9b67bd7993b9fb3dcf4d
 				);
 				INFOPLIST_FILE = "myProject-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1524,7 +1561,10 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+<<<<<<< HEAD
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+=======
+>>>>>>> f9985f843589a513678c9b67bd7993b9fb3dcf4d
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1556,7 +1596,10 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-picker/ios/RCTBEEPickerManager",
 					"$(SRCROOT)/../node_modules/react-native-image-picker/ios",
+<<<<<<< HEAD
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
+=======
+>>>>>>> f9985f843589a513678c9b67bd7993b9fb3dcf4d
 				);
 				INFOPLIST_FILE = "myProject-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1567,7 +1610,10 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+<<<<<<< HEAD
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+=======
+>>>>>>> f9985f843589a513678c9b67bd7993b9fb3dcf4d
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1601,7 +1647,10 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+<<<<<<< HEAD
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+=======
+>>>>>>> f9985f843589a513678c9b67bd7993b9fb3dcf4d
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.myProject-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1631,7 +1680,10 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+<<<<<<< HEAD
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+=======
+>>>>>>> f9985f843589a513678c9b67bd7993b9fb3dcf4d
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.myProject-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";

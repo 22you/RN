@@ -12,6 +12,9 @@ import {
         headerStyle: {
           backgroundColor: '#34a1ff',
         },
+        headerRight: (
+          <View style={{height: 44,width: 55,justifyContent: 'center',paddingRight:15} }/>
+      ),
         headerTintColor: '#fff',
       
       };

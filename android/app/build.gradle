@@ -137,7 +137,10 @@ android {
 }
 
 dependencies {
+<<<<<<< HEAD
     compile project(':react-native-linear-gradient')
+=======
+>>>>>>> f9985f843589a513678c9b67bd7993b9fb3dcf4d
     compile project(':react-native-picker')
     compile project(':react-native-vector-icons')
     compile project(':react-native-svg')

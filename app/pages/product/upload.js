@@ -10,20 +10,14 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
   export default class Upload extends Component {
     static navigationOptions = {
-        headerStyle: {
-          backgroundColor: '#34a1ff',
-        },
+
         headerRight: (
           
           <Button
             onPress={() => alert('This is a button!')}
             title="+" style={{marginRight:'3%'}}            
           />
-        ),
-        headerTintColor: '#fff',
-        headerTitleStyle: {
-            fontSize: 16,
-          },
+        )
       };
     constructor(props) {
 

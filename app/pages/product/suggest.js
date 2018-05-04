@@ -14,13 +14,9 @@ import {
 
   export default class Suggest extends Component {
     static navigationOptions = {
-        headerStyle: {
-          backgroundColor: '#34a1ff',
-        },
-        headerTintColor: '#fff',
-        headerTitleStyle: {
-            fontSize: 16,
-          },
+      headerRight: (
+        <View style={{height: 44,width: 55,paddingRight:15} }/>
+    )
       };
     constructor(props) {
 
@@ -32,7 +28,7 @@ import {
     }
       render(){        
       return(
-        <View> 
+        <View style={{paddingTop:30}}> 
           <Input
   style={{width:'94%',marginHorizontal:'3%'}}
   value={this.state.valueCustom} placeHolder="请输入您遇到的困难及建议。。。"

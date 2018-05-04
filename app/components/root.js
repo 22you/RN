@@ -178,7 +178,7 @@ const Addnavigator=StackNavigator({
     Upload:{
       screen:Upload, 
       navigationOptions:{
-        titheaderTitlele:'上传资料'
+        headerTitle:'上传资料'
       }
     },
     Suggest:{
