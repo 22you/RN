@@ -232,17 +232,22 @@ const Addnavigator=StackNavigator({
    
   // ),
   headerBackTitle:null,
-  headerRight:(
-   < Text></Text>
-  ),
-    headerStyle: {
+
+    headerStyle: Platform.OS==='ios'?{
       backgroundColor: '#34a1ff',
+    }:{
+      backgroundColor:'#34a1ff',
+      paddingTop:23,
+      height:60,
     },
     headerTintColor: '#fff',
     headerTitleStyle: {
       fontWeight: 'bold',
       fontSize: matchsize(32),
       alignSelf:'center',
+      justifyContent:'center',
+      flex:1,
+      textAlign:'center'
             
     },
   },

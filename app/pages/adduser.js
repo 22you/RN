@@ -13,9 +13,7 @@ import {
           backgroundColor: '#34a1ff',
         },
         headerTintColor: '#fff',
-        headerTitleStyle: {
-            fontSize: 16,
-          },
+      
       };
     constructor(props) {
 
