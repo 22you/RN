@@ -11,7 +11,7 @@ import {
     Button,
     Alert
   } from 'react-native';
-
+  // import matchsize from '../../components/matchsize'
   export default class Suggest extends Component {
     static navigationOptions = {
       headerRight: (
