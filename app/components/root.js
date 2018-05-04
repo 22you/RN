@@ -24,6 +24,7 @@ import AddBank from '../pages/user/addBank'//添加银行卡
 import ChangeUserInfo from '../pages/user/changeUserInfo'//修改基本信息
 import Login from '../pages/login' //登录页面
 import UserCenter from '../pages/user/usercenter'//账户中心
+import EditData from '../pages/user/editData'
 import '../Global'
 import { TabNavigator,TabBarBottom,StackNavigator } from 'react-navigation'
 import {
@@ -207,6 +208,12 @@ const Addnavigator=StackNavigator({
     },
     Login:{
       screen:Login
+    },
+    EditData:{
+      screen:EditData,
+      navigationOptions:{
+        headerTitle:"编辑资料"
+      }
     }
 },{
   tabBarPosition:'top',

@@ -61,7 +61,7 @@ import {
                 <Text>{global.user.userData.memberTruename}</Text>
               </View>
               <View style={{paddingHorizontal:'3%',paddingVertical:matchsize(50),flexDirection:'row',justifyContent:'space-around'}}>
-              <Button title='修改' size="md" type="default" onPress={() => alert('修改')} />
+              <Button title='编辑资料' size="md" type="default" onPress={() => this.props.navigation.navigate('EditData')} />
               <Button title='退出登录' size="md" type="primary" 
                 onPress={this.loginOut.bind(this)} />
               </View>
