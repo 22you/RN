@@ -3,10 +3,7 @@ package com.myproject;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
-<<<<<<< HEAD
 import com.BV.LinearGradient.LinearGradientPackage;
-=======
->>>>>>> f9985f843589a513678c9b67bd7993b9fb3dcf4d
 import com.beefe.picker.PickerViewPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.horcrux.svg.SvgPackage;
@@ -31,10 +28,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-<<<<<<< HEAD
             new LinearGradientPackage(),
-=======
->>>>>>> f9985f843589a513678c9b67bd7993b9fb3dcf4d
             new PickerViewPackage(),
             new VectorIconsPackage(),
             new SvgPackage(),

@@ -10,10 +10,7 @@ import {
     ScrollView,
     Alert
   } from 'react-native';
-<<<<<<< HEAD
   import DatePicker from 'react-native-datepicker'
-=======
->>>>>>> f9985f843589a513678c9b67bd7993b9fb3dcf4d
   import matchsize from '../../components/matchsize'
   import {Button} from 'teaset'
   export default class Probase extends Component {
@@ -22,10 +19,7 @@ import {
         super(props);
         // 初始状态
         this.state = {
-<<<<<<< HEAD
           date:'2018-01-01',
-=======
->>>>>>> f9985f843589a513678c9b67bd7993b9fb3dcf4d
           maritalStatusValue:'男',
           cardType:'身份证'
         };
@@ -98,7 +92,7 @@ import {
                         })
                         }} />
 
-<<<<<<< HEAD
+
             <TouchableOpacity style={base.item}>
             <Text>出生日期</Text>
             <DatePicker
@@ -125,12 +119,10 @@ import {
         onDateChange={(date) => {this.setState({date: date})}}
       />
             </TouchableOpacity>
-=======
             <View style={base.item}>
             <Text>出生日期</Text>
             <Text>1992-01-14</Text>
             </View>
->>>>>>> f9985f843589a513678c9b67bd7993b9fb3dcf4d
             <DefaultInput placeholder={'请输入...'} name={'邮政编码'} style={base.item}
 					              onChangeText={(text)=>{
                           this.setState({
@@ -189,12 +181,10 @@ import {
     flexDirection:'row',
     justifyContent:'space-between',
     borderBottomWidth:1,
-<<<<<<< HEAD
     borderBottomColor:'#ddd',
-    alignItems:'center'
-=======
+    alignItems:'center',
+    borderBottomColor:'#ddd',
     borderBottomColor:'#ddd'
->>>>>>> f9985f843589a513678c9b67bd7993b9fb3dcf4d
 
   }
   })

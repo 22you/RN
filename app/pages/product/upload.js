@@ -10,7 +10,6 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
   export default class Upload extends Component {
     static navigationOptions = {
-
         headerRight: (
           
           <Button

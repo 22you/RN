@@ -24,10 +24,6 @@ export default class Home extends Component {
     headerStyle: {
       backgroundColor: '#f4511e',
     },
-<<<<<<< HEAD
-    
-=======
->>>>>>> f9985f843589a513678c9b67bd7993b9fb3dcf4d
   };
   constructor(props) {
     super(props);
@@ -69,11 +65,7 @@ componentWillMount(){
       
       <View style={[styles.indexBox,{flex: 1}]}>
      <StatusBar
-<<<<<<< HEAD
           backgroundColor='transparent'
-=======
-          backgroundColor='#ff0000'
->>>>>>> f9985f843589a513678c9b67bd7993b9fb3dcf4d
           translucent={true}
           hidden={false}
           animated={true}  

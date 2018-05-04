@@ -1,34 +1,25 @@
 import React, { Component } from 'react';
 import matchsize from '../components/matchsize'
-<<<<<<< HEAD
 import CustomItem from '../pages/user/customItem'
-=======
->>>>>>> f9985f843589a513678c9b67bd7993b9fb3dcf4d
 import {
     Platform,
     StyleSheet,
     Text,
     View,
-<<<<<<< HEAD
     TouchableOpacity,
     FlatList
   } from 'react-native';
+
 
   export default class Mycustomer extends Component {
     static navigationOptions={
         headerLeft:null
        }
-=======
-  } from 'react-native';
-
-  export default class Mycustomer extends Component {
-
->>>>>>> f9985f843589a513678c9b67bd7993b9fb3dcf4d
       render(){
       return(
           <View>
               <View style={bus.busBox}>
-<<<<<<< HEAD
+
                 <FlatList
                   data={[
                     {
@@ -60,8 +51,7 @@ import {
                   {...this.props}
                   />}
                 />
-                
-=======
+
                 <View style={bus.busItem}>
                 <View style={bus.title}>
                     <View style={{flexDirection:'row',}}><Text style={{color:'#ababab'}}>客户名称</Text><Text style={{color:'#000',marginLeft:matchsize(15)}}>蔡晴</Text></View>
@@ -77,17 +67,13 @@ import {
                       <Text style={{color:'#656565',paddingLeft:matchsize(8),fontSize:matchsize(27)}}>2018-04-03</Text>
                   </View>
                 </View>
->>>>>>> f9985f843589a513678c9b67bd7993b9fb3dcf4d
+
               </View>
           </View>
       )
       }
   }
   const bus=StyleSheet.create({
-<<<<<<< HEAD
-   
-   
-=======
     busItem:{
         marginTop:matchsize(10),
         backgroundColor:'#fff',
@@ -114,5 +100,5 @@ import {
         justifyContent:'flex-end',
         alignItems:'center'
     }
->>>>>>> f9985f843589a513678c9b67bd7993b9fb3dcf4d
+
   })

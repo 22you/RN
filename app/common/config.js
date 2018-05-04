@@ -3,21 +3,12 @@
 //const baseUrl = 'http://173c97n523.iok.la:35703/hurong_proj_bj_byph/mobileApi/'
 
 //外网
-<<<<<<< HEAD
 const serverUrl = 'http://47.94.226.224:8181/hurong_proj_bj_byph/'
 const baseUrl = serverUrl + 'mobileApi/'
 
 //正式环境地址
 // const serverUrl = 'http://erp.xiaojinqb.com/'
 // const baseUrl = 'http://erp.xiaojinqb.com/mobileApi/'
-=======
-//const serverUrl = 'http://47.94.226.224:8181/hurong_proj_bj_byph/'
-//const baseUrl = serverUrl + 'mobileApi/'
-
-//正式环境地址
-const serverUrl = 'http://erp.xiaojinqb.com/'
-const baseUrl = 'http://erp.xiaojinqb.com/mobileApi/'
->>>>>>> f9985f843589a513678c9b67bd7993b9fb3dcf4d
 
 
 // const serverUrl = 'http://172.16.100.111:8001/hurong_bj_byph/'
@@ -83,10 +74,6 @@ export default {
     api: {
         banner:'https://cnodejs.org/api/v1/topics',//首页的banner图
         login: baseUrl + 'loginBpMemberApi.do?',//登录 userName,password
-<<<<<<< HEAD
-       
-=======
->>>>>>> f9985f843589a513678c9b67bd7993b9fb3dcf4d
         loginOut: baseUrl + 'loginOutBpMemberApi.do?',//退出登录    token
         changePass: baseUrl + 'changePassBpMemberApi.do?',//修改密码    mobile  newPassword
         checkGesture: baseUrl + 'checkGestureBpMemberApi.do?',//查看手势密码  token
@@ -129,8 +116,6 @@ export default {
             allBill: baseUrl + 'allBillBillApi.do',//我的所有账单
 
         },
-<<<<<<< HEAD
-=======
         quota: {
             getPersonRelation: baseUrl + 'getPersonRelationCreditApi.do',//查看联系人
             savePersonRelation: baseUrl + 'savePersonRelationCreditApi.do',//保存联系人
@@ -198,7 +183,6 @@ export default {
             selectPayMonth: baseUrl + 'selectPayMonthProductParaApi.do',//查看月供
 
         }
->>>>>>> f9985f843589a513678c9b67bd7993b9fb3dcf4d
 
     }
 }
