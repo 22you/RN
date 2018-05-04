@@ -1,6 +1,6 @@
 
 const serverUrl = 'http://47.94.226.224:8181/hurong_proj_bj_byph/'
-const baseUrl = serverUrl + 'mobileApi/
+const baseUrl = serverUrl + 'mobileApi/'
 
 export default {
     imageUrl: serverUrl + '',
