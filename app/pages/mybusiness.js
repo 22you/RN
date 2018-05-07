@@ -82,5 +82,11 @@ import {
         paddingVertical:matchsize(30), 
         flexDirection:'row',
         justifyContent:'flex-end'
-    }
+    },
+    noticebox:{
+        flexDirection:'row',
+         width:'100%',
+       justifyContent:'center',
+       paddingVertical:matchsize(30)
+      }
   })

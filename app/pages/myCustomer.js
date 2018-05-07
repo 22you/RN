@@ -62,7 +62,6 @@ import {
       return(
           <View>
               <View style={bus.busBox}>
-                <Text>{global.user.loginState}</Text>
                 {customers}
               </View>
           </View>
@@ -99,7 +98,8 @@ import {
     noticebox:{
       flexDirection:'row',
        width:'100%',
-     justifyContent:'center'
+     justifyContent:'center',
+     paddingVertical:matchsize(30)
     }
 
   })
