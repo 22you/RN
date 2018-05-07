@@ -32,7 +32,8 @@ import {
           <View style={{ backgroundColor:'#fff',}}>
             <ScrollView style={{marginBottom:matchsize(20)}}>
             <KeyboardAwareScrollView>
-            <DefaultInput placeholder={'请输入...'} name={'客户姓名'} style={base.item}
+            <DefaultInput name={'客户姓名'} style={base.item}
+            value={this.props.navigation.state.params.customName}
 					              onChangeText={(text) => {
                           this.setState({
                               userName: text
