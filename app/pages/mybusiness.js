@@ -5,6 +5,7 @@ import {
     StyleSheet,
     Text,
     View,
+    FlatList
   } from 'react-native';
 
   export default class Mybusiness extends Component {
@@ -13,23 +14,46 @@ import {
        }
  
       render(){
+          let business=global.user.loginState?
+          <FlatList
+           data={[
+               {
+                   customName:'小w',
+                   taskName:'投资金单申请',
+                   proName:'随意宝20180404001',
+                   contractNum:'092fhe29873',
+                   create_at:'2018-04-03'
+               }
+           ]}
+           renderItem={
+               ({item})=> 
+               <View style={bus.busItem}>
+               <View style={bus.title}>
+                   <View style={{flexDirection:'row',}}><Text style={{color:'#ababab'}}>客户名称</Text><Text style={{color:'#000',marginLeft:matchsize(15)}}>{item.customName}</Text></View>
+                   <View style={{flexDirection:'row',}}><Text style={{color:'#ababab'}}>任务名称</Text><Text style={{color:'#000',marginLeft:matchsize(15)}}>{item.taskName}</Text></View>
+                 </View>
+                 <View style={bus.content}>
+                   <View style={{flexDirection:'row',alignItems:'center',}}><Text style={{color:'#ababab',fontSize:matchsize(27)}}>项目名称</Text><Text style={{color:'#99cffe',fontSize:matchsize(27),marginLeft:matchsize(8)}}>{item.proName}</Text></View>
+                   <View style={{flexDirection:'row',alignItems:'center',marginTop:matchsize(20)}}><Text  style={{color:'#ababab',fontSize:matchsize(27)}}>合同编号</Text><Text style={{fontSize:matchsize(27),marginLeft:matchsize(8)}}>{item.contractNum}</Text></View>
+                 </View>
+                 <View style={bus.bottom}>
+                     <Text style={{color:'#ababab',fontSize:matchsize(27)}}>创建时间</Text>
+                     <Text style={{color:'#656565',paddingLeft:matchsize(8),fontSize:matchsize(27)}}>{item.create_at}</Text>
+                 </View>
+               </View>
+            }
+
+          />
+          :
+          <View style={bus.noticebox}>
+          <Text>要查看相关信息,请先</Text>
+          <Text style={{color:'red'}} onPress={()=>this.props.navigation.navigate('Login')}>登录</Text>
+        </View>
+          ;
       return(
           <View>
               <View style={bus.busBox}>
-                <View style={bus.busItem}>
-                <View style={bus.title}>
-                    <View style={{flexDirection:'row',}}><Text style={{color:'#ababab'}}>客户名称</Text><Text style={{color:'#000',marginLeft:matchsize(15)}}>蔡晴</Text></View>
-                    <View style={{flexDirection:'row',}}><Text style={{color:'#ababab'}}>任务名称</Text><Text style={{color:'#000',marginLeft:matchsize(15)}}>投资金单申请</Text></View>
-                  </View>
-                  <View style={bus.content}>
-                    <View style={{flexDirection:'row',alignItems:'center',}}><Text style={{color:'#ababab',fontSize:matchsize(27)}}>项目名称</Text><Text style={{color:'#99cffe',fontSize:matchsize(27),marginLeft:matchsize(8)}}>随意宝20180404001</Text></View>
-                    <View style={{flexDirection:'row',alignItems:'center',marginTop:matchsize(20)}}><Text  style={{color:'#ababab',fontSize:matchsize(27)}}>合同编号</Text><Text style={{fontSize:matchsize(27),marginLeft:matchsize(8)}}>092fhe29873</Text></View>
-                  </View>
-                  <View style={bus.bottom}>
-                      <Text style={{color:'#ababab',fontSize:matchsize(27)}}>创建时间</Text>
-                      <Text style={{color:'#656565',paddingLeft:matchsize(8),fontSize:matchsize(27)}}>2018-04-03</Text>
-                  </View>
-                </View>
+               {business}
               </View>
           </View>
       )
