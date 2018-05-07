@@ -43,7 +43,8 @@ import {
             customSettime:'2012-12-12'
         }
         ]}
-          renderItem={({item})=><CustomItem 
+          renderItem={({item})=>
+          <CustomItem 
           customName={item.customName} 
           customTeam={item.customTeam} 
           customSex={item.customSex} 
