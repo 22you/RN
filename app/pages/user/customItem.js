@@ -4,7 +4,9 @@ import matchsize from '../../components/matchsize'
 export default class CustomItem extends Component{
  render(){
      return(
-        <TouchableOpacity style={bus.busItem} onPress={()=>this.props.navigation.navigate('ChangeUserInfo',{...this.state})}>
+        <TouchableOpacity style={bus.busItem} onPress={()=>this.props.navigation.navigate('ChangeUserInfo',{
+            customName: this.props.customName
+        })}>
         <View style={bus.title}>
             <View style={{flexDirection:'row',}}><Text style={{color:'#ababab'}}>客户名称</Text><Text style={{color:'#000',marginLeft:matchsize(15)}}>{this.props.customName}</Text></View>
             <View style={{flexDirection:'row',}}><Text style={{color:'#ababab'}}>部门名称</Text><Text style={{color:'#000',marginLeft:matchsize(15)}}>{this.props.customTeam}</Text></View>
