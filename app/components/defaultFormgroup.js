@@ -41,6 +41,7 @@ const DefaultInput = (props) => {
             flex: 1,
             paddingLeft: 0
           }}
+          value={props.value}
           placeholder={props.placeholder}
           onChangeText={props.onChangeText}
         />
