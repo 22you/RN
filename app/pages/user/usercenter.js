@@ -19,7 +19,9 @@ import {
         super(props);
         // 初始状态
         this.state = {
-     
+          memberName:'',
+          memberMobile:'',
+          memberTruename:''
         };
     }
     loginOut(){
@@ -44,21 +46,29 @@ import {
      
     }
     
+    componentDidMount(){
+      this.setState({
+        memberName:global.user.userData.memberName,
+        memberMobile:global.user.userData.memberMobile,
+        memberTruename:global.user.userData.memberTruename
+      })
+    }
+
       render(){
       return(
           <View style={{ backgroundColor:'#fff',}}>
             <ScrollView style={{marginBottom:matchsize(20)}}>
               <View style={base.item}>
                 <Text>用户名</Text>
-                <Text>{global.user.userData.memberName}</Text>
+                <Text>{this.state.memberName}</Text>
               </View>
               <View style={base.item}>
                 <Text>手机号</Text>
-                <Text>{global.user.userData.memberMobile}</Text>
+                <Text>{this.state.memberMobile}</Text>
               </View>
               <View style={base.item}>
                 <Text>用户真实姓名</Text>
-                <Text>{global.user.userData.memberTruename}</Text>
+                <Text>{this.state.memberTruename}</Text>
               </View>
               <View style={{paddingHorizontal:'3%',paddingVertical:matchsize(50),flexDirection:'row',justifyContent:'space-around'}}>
               <Button title='编辑资料' size="md" type="default" onPress={() => this.props.navigation.navigate('EditData')} />
