@@ -32,7 +32,7 @@ import {
         const userName = this.state.username
         const password = this.state.password
         if (!userName || !password) {
-            return that.props.popAlert('呜呜~', '手机号或密码不能为空！')
+            return Alert.alert('呜呜~', '手机号或密码不能为空！')
         }
         const loginURL = config.api.login + 'userName=' + userName + '&password=' + password ;
         this._getLogin(loginURL)
@@ -46,6 +46,7 @@ import {
                             data:responseText.member,
                             expires: 1000 * 3600 * 8
                         })
+                        console.log('登录之后存储的数据：',responseText.member)
                         that.props.navigation.navigate('Home')
                     } else {
                         Alert.alert(responseText.msg)
