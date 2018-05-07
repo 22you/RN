@@ -27,7 +27,6 @@ import {
         };
     }
     _submit() {
-
         let that = this
         const userName = this.state.username
         const password = this.state.password
