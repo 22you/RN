@@ -14,7 +14,7 @@ export default class CustomItem extends Component{
           <View style={bus.content}>
             <View style={{flexDirection:'row',alignItems:'center',width:'50%'}}><Text style={{color:'#ababab',fontSize:matchsize(27)}}>性别</Text><Text style={{color:'#99cffe',fontSize:matchsize(27),marginLeft:matchsize(8)}}>{this.props.customSex}</Text></View>
             <View style={{flexDirection:'row',alignItems:'center',width:'50%',justifyContent:'flex-end'}}><Text  style={{color:'#ababab',fontSize:matchsize(27)}}>手机号</Text><Text style={{fontSize:matchsize(27),marginLeft:matchsize(8)}}>{this.props.customPhone}</Text></View>
-            <View style={{flexDirection:'row',alignItems:'center',marginTop:matchsize(20)}}><Text  style={{color:'#ababab',fontSize:matchsize(27)}}>证件号码</Text><Text style={{fontSize:matchsize(27),marginLeft:matchsize(8)}}>{this.props.customPhoneNumber}</Text></View>
+            <View style={{flexDirection:'row',alignItems:'center',marginTop:matchsize(20)}}><Text  style={{color:'#ababab',fontSize:matchsize(27)}}>证件号码</Text><Text style={{fontSize:matchsize(27),marginLeft:matchsize(8)}}>{this.props.customCardNumber}</Text></View>
           </View>
           <View style={bus.bottom}>
               <Text style={{color:'#ababab',fontSize:matchsize(27)}}>创建时间</Text>

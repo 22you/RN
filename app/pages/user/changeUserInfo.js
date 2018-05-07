@@ -27,21 +27,32 @@ import {
     onSelectedmaritalStatus=(item, index) => {
       this.setState({maritalStatusValue: item})
     }
+    componentDidMount(){
+      console.log("params",this.props.navigation.state.params);
+    }
       render(){
+        let {customName,customPhone,customCardNumber,customSettime,customSex,customTeam}=this.props.navigation.state.params;
       return(
           <View style={{ backgroundColor:'#fff',}}>
             <ScrollView style={{marginBottom:matchsize(20)}}>
             <KeyboardAwareScrollView>
             <DefaultInput name={'客户姓名'} style={base.item}
-            value={this.props.navigation.state.params.customName}
-					              onChangeText={(text) => {
-                          this.setState({
-                              userName: text
+            value={customName}
+					  onChangeText={(text) => {
+               this.setState({
+                  userName: text
                           })
-                      }} />
+                      }} 
+            />
 
-             <DefaultSelect  placeholder={'请选择性别'} name={'性别'} value={this.state.maritalStatusValue} style={base.item}
-					               items={['男','女']} onSelected={this.onSelectedmaritalStatus}/>
+             <DefaultSelect  
+             placeholder={'请选择性别'} 
+             name={'性别'} 
+             value={customSex} 
+             style={base.item}
+             items={['男','女']} 
+             onSelected={this.onSelectedmaritalStatus}
+             />
 
             <DefaultInput placeholder={'请输入...'} name={'主联系电话'} style={base.item}
 					              onChangeText={(text)=>{
@@ -60,7 +71,11 @@ import {
             <DefaultSelect  placeholder={'请选择'} name={'证件类型'} value={this.state.cardType} style={base.item}
 					               items={['身份证','护照']} onSelected={this.onSelectedmaritalStatus}/>
 
-            <DefaultInput placeholder={'请输入...'} name={'证件号码'} style={base.item}
+            <DefaultInput 
+            placeholder={'请输入...'} 
+            name={'证件号码'} 
+            style={base.item}
+            value={customCardNumber}
 					              onChangeText={(text)=>{
                           this.setState({
                             cardNumber: text
@@ -74,7 +89,7 @@ import {
               mode="date"
               placeholder="请选择日期"
               format="YYYY-MM-DD"
-              minDate="2016-05-01"
+              minDate=""
               maxDate={new Date()}
               confirmBtnText="确定"
               showIcon="false"
@@ -125,8 +140,12 @@ import {
                             userNature: text
                         })
                         }} />
-            <DefaultInput placeholder={'请输入...'} name={'登记团队'} style={base.item}
-					              onChangeText={(text)=>{
+            <DefaultInput 
+            placeholder={'请输入...'} 
+            name={'登记团队'} 
+            style={base.item}
+            value={customTeam}
+					  onChangeText={(text)=>{
                           this.setState({
                             userTeam: text
                         })

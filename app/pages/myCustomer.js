@@ -30,7 +30,7 @@ import {
                 customTeam:'信息部',
                 customSex:'女',
                 customPhone:'19082378236',
-                customPhoneNumber:'127892132937',
+                customCardNumber:'127892132937',
                 customSettime:'2018-12-12'
             }, 
             {  
@@ -39,7 +39,7 @@ import {
             customTeam:'广告部',
             customSex:'男',
             customPhone:'1232382378236',
-            customPhoneNumber:'99927892132937',
+            customCardNumber:'99927892132937',
             customSettime:'2012-12-12'
         }
         ]}
@@ -49,7 +49,7 @@ import {
           customTeam={item.customTeam} 
           customSex={item.customSex} 
           customPhone={item.customPhone} 
-          customPhoneNumber={item.customPhoneNumber}
+          customCardNumber={item.customCardNumber}
           customSettime={item.customSettime}
           {...this.props}
           />}
