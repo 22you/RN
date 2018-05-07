@@ -119,10 +119,7 @@ import {
         onDateChange={(date) => {this.setState({date: date})}}
       />
             </TouchableOpacity>
-            <View style={base.item}>
-            <Text>出生日期</Text>
-            <Text>1992-01-14</Text>
-            </View>
+      
             <DefaultInput placeholder={'请输入...'} name={'邮政编码'} style={base.item}
 					              onChangeText={(text)=>{
                           this.setState({

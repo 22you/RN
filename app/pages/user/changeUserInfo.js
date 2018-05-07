@@ -10,8 +10,9 @@ import {
     ScrollView,
     Alert
   } from 'react-native';
-  import matchsize from '../../components/matchsize'
-  import {Button} from 'teaset'
+  import matchsize from '../../components/matchsize';
+  import {Button} from 'teaset';
+  import DatePicker from 'react-native-datepicker'
   export default class ChangeUserInfo extends Component {
 
     constructor(props) {
@@ -65,10 +66,33 @@ import {
                         })
                         }} />
 
-            <View style={base.item}>
+         <TouchableOpacity style={base.item}>
             <Text>出生日期</Text>
-            <Text>1992-01-14</Text>
-            </View>
+            <DatePicker
+              date={this.state.date}
+              mode="date"
+              placeholder="请选择日期"
+              format="YYYY-MM-DD"
+              minDate="2016-05-01"
+              maxDate={new Date()}
+              confirmBtnText="确定"
+              showIcon="false"
+              cancelBtnText="取消"
+              customStyles={{
+                dateIcon: {
+                  display:'none'
+                 
+                },
+                dateInput: {
+                  marginLeft: 36,
+                  borderWidth:0
+                }
+          
+        }}
+        onDateChange={(date) => {this.setState({date: date})}}
+      />
+            </TouchableOpacity>
+      
             <DefaultInput placeholder={'请输入...'} name={'邮政编码'} style={base.item}
 					              onChangeText={(text)=>{
                           this.setState({
@@ -127,7 +151,8 @@ import {
     flexDirection:'row',
     justifyContent:'space-between',
     borderBottomWidth:1,
-    borderBottomColor:'#ddd'
+    borderBottomColor:'#ddd',
+    alignItems:'center'
 
   }
   })
