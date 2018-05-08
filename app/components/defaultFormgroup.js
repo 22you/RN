@@ -31,7 +31,7 @@ import {Input,Select} from 'teaset'
 const DefaultInput = (props) => {
     return (
       <View style={[{borderBottomWidth: props.border?0:1,alignItems:'center'},props.style]}>
-        <View style={{flexDirection:'row',alignItems:'center'}}><Text>{props.require ? '*' : '  '}</Text><Text>{props.name}</Text></View>
+        <View style={{flexDirection:'row',alignItems:'center'}}><Text style={{color: '#FF1737'}}>{props.require ? '*' : '  '}</Text><Text>{props.name}</Text></View>
         <Input
           keyboardType={props.keyboardType ? props.keyboardType : 'default'}
           style={{

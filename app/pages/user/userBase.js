@@ -77,6 +77,7 @@ import {
             <DefaultInput 
             placeholder={'请输入...'} 
             name={'客户姓名'} 
+            require
             style={base.item}
 					  onChangeText={(text) => {
                    this.setState({
@@ -88,6 +89,7 @@ import {
              <DefaultSelect  
              placeholder={'请选择性别'} 
              name={'性别'} 
+             require
              value={this.state.sex} 
              style={base.item}
              items={['男','女']} 
@@ -102,6 +104,7 @@ import {
             placeholder={'请输入...'} 
             name={'主联系电话'} 
             style={base.item}
+            require
 					  onChangeText={(text)=>{
                  this.setState({
                      cellphone: text
@@ -122,6 +125,7 @@ import {
             <DefaultSelect  
             placeholder={'请选择'} 
             name={'证件类型'} 
+            require
             value={this.state.cardtype} 
             style={base.item}
             items={['身份证','护照']} 
@@ -134,6 +138,7 @@ import {
             <DefaultInput 
             placeholder={'请输入...'} 
             name={'证件号码'} 
+            require
             style={base.item}
 					  onChangeText={(text)=>{
                           this.setState({
@@ -190,7 +195,7 @@ import {
                             customerNature: text
                         })
                         }} />
-             <DefaultInput placeholder={'请输入...'} name={'通讯地址'} style={base.item}
+             <DefaultInput placeholder={'请输入...'} require name={'通讯地址'} style={base.item}
 					              onChangeText={(text)=>{
                           this.setState({
                             postaddress: text
