@@ -8,7 +8,7 @@ import {
     ScrollView,
     Alert
   } from 'react-native';
-  import {Button} from 'teaset'
+  import {Button,Input,Select} from 'teaset'
   export default class Probase extends Component {
     static navigationOptions = {
         headerRight: (
@@ -22,7 +22,29 @@ import {
  
         };
     }
+    _buyApply=()=>{
+      let {valueCustom,InvestAmount}=this.state;
+      if(!valueCustom){
+        Alert.alert('请选择客户');
+        return false;
+      }
+      if(!InvestAmount){
+        Alert.alert('请输入投资金额');
+        return false;
+      }
+      this.props.navigation.navigate('Apply')
+    }
       render(){
+        const customItems = [
+          {
+            text: 'Long long long long long long long',
+            value: 1,
+          },
+          {
+            text: 'Short',
+            value: 2,
+          }
+        ];
       return(
           <View style={{ backgroundColor:'#fff',}}>
             <ScrollView style={{marginBottom:20}}>
@@ -134,9 +156,34 @@ import {
             <Text>团队考核</Text>
             <Text>10%</Text>
             </View>
+            <View style={{ marginTop:20, marginHorizontal:'3%',}} >
+            <Text style={{marginBottom:20,color:'red'}}>购买信息:</Text>
+            <View style={base.applybox}>
+              <View>
+              <Text style={{marginBottom:10}}><Text style={{color:'red'}}>*</Text>客户姓名:</Text>
+              <Select
+               value={this.state.valueCustom}
+               valueStyle={{flex: 1, color: '#8a6d3b', textAlign: 'left'}}
+               items={customItems}
+               getItemValue={(item, index) => item.value}
+               getItemText={(item, index) => item.text}
+               iconTintColor='#8a6d3b'
+               placeholder='请选择客户'
+               pickerTitle='请选择客户姓名'
+               onSelected={(item, index) => this.setState({valueCustom: item.value})}
+              />
+              </View>
+              <View style={{marginTop:15}}>
+                <Text style={{marginBottom:10}}><Text style={{color:'red'}}>*</Text>投资金额:</Text>
+                <Input placeholder="请输入..." value={this.state.InvestAmount}
+                 onChangeText={(text)=>{this.setState({InvestAmount:text})}}
+                />
+              </View>
+            </View>
+            </View>
             <TouchableOpacity style={{marginTop:15,marginHorizontal:'5%'}}>
-              <Button title="购买"
-            accessibilityLabel="购买" type="primary" onPress={()=>this.props.navigation.navigate('Apply')} />
+            <Button title="购买"
+            accessibilityLabel="购买" type="primary" onPress={()=>this._buyApply()} />
            
             </TouchableOpacity>
             </ScrollView>
@@ -153,5 +200,12 @@ import {
     borderBottomWidth:1,
     borderBottomColor:'#ddd'
 
+  },
+  applybox:{
+    backgroundColor:'#ddd',
+    paddingVertical:10,
+    paddingHorizontal:10,
+   
+   
   }
   })
