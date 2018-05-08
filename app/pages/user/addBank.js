@@ -33,6 +33,7 @@ import {
         };
     }
       render(){
+        let {cardTitle,cardUser}=this.props.navigation.state.params;
           return(
            <View style={{backgroundColor:'#fff',paddingBottom:30}}>
              <ScrollView>
@@ -40,7 +41,7 @@ import {
 					               items={['个人','团体']} onSelected={(item)=>this.setState({openType: item})}/>
             <DefaultSelect  placeholder={'请选择账户类型'} name={'帐户类型'} value={this.state.accountTyp} style={base.item}
 					               items={['个人','团体']} onSelected={(item)=>this.setState({accountTyp: item})}/>
-            <DefaultSelect  placeholder={'请选择银行名称'} name={'银行名称'} value={this.state.cardTitle} style={base.item}
+            <DefaultSelect  placeholder={'请选择银行名称'} name={'银行名称'} value={cardTitle} style={base.item}
 					               items={['招商银行','邮政银行']} onSelected={(item)=>this.setState({cardTitle: item})}/>
             <DefaultInput placeholder={'请输入...'} name={'网店名称'} style={base.item}
 					              onChangeText={(text) => {
@@ -51,6 +52,7 @@ import {
             <DefaultSelect  placeholder={'银行开户类型'} name={'银行开户类型'} value={this.state.cardTitle} style={base.item}
 					               items={['本币开户','本币开户']} onSelected={(item)=>this.setState({cardTitle: item})}/>
              <DefaultInput placeholder={'请输入...'} name={'开户名称'} style={base.item}
+             value={cardUser}
 					              onChangeText={(text) => {
                           this.setState({
                             cardUser: text

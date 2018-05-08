@@ -32,7 +32,7 @@ import {
                     }
                     ]}
                     renderItem={
-                        ({item}) => <BankItem cardNum={item.cardNum} cardUser={item.cardUser} cardTitle={item.cardTitle}/>
+                        ({item}) => <BankItem  cardNum={item.cardNum} cardUser={item.cardUser} cardTitle={item.cardTitle}  {...this.props}/>
                     }
                     />
                     <TouchableOpacity style={add.addbtn} onPress={()=>this.props.navigation.navigate('AddBank',{...this.state})}>

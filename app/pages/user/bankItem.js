@@ -11,7 +11,10 @@ import {
   export default class BankItem extends Component{
       render(){
           return(
-            <LinearGradient start={{x: 0.25, y: 0.25}} end={{x: 0.75, y: 0.75}} colors={['#ff6162', '#ff8181']} style={add.bankbox}>
+            <LinearGradient start={{x: 0.25, y: 0.25}} end={{x: 0.75, y: 0.75}} colors={['#ff6162', '#ff8181']} style={add.bankbox}
+           
+            >
+            <TouchableOpacity  onPress={()=>this.props.navigation.navigate('AddBank',{...this.props})}>
             <View>
                 <Text style={{letterSpacing:matchsize(30),color:'#fff',fontSize:matchsize(36)}}>{this.props.cardTitle}</Text>
                  <Text style={{color:'#fff'}}>zhao shang yin hang</Text>
@@ -28,6 +31,7 @@ import {
             <View>
                 <Text style={{color:'#fff',fontSize:matchsize(24)}}>{this.props.cardUser}</Text>
             </View>
+            </TouchableOpacity>
         </LinearGradient>
           )
       }
