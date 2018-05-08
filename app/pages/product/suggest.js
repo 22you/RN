@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import {Input} from 'teaset' 
+import {Input,Button} from 'teaset' 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import {
     Platform,
@@ -8,7 +8,6 @@ import {
     Text,
     View,
     TouchableOpacity,
-    Button,
     Alert
   } from 'react-native';
   // import matchsize from '../../components/matchsize'
@@ -30,16 +29,18 @@ import {
       return(
         <View style={{paddingTop:30}}> 
           <Input
-  style={{width:'94%',marginHorizontal:'3%'}}
-  value={this.state.valueCustom} placeHolder="请输入您遇到的困难及建议。。。"
-  onChangeText={text => this.setState({valueCustom: text})}
-  />
+    style={{width:'94%',marginHorizontal:'3%'}}
+    value={this.state.valueCustom} placeHolder="请输入您遇到的困难及建议。。。"
+    onChangeText={text => this.setState({valueCustom: text})}
+    />
        
         <View style={{marginTop:15,marginHorizontal:'3%'}}>          
           <Button title="提交"
           accessibilityLabel="提交"
+          type="primary"
             onPress={()=>Alert.alert('aaa')}/>
         </View>
+           
           </View>
       )
       }

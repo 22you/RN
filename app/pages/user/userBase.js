@@ -125,7 +125,7 @@ import {
             name={'主联系电话'} 
             style={base.item}
             require
-            type="number"
+            keyboardType="numeric"
 					  onChangeText={(text)=>{
                  this.setState({
                      cellphone: text
@@ -135,7 +135,7 @@ import {
              <DefaultInput 
              placeholder={'请输入...'} 
              name={'备用电话'} 
-             type="number"
+             keyboardType="numeric"
              style={base.item}
 					   onChangeText={(text)=>{
                           this.setState({
@@ -206,6 +206,7 @@ import {
                         })
              }} />
              <DefaultInput placeholder={'请输入...'} name={'电子邮箱'} style={base.item}
+             keyboardType="email-address"
 					              onChangeText={(text)=>{
                           this.setState({
                             selfemail: text
