@@ -10,9 +10,9 @@ import {
   } from 'react-native';
   import Icon from 'react-native-vector-icons/FontAwesome';
   import matchsize from '../../components/matchsize';
-  import BankList from './bankItem'
+  import BankItem from './bankItem'
 
-  export default class BankItem extends Component{
+  export default class BankList extends Component{
       render(){
           return(
               <View style={add.item}>
@@ -32,7 +32,7 @@ import {
                     }
                     ]}
                     renderItem={
-                        ({item}) => <BankList cardNum={item.cardNum} cardUser={item.cardUser} cardTitle={item.cardTitle}/>
+                        ({item}) => <BankItem cardNum={item.cardNum} cardUser={item.cardUser} cardTitle={item.cardTitle}/>
                     }
                     />
                     <TouchableOpacity style={add.addbtn} onPress={()=>this.props.navigation.navigate('AddBank',{...this.state})}>
