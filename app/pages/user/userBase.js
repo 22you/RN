@@ -88,8 +88,8 @@ import {
       formData.append('postaddress',postaddress);//通讯地址
       formData.append('belongedName',belongedName);//客户授权人
       formData.append('departmentId',departmentId);//登记团队
-      // this.props.navigation.navigate('UploadId',{...this.state});
-      console.log(formData)
+       this.props.navigation.navigate('UploadId',{...this.state});
+      // console.log(formData)
     }
   
       render(){
