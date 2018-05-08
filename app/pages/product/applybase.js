@@ -71,8 +71,8 @@ import {
               mode="date"
               placeholder="select date"
               format="YYYY-MM-DD"
-              minDate="2016-05-01"
-              maxDate="2016-06-01"
+              minDate='null'
+              maxDate={new Date()}
               confirmBtnText="Confirm"
               showIcon="false"
               cancelBtnText="Cancel"

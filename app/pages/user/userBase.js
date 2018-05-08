@@ -29,7 +29,7 @@ import {
           alternatePhone:'',
           cardtype:'',
           cardnumber:'',
-          birthDay:'',
+          birthDay:'2018-1-1',
           postcode:'',
           selfemail:'',
           customerNature:'',
@@ -69,6 +69,10 @@ import {
         Alert.alert('请输入通讯地址')
         return false;
       }
+      if (!regMobile.test(cellphone)) {
+        Alert.alert("请输入正确手机号码");
+        return null;
+    }
       let formData = new FormData();
      
       formData.append('investName', investName);//客户姓名
@@ -176,8 +180,8 @@ import {
               mode="date"
               placeholder="请选择日期"
               format="YYYY-MM-DD"
-              minDate=""
-              maxDate="2016-06-01"
+              minDate="null"
+              maxDate={new Date()}
               confirmBtnText="确认"
               showIcon="false"
               cancelBtnText="取消"
