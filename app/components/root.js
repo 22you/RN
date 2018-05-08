@@ -244,7 +244,7 @@ const Addnavigator=StackNavigator({
       backgroundColor: '#34a1ff',
     }:{
       backgroundColor:'#34a1ff',
-      paddingTop:23,
+      paddingTop:30,
       height:60,
     },
     headerTintColor: '#fff',

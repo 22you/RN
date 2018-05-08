@@ -14,7 +14,11 @@ import {
   import matchsize from '../../components/matchsize'
   import {Button} from 'teaset'
   export default class Probase extends Component {
-
+    static navigationOptions = {
+      headerRight: (
+        <View style={{height: 44,width: 55,justifyContent: 'center',paddingRight:15} }/>
+    ),
+    }
     constructor(props) {
         super(props);
         // 初始状态
@@ -37,10 +41,36 @@ import {
     }
    
     _upload_userbase=()=>{
-      let formData = new FormData();
       let {
-      investName,sex,cellphone,alternatePhone,cardtype,cardnumber,birthDay,postcode,selfemail,customerNature,postaddress,belongedName,departmentId
-        }=this.state;
+        investName,sex,cellphone,alternatePhone,cardtype,cardnumber,birthDay,postcode,selfemail,customerNature,postaddress,belongedName,departmentId
+          }=this.state;
+      let regMobile = /^(((13[0-9]{1})|(17[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+      if(!investName){
+        Alert.alert('请输入客户姓名！')
+        return false;
+      }
+      if(!sex){
+        Alert.alert('请选择性别！')
+        return false;
+      }
+      if(!cellphone){
+        Alert.alert('请输入主联系电话！')
+        return false;
+      }
+      if(!cardtype){
+        Alert.alert('请选择证件类型！')
+        return false;
+      }
+      if(!cardnumber){
+        Alert.alert('请输入证件号码')
+        return false;
+      }
+      if(!postaddress){
+        Alert.alert('请输入通讯地址')
+        return false;
+      }
+      let formData = new FormData();
+     
       formData.append('investName', investName);//客户姓名
       formData.append('sex', sex);//性别
       formData.append('cellphone', cellphone);
@@ -95,6 +125,7 @@ import {
             name={'主联系电话'} 
             style={base.item}
             require
+            type="number"
 					  onChangeText={(text)=>{
                  this.setState({
                      cellphone: text
@@ -104,6 +135,7 @@ import {
              <DefaultInput 
              placeholder={'请输入...'} 
              name={'备用电话'} 
+             type="number"
              style={base.item}
 					   onChangeText={(text)=>{
                           this.setState({

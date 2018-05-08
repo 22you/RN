@@ -31,13 +31,7 @@ export default class Home extends Component {
      banners:''
     };
 }
-componentWillMount(){
-  // var myFetchOptions={
-  //   method:'GET'
-  // };
-  // fetch('http://newsapi.gugujiankong.com/Handler.ashx?action=getnews&type=top&count=10')
-  // .then(response=>response.json())
-  // .then(json=>this.setState({banners:json}));
+componentDidMount(){
   let url=config.api.banner;
   request.get(url).then(responseText=>{
     
