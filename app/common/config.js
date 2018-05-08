@@ -43,13 +43,14 @@ export default {
         getThirdOpenid: baseUrl + 'getThirdOpenidBpMemberApi.do',//查看第三方标识是否存在
         addThirdOpenid: baseUrl + 'addThirdOpenidBpMemberApi.do',//绑定第三方标识
         getMobileInfo: baseUrl + 'getMobileInfoBpMemberApi.do',//保存设备登录日志
+        common: {
+            uploadFile: baseUrl + 'uploadFilesFileFormApi.do',//上传图片
+            uploadMaterial: baseUrl + 'uploadMaterialFileFormApi.do',//上传材料
+            getNextCommon: baseUrl + 'getNextCommonApi.do',//获取省市区 node
+            uploadImg: baseUrl + 'uploadImgFileFormApi.do',//上传身份证图片
+            memberInfo: baseUrl + 'memberInfoCommonApi.do',//获取用户的信息
+        }
 
     },
-    common: {
-        uploadFile: baseUrl + 'uploadFilesFileFormApi.do',//上传图片
-        uploadMaterial: baseUrl + 'uploadMaterialFileFormApi.do',//上传材料
-        getNextCommon: baseUrl + 'getNextCommonApi.do',//获取省市区 node
-        uploadImg: baseUrl + 'uploadImgFileFormApi.do',//上传身份证图片
-        memberInfo: baseUrl + 'memberInfoCommonApi.do',//获取用户的信息
-    }
+    
 }

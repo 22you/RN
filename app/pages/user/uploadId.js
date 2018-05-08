@@ -28,8 +28,7 @@ import {
       )
     }
     uploadImage=(isFont)=>{
-     console.log('有效');  
-         
+    
      let options = {
        title: '请选择',
           cancelButtonTitle: '取消',
@@ -61,74 +60,79 @@ import {
           let source = {uri: response.uri};
                 let tempImgArr = [];
                 tempImgArr.push(source);
-                if (isFont) {
-                  this.setState({
-                    myIdcardFront: {uri: response.uri},
-                  })
-              } else {
-                  this.setState({
-                    myIdcardReverse: {uri: response.uri},
-                  })
-              }
+              //   if (isFont) {
+              //     this.setState({
+              //       myIdcardFront: {uri: response.uri},
+              //     })
+              // } else {
+              //     this.setState({
+              //       myIdcardReverse: {uri: response.uri},
+              //     })
+              // }
             //上传图片
-            //  this.uploadIdcard(response.uri,isFont);
+             this.uploadIdcard(response.uri,isFont);
         }
     })
     }
-  //   /**
-  //    * 上传身份证图片
-  //    */
-  //   uploadIdcard = (uri, isFont) => {
-  //     console.log("11111111")
-  //     let formData = new FormData();
-  //     let file = {uri: uri, type: 'application/octet-stream', name: 'image.jpg'};
-  //     console.log("uri", uri)
-  //     formData.append("myUpload", file);
-  //     let url;
-  //     if (isFont) {
-  //         url = config.api.common.uploadImg + "?myUploadFileName=myBlogImage1.jpg&myBlogImage=myBlogImage1";
-  //     } else {
-  //         url = config.api.common.uploadImg + "?myUploadFileName=myBlogImage2.jpg&myBlogImage=myBlogImage2";
-  //     }
+ 
+    /**
+     * 上传身份证图片
+     */
+    uploadIdcard = (uri, isFont) => {
+      console.log("11111111")
+      let formData = new FormData();
+      let file = {uri: uri, type: 'application/octet-stream', name: 'image.jpg'};
+      console.log("uri", uri)
+      formData.append("myUpload", file);
+      let url;
+      if (isFont) {
+          url = config.api.common.uploadImg + "?myUploadFileName=myBlogImage1.jpg&myBlogImage=myBlogImage1";
+      } else {
+          url = config.api.common.uploadImg + "?myUploadFileName=myBlogImage2.jpg&myBlogImage=myBlogImage2";
+      }
 
-  //     request.upImage(url, formData).then((responseText) => {
+      request.upImage(url, formData).then((responseText) => {
 
-  //         console.log('上传的身份证的返回的数据内容=====>', responseText, config.imageUrl + responseText.map[0].photoSrc)
-  //         this.setState({
-  //             visible: false
-  //         })
-  //         if (responseText.result === 1) {
-  //             if (isFont) {
-  //                 this.setState({
-  //                     idFontImage: config.imageUrl + responseText.map[0].photoSrc,
-  //                     name: responseText.map[0].name,
-  //                     cardnumber: responseText.map[0].cardnumber,
-  //                     sex: responseText.map[0].sex
-  //                 })
-  //             } else {
-  //                 this.setState({
-  //                     idBackImage: config.imageUrl + responseText.map[0].photoSrc,
-  //                     validityEnd: responseText.map[0].validityEnd,
-  //                     validityStart: responseText.map[0].validityStart,
+          console.log('上传的身份证的返回的数据内容=====>', responseText, config.imageUrl + responseText.map[0].photoSrc)
+          this.setState({
+              visible: false
+          })
+          if (responseText.result === 1) {
+              if (isFont) {
+                  this.setState({
+                      idFontImage: config.imageUrl + responseText.map[0].photoSrc,
+                      name: responseText.map[0].name,
+                      cardnumber: responseText.map[0].cardnumber,
+                      sex: responseText.map[0].sex
+                  })
+              } else {
+                  this.setState({
+                      idBackImage: config.imageUrl + responseText.map[0].photoSrc,
+                      validityEnd: responseText.map[0].validityEnd,
+                      validityStart: responseText.map[0].validityStart,
 
-  //                 })
-  //             }
-  //         } else {
-  //             return Alert.alert(responseText.map[0].msg);
-
-
-  //         }
-
-  //     }).catch((error) => {
-  //         this.setState({
-  //             visible: false
-  //         })
-  //         return Alert.alert('上传失败');
+                  })
+              }
+          } else {
+              return Alert.alert(responseText.map[0].msg);
 
 
-  //     });
+          }
 
-  // }
+      }).catch((error) => {
+          this.setState({
+              visible: false
+          })
+          return Alert.alert('上传失败');
+
+
+      });
+
+  }
+
+  _upload_card=()=>{
+     this.props.navigation.navigate('BankList')
+  }
       render(){
       return(
           <View style={{backgroundColor:'#fff',paddingBottom:matchsize(20)}}>
@@ -149,13 +153,7 @@ import {
             </View>
             <TouchableOpacity style={{marginTop:matchsize(15),marginHorizontal:'5%'}}>
               <Button title="下一步" type="primary"
-            accessibilityLabel="下一步" onPress={()=>{
-              this.props.navigation.navigate('BankList')
-              this.props.navigation.navigate('')
-              this.props.navigation.navigate('')
-              console.log(this.state)
-            }
-              } />
+            accessibilityLabel="下一步" onPress={()=>this._upload_card() } />
            
             </TouchableOpacity>
            
