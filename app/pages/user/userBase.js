@@ -19,51 +19,41 @@ import {
         super(props);
         // 初始状态
         this.state = {
-       
+          investName:'',
+          sex:'',
+          cellphone:'',
+          alternatePhone:'',
+          cardtype:'',
+          cardnumber:'',
+          birthDay:'',
+          postcode:'',
+          selfemail:'',
+          customerNature:'',
+          postaddress:'',
+          belongedName:'',
+          departmentId:''
+
         };
     }
-    // componentDidMount(){
-    //   let url = ".................................";//接口地址
-
-    //     let formData = new FormData();
-    //     formData.append('userName', this.state.userName);
-    //     formData.append('maritalStatusValue', this.state.maritalStatusValue);
-    //     formData.append('mainPhone', this.state.mainPhone);
-    //     formData.append('subPhone', this.state.subPhone);
-    //     formData.append('subPhone', this.state.subPhone);
-    //     formData.append('subPhone', this.state.subPhone);
-    //     formData.append('subPhone', this.state.subPhone);
-    //     formData.append('subPhone', this.state.subPhone);
-    //     fetch(url,{
-    //         method: 'post',
-    //         body: formData,
-    //     }).then(function (res) {
-    //         return res.json();
-    //     }).then(function (json) {
-    //         if (json.code == "200") {
-    //             console.log("232323233-----正确")
-    //         }else if (json.code == "400") {
-    //             console.log("2323232323------错了～")
-    //         }
-    //     })
-
-    // }
    
-    _upload_userbase=()=>{debugger
+    _upload_userbase=()=>{
       let formData = new FormData();
-      formData.append('investName', this.state.investName);//客户姓名
-      formData.append('sex', this.state.sex);//性别
-      formData.append('cellphone', this.state.cellphone);
-      formData.append('alternatePhone', this.state.alternatePhone);//备用电话
-      formData.append('cardtype', this.state.cardtype);//证件类型
-      formData.append('cardnumber', this.state.cardNumber);//证件号码
-      formData.append('birthDay', this.state.birthDay);//出生日期
-      formData.append('postcode', this.state.postcode);//邮政编码
-      formData.append('selfemail',this.state.selfemail);//电子邮箱
-      formData.append('customerNature',this.state.customerNature);//客户性质
-      formData.append('postaddress',this.state.postaddress);//通讯地址
-      formData.append('belongedName',this.state.belongedName);//客户授权人
-      formData.append('departmentId',this.state.departmentId);//登记团队
+      let {
+      investName,sex,cellphone,alternatePhone,cardtype,cardnumber,birthDay,postcode,selfemail,customerNature,postaddress,belongedName,departmentId
+        }=this.state;
+      formData.append('investName', investName);//客户姓名
+      formData.append('sex', sex);//性别
+      formData.append('cellphone', cellphone);
+      formData.append('alternatePhone', alternatePhone);//备用电话
+      formData.append('cardtype', cardtype);//证件类型
+      formData.append('cardnumber',cardnumber);//证件号码
+      formData.append('birthDay', birthDay);//出生日期
+      formData.append('postcode',postcode);//邮政编码
+      formData.append('selfemail',selfemail);//电子邮箱
+      formData.append('customerNature',customerNature);//客户性质
+      formData.append('postaddress',postaddress);//通讯地址
+      formData.append('belongedName',belongedName);//客户授权人
+      formData.append('departmentId',departmentId);//登记团队
       // this.props.navigation.navigate('UploadId',{...this.state});
       console.log(formData)
     }
