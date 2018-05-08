@@ -19,9 +19,7 @@ import {
         super(props);
         // 初始状态
         this.state = {
-          date:'2018-01-01',
-          maritalStatusValue:'男',
-          cardType:'身份证'
+       
         };
     }
     // componentDidMount(){
@@ -50,61 +48,112 @@ import {
     //     })
 
     // }
-    onSelectedmaritalStatus=(item, index) => {
-      this.setState({maritalStatusValue: item})
+   
+    _upload_userbase=()=>{debugger
+      let formData = new FormData();
+      formData.append('investName', this.state.investName);//客户姓名
+      formData.append('sex', this.state.sex);//性别
+      formData.append('cellphone', this.state.cellphone);
+      formData.append('alternatePhone', this.state.alternatePhone);//备用电话
+      formData.append('cardtype', this.state.cardtype);//证件类型
+      formData.append('cardnumber', this.state.cardNumber);//证件号码
+      formData.append('birthDay', this.state.birthDay);//出生日期
+      formData.append('postcode', this.state.postcode);//邮政编码
+      formData.append('selfemail',this.state.selfemail);//电子邮箱
+      formData.append('customerNature',this.state.customerNature);//客户性质
+      formData.append('postaddress',this.state.postaddress);//通讯地址
+      formData.append('belongedName',this.state.belongedName);//客户授权人
+      formData.append('departmentId',this.state.departmentId);//登记团队
+      // this.props.navigation.navigate('UploadId',{...this.state});
+      console.log(formData)
     }
+  
       render(){
+       
       return(
           <View style={{ backgroundColor:'#fff',}}>
             <ScrollView style={{marginBottom:matchsize(20)}}>
             <KeyboardAwareScrollView>
-            <DefaultInput placeholder={'请输入...'} name={'客户姓名'} style={base.item}
-					              onChangeText={(text) => {
-                          this.setState({
-                              userName: text
+            <DefaultInput 
+            placeholder={'请输入...'} 
+            name={'客户姓名'} 
+            style={base.item}
+					  onChangeText={(text) => {
+                   this.setState({
+                              investName: text
                           })
-                      }} />
+             }} 
+             />
 
-             <DefaultSelect  placeholder={'请选择性别'} name={'性别'} value={this.state.maritalStatusValue} style={base.item}
-					               items={['男','女']} onSelected={this.onSelectedmaritalStatus}/>
+             <DefaultSelect  
+             placeholder={'请选择性别'} 
+             name={'性别'} 
+             value={this.state.sex} 
+             style={base.item}
+             items={['男','女']} 
+             onSelected={(text)=>{
+               this.setState({
+                 sex:text
+               })
+             }}
+             />
 
-            <DefaultInput placeholder={'请输入...'} name={'主联系电话'} style={base.item}
-					              onChangeText={(text)=>{
+            <DefaultInput 
+            placeholder={'请输入...'} 
+            name={'主联系电话'} 
+            style={base.item}
+					  onChangeText={(text)=>{
+                 this.setState({
+                     cellphone: text
+                      })
+             }} />
+
+             <DefaultInput 
+             placeholder={'请输入...'} 
+             name={'备用电话'} 
+             style={base.item}
+					   onChangeText={(text)=>{
                           this.setState({
-                            mainPhone: text
+                            alternatePhone: text
                         })
-                        }} />
+              }} 
+              />
 
-             <DefaultInput placeholder={'请输入...'} name={'备用电话'} style={base.item}
-					              onChangeText={(text)=>{
+            <DefaultSelect  
+            placeholder={'请选择'} 
+            name={'证件类型'} 
+            value={this.state.cardtype} 
+            style={base.item}
+            items={['身份证','护照']} 
+            onSelected={
+              (item)=>{
+                this.setState({cardtype: item})
+             }}
+            />
+
+            <DefaultInput 
+            placeholder={'请输入...'} 
+            name={'证件号码'} 
+            style={base.item}
+					  onChangeText={(text)=>{
                           this.setState({
-                            subPhone: text
+                            cardnumber: text
                         })
-                        }} />
-
-            <DefaultSelect  placeholder={'请选择'} name={'证件类型'} value={this.state.cardType} style={base.item}
-					               items={['身份证','护照']} onSelected={this.onSelectedmaritalStatus}/>
-
-            <DefaultInput placeholder={'请输入...'} name={'证件号码'} style={base.item}
-					              onChangeText={(text)=>{
-                          this.setState({
-                            cardNumber: text
-                        })
-                        }} />
+            }} />
 
 
             <TouchableOpacity style={base.item}>
             <Text>出生日期</Text>
             <DatePicker
-              date={this.state.date}
+              date={this.state.birthDay}
               mode="date"
-              placeholder="select date"
+              placeholder="请选择日期"
               format="YYYY-MM-DD"
-              minDate="2016-05-01"
+              minDate=""
               maxDate="2016-06-01"
-              confirmBtnText="Confirm"
+              confirmBtnText="确认"
               showIcon="false"
-              cancelBtnText="Cancel"
+              cancelBtnText="取消"
               customStyles={{
                 dateIcon: {
                   display:'none'
@@ -116,53 +165,54 @@ import {
                 }
           
         }}
-        onDateChange={(date) => {this.setState({date: date})}}
+        onDateChange={(date) => {this.setState({birthDay: date})}}
       />
             </TouchableOpacity>
       
-            <DefaultInput placeholder={'请输入...'} name={'邮政编码'} style={base.item}
-					              onChangeText={(text)=>{
+            <DefaultInput 
+            placeholder={'请输入...'} 
+            name={'邮政编码'} 
+            style={base.item}
+					  onChangeText={(text)=>{
                           this.setState({
-                            userName: text
+                            postcode: text
                         })
-                        Alert.alert(text)
-                        }} />
+             }} />
              <DefaultInput placeholder={'请输入...'} name={'电子邮箱'} style={base.item}
 					              onChangeText={(text)=>{
                           this.setState({
-                            userEmail: text
+                            selfemail: text
                         })
                         }} />
              <DefaultInput placeholder={'请输入...'} name={'客户性质'} style={base.item}
 					              onChangeText={(text)=>{
                           this.setState({
-                            userNature: text
+                            customerNature: text
                         })
                         }} />
              <DefaultInput placeholder={'请输入...'} name={'通讯地址'} style={base.item}
 					              onChangeText={(text)=>{
                           this.setState({
-                            userAddress: text
+                            postaddress: text
                         })
                         }} />
             <DefaultInput placeholder={'请输入...'} name={'客户授权人'} style={base.item}
 					              onChangeText={(text)=>{
                           this.setState({
-                            userNature: text
+                            belongedName: text
                         })
                         }} />
             <DefaultInput placeholder={'请输入...'} name={'登记团队'} style={base.item}
 					              onChangeText={(text)=>{
                           this.setState({
-                            userTeam: text
+                            departmentId: text
                         })
                         }} />
          
             <TouchableOpacity style={{marginTop:15,marginHorizontal:'5%'}}>
               <Button title="下一步" type="primary"
-            accessibilityLabel="下一步" onPress={()=>{
-              this.props.navigation.navigate('UploadId',{...this.state});
-              }} />
+            accessibilityLabel="下一步" onPress={()=>this._upload_userbase()} 
+              />
            
             </TouchableOpacity>
             </KeyboardAwareScrollView>
