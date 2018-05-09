@@ -1,30 +1,59 @@
 import React, { Component } from 'react';
+import matchsize from '../components/matchsize'
 import {
     Platform,
     StyleSheet,
     Text,
     View,
+    FlatList,
+    TouchableOpacity
   } from 'react-native';
 
-  export default class MyTodo extends Component {
+  export default class Mybusiness extends Component {
+ 
       render(){
+          let business=global.user.loginState?
+          <FlatList
+           data={[
+               {
+                   customName:'小w',
+                   taskName:'投资金单申请',
+                   proName:'随意宝20180404001',
+                   contractNum:'092fhe29873',
+                   create_at:'2018-04-03'
+               }
+           ]}
+           renderItem={
+               ({item})=> 
+               <View style={bus.busItem}>
+               <View style={bus.title}>
+                   <View style={{flexDirection:'row',}}><Text style={{color:'#ababab'}}>客户名称</Text><Text style={{color:'#000',marginLeft:matchsize(15)}}>{item.customName}</Text></View>
+                   <View style={{flexDirection:'row',}}><Text style={{color:'#ababab'}}>任务名称</Text><Text style={{color:'#000',marginLeft:matchsize(15)}}>{item.taskName}</Text></View>
+                 </View>
+                 <View style={bus.content}>
+                   <View style={{flexDirection:'row',alignItems:'center',}}><Text style={{color:'#ababab',fontSize:matchsize(27)}}>项目名称</Text><Text style={{color:'#99cffe',fontSize:matchsize(27),marginLeft:matchsize(8)}}>{item.proName}</Text></View>
+                   <View style={{flexDirection:'row',alignItems:'center',marginTop:matchsize(20)}}><Text  style={{color:'#ababab',fontSize:matchsize(27)}}>合同编号</Text><Text style={{fontSize:matchsize(27),marginLeft:matchsize(8)}}>{item.contractNum}</Text></View>
+                 </View>
+                 <View style={bus.bottom}>
+                     <Text style={{color:'#ababab',fontSize:matchsize(27)}}>创建时间</Text>
+                     <Text style={{color:'#656565',paddingLeft:matchsize(8),fontSize:matchsize(27)}}>{item.create_at}</Text>
+                 </View>
+                 
+               </View>
+            }
+
+          />
+          :
+          <View style={bus.noticebox}>
+          <Text>要查看相关信息,请先</Text>
+          <Text style={{color:'red'}} onPress={()=>this.props.navigation.navigate('Login')}>登录</Text>
+          
+        </View>
+          ;
       return(
           <View>
               <View style={bus.busBox}>
-                <View style={bus.busItem}>
-                  <View style={bus.title}>
-                    <Text>客户名称<Text style={{color:'#000',marginLeft:5}}>蔡晴</Text></Text>
-                    <Text>任务名称<Text style={{color:'#000',marginLeft:5}}>投资金单申请</Text></Text>
-                  </View>
-                  <View style={bus.content}>
-                    <View style={{flexDirection:'row',alignItems:'center',}}><Text style={{color:'#ababab',fontSize:13}}>项目名称</Text><Text style={{color:'#99cffe',fontSize:12,marginLeft:8}}>随意宝20180404001</Text></View>
-                    <View style={{flexDirection:'row',alignItems:'center'}}><Text  style={{color:'#ababab',fontSize:13}}>合同编号</Text><Text style={{fontSize:12,marginLeft:8}}>092fhe29873</Text></View>
-                  </View>
-                  <View style={bus.bottom}>
-                      <Text style={{color:'#ababab',fontSize:12}}>任务分配时间</Text>
-                      <Text style={{color:'#656565',paddingLeft:8,fontSize:12}}>2018-04-03  11:50</Text>
-                  </View>
-                </View>
+               {business}
               </View>
           </View>
       )
@@ -32,7 +61,7 @@ import {
   }
   const bus=StyleSheet.create({
     busItem:{
-        marginTop:10,
+        marginTop:matchsize(10),
         backgroundColor:'#fff',
         paddingHorizontal:'3%',
     },
@@ -42,16 +71,22 @@ import {
         justifyContent:'space-between',
         borderBottomWidth:1,
         borderBottomColor:'#ddd',
-        paddingVertical:10,
+        paddingVertical:matchsize(30),
     },
     content:{
         borderBottomWidth:1,
         borderBottomColor:'#ddd',
-        paddingVertical:10,
+        paddingVertical:matchsize(30),
     },
     bottom:{
-        paddingVertical:10, 
+        paddingVertical:matchsize(30), 
         flexDirection:'row',
         justifyContent:'flex-end'
-    }
+    },
+    noticebox:{
+        flexDirection:'row',
+         width:'100%',
+       justifyContent:'center',
+       paddingVertical:matchsize(30)
+      }
   })

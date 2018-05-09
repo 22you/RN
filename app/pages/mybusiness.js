@@ -5,7 +5,8 @@ import {
     StyleSheet,
     Text,
     View,
-    FlatList
+    FlatList,
+    TouchableOpacity
   } from 'react-native';
 
   export default class Mybusiness extends Component {
@@ -40,6 +41,7 @@ import {
                      <Text style={{color:'#ababab',fontSize:matchsize(27)}}>创建时间</Text>
                      <Text style={{color:'#656565',paddingLeft:matchsize(8),fontSize:matchsize(27)}}>{item.create_at}</Text>
                  </View>
+                 
                </View>
             }
 
@@ -48,6 +50,7 @@ import {
           <View style={bus.noticebox}>
           <Text>要查看相关信息,请先</Text>
           <Text style={{color:'red'}} onPress={()=>this.props.navigation.navigate('Login')}>登录</Text>
+          
         </View>
           ;
       return(

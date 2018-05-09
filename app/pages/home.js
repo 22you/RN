@@ -110,15 +110,15 @@ export default class Home extends Component {
           <View style={styles.indexBuyInfo}>
            <View style={styles.indexBuyInfoItem}>
              <Text  style={styles.BuyInfoDt}>常规产品</Text>
-             <Text>产品类型</Text>
+             <Text style={{color:'#acacac',marginTop:10}}>产品类型</Text>
            </View>
            <View style={styles.indexBuyInfoItem}>
             <Text  style={styles.BuyInfoDt}>12期</Text>
-             <Text>投资期限</Text>
+             <Text  style={{color:'#acacac',marginTop:10}}>投资期限</Text>
            </View>
            <View style={[styles.indexBuyInfoItem,{borderRightWidth:0}]}>
             <Text style={styles.BuyInfoDt}>个人</Text>
-             <Text>授权范围</Text>
+             <Text  style={{color:'#acacac',marginTop:10}}>授权范围</Text>
            </View>
           </View>
          <View style={{paddingVertical:matchsize(40),marginHorizontal:'3%'}}>
