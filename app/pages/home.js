@@ -28,27 +28,31 @@ export default class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-     banners:''
+     banners:[
+      require('../images/index/banner.jpg')
+     ]
     };
 }
-componentDidMount(){
-  let url=config.api.banner;
-  request.get(url).then(responseText=>{
+// componentDidMount(){
+//   let url=config.api.banner;
+//   request.get(url).then(responseText=>{
     
-    let arr=[];
-    if (responseText.success) {
-        arr=responseText.data.map((item)=>{return item.author.avatar_url})
-    //  this.setState({banners:responseText.data.slice(0,3)})
-       this.setState({banners:arr.slice(0,3)})
-  }
-  })
-}
+//     let arr=[];
+//     if (responseText.success) {
+//         arr=responseText.data.map((item)=>{return item.author.avatar_url})
+//     //  this.setState({banners:responseText.data.slice(0,3)})
+//        this.setState({banners:arr.slice(0,3)})
+//   }
+//   })
+// }
   render() {
     const {banners}=this.state;
+    console.log(banners)
     const bannerlist=banners.length?
     banners.map((item,index)=>(
+    
       <View style={styles.slide1} key={index}>
-        <Image source={{uri: item}} style={{width:'100%',height:'100%'}}/>
+        <Image source={item} style={{width:'100%',height:'100%'}}/>
       </View>
     ))
     :
@@ -84,7 +88,7 @@ componentDidMount(){
          <Image source={require('../images/index/buy-pro.png')}  style={{width:matchsize(55),height:matchsize(55),marginRight:matchsize(8)}}/>
          <Text>产品购买</Text>
          </TouchableOpacity>
-         <TouchableOpacity  style={styles.indexItem} onPress={() =>  this.props.navigation.navigate(' MyTodo')}>
+         <TouchableOpacity  style={styles.indexItem} onPress={() =>  this.props.navigation.navigate('MyTodo')}>
          <Image source={require('../images/index/todo.png')}  style={{width:matchsize(55),height:matchsize(55),marginRight:matchsize(8)}}/>
          <Text>待办任务</Text>
          </TouchableOpacity>
