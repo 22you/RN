@@ -12,9 +12,14 @@ import {
   } from 'react-native';
   import matchsize from '../../components/matchsize';
   import {Button} from 'teaset';
-  import DatePicker from 'react-native-datepicker'
+  import DatePicker from 'react-native-datepicker';
+  import Icon from 'react-native-vector-icons/FontAwesome';
   export default class ChangeUserInfo extends Component {
-
+    static navigationOptions = {
+      headerRight: (
+        <View style={{}}> <Icon style={{marginRight:20}} name="edit" size={20} color="#fff" /></View>
+    )
+    };
     constructor(props) {
         super(props);
         // 初始状态
@@ -27,9 +32,9 @@ import {
     onSelectedmaritalStatus=(item, index) => {
       this.setState({maritalStatusValue: item})
     }
-    componentDidMount(){
-      console.log("params",this.props.navigation.state.params);
-    }
+    // componentDidMount(){
+    //   console.log("params",this.props.navigation.state.params);
+    // }
       render(){
         let {customName,customPhone,customCardNumber,customSettime,customSex,customTeam}=this.props.navigation.state.params;
       return(

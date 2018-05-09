@@ -34,22 +34,22 @@ import {
             </View>
             <View style={buy.right}>
               <View style={buy.slider}>
-                { Platform.OS == 'ios' ?<ProgressViewIOS  progressTintColor='#ff5152' style={{width:'80%'}} progress={this.state.progress}/>
+                { Platform.OS == 'ios' ?<ProgressViewIOS  progressTintColor='#ff5152' style={{width:'80%',height:40}} progress={this.state.progress}/>
                 :<ProgressBarAndroid color='#ff5152' styleAttr='Horizontal' progress={this.state.progress} indeterminate={false} style={{width:'80%'}} />
                 }
                  <Text>{this.state.progress*100}%</Text>
               </View>
               <View style={buy.rightItems}>
                   <View style={buy.rightItem}>
-                      <Text>产品类型</Text>
+                      <Text style={{color:'#acacac',marginBottom:10}}>产品类型</Text>
                       <Text style={{color:'#000'}}>常规产品</Text>
                   </View>
                   <View style={buy.rightItem}>
-                      <Text>投资期限</Text>
+                      <Text style={{color:'#acacac',marginBottom:10}}>投资期限</Text>
                       <Text style={{color:'#000'}}>12<Text>期</Text></Text>
                   </View>
                   <View style={buy.rightItem}>
-                      <Text>授权范围</Text>
+                      <Text style={{color:'#acacac',marginBottom:10}}>授权范围</Text>
                       <Text style={{color:'#000'}}>企业</Text>
                   </View>
               </View>
@@ -94,7 +94,7 @@ import {
       alignItems:'center',
       borderRadius:25,
       paddingVertical:3,
-      marginTop:15
+      marginTop:40
   },
   slider:{
       flexDirection:'row',
