@@ -19,6 +19,7 @@ import {Input,Select} from 'teaset'
           style={{paddingLeft: 0, borderWidth: 0}}
           value={props.value}
           items={props.items}
+          editable={props.editable}
           icon={<Icon name="angle-right"/>}
           placeholder={props.placeholder}
           pickerTitle={`请选择 ${props.name}`}
@@ -41,6 +42,7 @@ const DefaultInput = (props) => {
             flex: 1,
             paddingLeft: 0
           }}
+          disabled={props.disabled}
           value={props.value}
           placeholder={props.placeholder}
           onChangeText={props.onChangeText}

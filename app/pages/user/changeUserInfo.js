@@ -15,26 +15,36 @@ import {
   import DatePicker from 'react-native-datepicker';
   import Icon from 'react-native-vector-icons/FontAwesome';
   export default class ChangeUserInfo extends Component {
-    static navigationOptions = {
+    static navigationOptions =({navigation})=>( {
       headerRight: (
-        <View style={{}}> <Icon style={{marginRight:20}} name="edit" size={20} color="#fff" /></View>
+       
+        <TouchableOpacity onPress={()=>navigation.state.params.navigatePress()}> 
+        <Icon style={{marginRight:20}} name="edit" size={20} color="#fff" />
+        </TouchableOpacity>
     )
-    };
+    });
     constructor(props) {
         super(props);
-        // 初始状态
         this.state = {
           maritalStatusValue:'男',
-          cardType:'身份证'
+          cardType:'身份证',
+          disabled:true
         };
     }
+
     
     onSelectedmaritalStatus=(item, index) => {
       this.setState({maritalStatusValue: item})
     }
-    // componentDidMount(){
-    //   console.log("params",this.props.navigation.state.params);
-    // }
+    componentDidMount(){
+      this.props.navigation.setParams({navigatePress:this.clickFinishButton})
+    }
+    clickFinishButton = ()=> {
+      this.setState({
+        disabled:false
+      })
+
+  }
       render(){
         let {customName,customPhone,customCardNumber,customSettime,customSex,customTeam}=this.props.navigation.state.params;
       return(
@@ -43,6 +53,7 @@ import {
             <KeyboardAwareScrollView>
             <DefaultInput name={'客户姓名'} style={base.item}
             value={customName}
+            disabled={this.state.disabled}
 					  onChangeText={(text) => {
                this.setState({
                   userName: text
@@ -56,10 +67,12 @@ import {
              value={customSex} 
              style={base.item}
              items={['男','女']} 
+             editable
              onSelected={this.onSelectedmaritalStatus}
              />
 
             <DefaultInput placeholder={'请输入...'} name={'主联系电话'} style={base.item}
+            disabled={this.state.disabled}
 					              onChangeText={(text)=>{
                           this.setState({
                             mainPhone: text
@@ -67,6 +80,7 @@ import {
                         }} />
 
              <DefaultInput placeholder={'请输入...'} name={'备用电话'} style={base.item}
+             disabled={this.state.disabled}
 					              onChangeText={(text)=>{
                           this.setState({
                             subPhone: text
@@ -74,12 +88,14 @@ import {
                         }} />
 
             <DefaultSelect  placeholder={'请选择'} name={'证件类型'} value={this.state.cardType} style={base.item}
+            editable="false"
 					               items={['身份证','护照']} onSelected={this.onSelectedmaritalStatus}/>
 
             <DefaultInput 
             placeholder={'请输入...'} 
             name={'证件号码'} 
             style={base.item}
+            disabled={this.state.disabled}
             value={customCardNumber}
 					              onChangeText={(text)=>{
                           this.setState({
@@ -115,6 +131,7 @@ import {
             </TouchableOpacity>
       
             <DefaultInput placeholder={'请输入...'} name={'邮政编码'} style={base.item}
+            disabled={this.state.disabled}
 					              onChangeText={(text)=>{
                           this.setState({
                             userName: text
@@ -122,24 +139,28 @@ import {
                         Alert.alert(text)
                         }} />
              <DefaultInput placeholder={'请输入...'} name={'电子邮箱'} style={base.item}
+             disabled={this.state.disabled}
 					              onChangeText={(text)=>{
                           this.setState({
                             userEmail: text
                         })
                         }} />
              <DefaultInput placeholder={'请输入...'} name={'客户性质'} style={base.item}
+             disabled={this.state.disabled}
 					              onChangeText={(text)=>{
                           this.setState({
                             userNature: text
                         })
                         }} />
              <DefaultInput placeholder={'请输入...'} name={'通讯地址'} style={base.item}
+             disabled={this.state.disabled}
 					              onChangeText={(text)=>{
                           this.setState({
                             userAddress: text
                         })
                         }} />
             <DefaultInput placeholder={'请输入...'} name={'客户授权人'} style={base.item}
+            disabled={this.state.disabled}
 					              onChangeText={(text)=>{
                           this.setState({
                             userNature: text
@@ -150,19 +171,24 @@ import {
             name={'登记团队'} 
             style={base.item}
             value={customTeam}
+            disabled={this.state.disabled}
 					  onChangeText={(text)=>{
                           this.setState({
                             userTeam: text
                         })
                         }} />
-         
-            <TouchableOpacity style={{marginTop:15,marginHorizontal:'5%'}}>
+         {
+           this.state.disabled
+           ?
+           null
+           :
+           <TouchableOpacity style={{marginTop:15,marginHorizontal:'5%'}}>
               <Button title="保存" type="primary"
-            accessibilityLabel="保存" onPress={()=>{
-              this.props.navigation.navigate('');
-              }} />
-           
+            accessibilityLabel="保存" onPress={()=>this.setState({disabled:true})} />
             </TouchableOpacity>
+          } 
+            
+
             </KeyboardAwareScrollView>
             </ScrollView>
           </View>
