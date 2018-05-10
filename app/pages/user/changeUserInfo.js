@@ -28,8 +28,14 @@ import {
         this.state = {
           maritalStatusValue:'男',
           cardType:'身份证',
+          userName:"",
           disabled:true
         };
+        if(false){
+           this.state={
+             userName:props.navigation.state.params.customName,
+           } 
+        }
     }
 
     
@@ -46,19 +52,19 @@ import {
 
   }
       render(){
-        let {customName,customPhone,customCardNumber,customSettime,customSex,customTeam}=this.props.navigation.state.params;
-      return(
+        let {userName,customPhone,customCardNumber,customSettime,customSex,customTeam}=this.state;
+        return(
           <View style={{ backgroundColor:'#fff',}}>
             <ScrollView style={{marginBottom:matchsize(20)}}>
             <KeyboardAwareScrollView>
             <DefaultInput name={'客户姓名'} style={base.item}
-            value={customName}
-            disabled={this.state.disabled}
+            value={userName}
+            
 					  onChangeText={(text) => {
                this.setState({
                   userName: text
-                          })
-                      }} 
+               })
+            }} 
             />
 
              <DefaultSelect  
@@ -111,6 +117,7 @@ import {
               placeholder="请选择日期"
               format="YYYY-MM-DD"
               minDate=""
+              disabled={true}
               maxDate={new Date()}
               confirmBtnText="确定"
               showIcon="false"
@@ -134,7 +141,7 @@ import {
             disabled={this.state.disabled}
 					              onChangeText={(text)=>{
                           this.setState({
-                            userName: text
+                            userName1: text
                         })
                         Alert.alert(text)
                         }} />

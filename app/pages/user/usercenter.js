@@ -31,14 +31,19 @@ import {
         {
             text: '确定', onPress: () =>{
               let url = config.api.loginOut+'token='+global.user.userData.token;
-              request.get(url).then((responseText) => {
-                  global.user.loginState = false;
-                  storage.remove({
-                    key: 'loginState'
-                  });
-                  that.props.navigation.navigate('Login')
+              global.user.loginState = false;
+              storage.remove({
+                key: 'loginState'
+              });
+              that.props.navigation.navigate('Login')
+              // request.get(url).then((responseText) => {
+              //     global.user.loginState = false;
+              //     storage.remove({
+              //       key: 'loginState'
+              //     });
+              //     that.props.navigation.navigate('Login')
       
-              })
+              // })
             }
             
         }
@@ -48,9 +53,9 @@ import {
     
     componentDidMount(){
       this.setState({
-        memberName:global.user.userData.memberName,
-        memberMobile:global.user.userData.memberMobile,
-        memberTruename:global.user.userData.memberTruename
+        memberName:global.user.userData.username,
+        memberfullname:global.user.userData.fullname,
+        memberdepName:global.user.userData.depName
       })
     }
 
@@ -63,12 +68,12 @@ import {
                 <Text>{this.state.memberName}</Text>
               </View>
               <View style={base.item}>
-                <Text>手机号</Text>
-                <Text>{this.state.memberMobile}</Text>
+                <Text>用户角色</Text>
+                <Text>{this.state.memberfullname}</Text>
               </View>
               <View style={base.item}>
-                <Text>用户真实姓名</Text>
-                <Text>{this.state.memberTruename}</Text>
+                <Text>公司名称</Text>
+                <Text>{this.state.memberdepName}</Text>
               </View>
               <View style={{paddingHorizontal:'3%',paddingVertical:matchsize(50),flexDirection:'row',justifyContent:'space-around'}}>
               <Button title='编辑资料' size="md" type="default" onPress={() => this.props.navigation.navigate('EditData')} />

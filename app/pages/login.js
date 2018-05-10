@@ -11,7 +11,7 @@ import {
   import {Input,Button,Label} from 'teaset'
   import Icon from 'react-native-vector-icons/FontAwesome';
   import matchsize from '../components/matchsize';
-
+  import Toast, {DURATION} from 'react-native-easy-toast'
   export default class Login extends Component{
       static navigationOptions={
           headerLeft:null,
@@ -31,27 +31,26 @@ import {
         const userName = this.state.username
         const password = this.state.password
         if (!userName || !password) {
-            return Alert.alert('呜呜~', '手机号或密码不能为空！')
+            return that.refs.toast.show('手机号或密码不能为空！')
         }
-        const loginURL = config.api.login + 'userName=' + userName + '&password=' + password ;
+        const loginURL = config.api.login + 'username=' + userName + '&password=' + password ;
         this._getLogin(loginURL)
             .then((responseText) => {
-                if (responseText) {
-                    if (responseText.result === 1) {
-                        Alert.alert('登录成功');
+                if (responseText.success) {
                         global.user.loginState = true;  
                         storage.save({
                             key:'loginState',
-                            data:responseText.member,
+                            data:responseText,
                             expires: 1000 * 3600 * 8
                         })
-                        console.log('登录之后存储的数据：',responseText.member)
+                        global.user.userData=responseText;
+                        console.log('存储的信息',global.user.userData)
                         that.props.navigation.navigate('Home')
-                    } else {
-                        Alert.alert(responseText.msg)
-                    }
+                   
 
-                 }
+                 } else {
+                    that.refs.toast.show('登录失败')
+                }
             })
     }
     _getLogin = (url) => {
@@ -59,11 +58,6 @@ import {
             .then((response) => {
                 console.log('返回的数据是===>', response);
                 return response.json()
-                if(response.result=1){
-                    this.props.navigation.navigate('Home')
-                }else if(result=0){
-                    Alert.alert('用户名不存在')
-                }
             }).catch(function (error) {
                 console.log('获取用户登录数据报错信息: ' + error.message);
             });
@@ -71,7 +65,6 @@ import {
       render(){
           return(
               <View style={add.box}>
-                 {/* <Text style={{width:'100%',textAlign:'center',fontSize:matchsize(34)}}>登录</Text> */}
                  <View style={{flexDirection:'row',justifyContent:'center',paddingVertical:matchsize(40)}}>
                  <Icon size={40}   name="user-circle"/>
                  </View>
@@ -93,6 +86,7 @@ import {
                         <Label style={{color: '#fff', fontSize: 16, paddingLeft: 8}} text='登录' />
                     </Button>
                 </View>
+                <Toast ref="toast"/>
               </View>
           )
       }

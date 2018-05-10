@@ -6,7 +6,7 @@ global.user = {
 //刷新的时候重新获得用户数据    
 storage.load({  
     key: 'loginState',  
-}).then(ret => {  
+}).then(ret => { 
     global.user.loginState = true;  
     global.user.userData = ret; 
     // console.log(ret) 
