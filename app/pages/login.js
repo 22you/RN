@@ -38,8 +38,9 @@ import axios from 'axios';
         const loginURL = config.api.login + 'username=' + userName + '&password=' + password ;
         axios.get(loginURL)
         .then((res)=>{
-            if(res.status==200){
-                global.user.loginState = true;  
+            //let resnew= eval("(" + res.data + ")");
+            if(res.data.success){
+                 global.user.loginState = true;  
                      storage.save({
                          key:'loginState',
                          data:res.data,
@@ -47,7 +48,9 @@ import axios from 'axios';
                       })
                       global.user.userData=res.data;
                       this.refs.toast.show('登录成功！')
-                      this.props.navigation.navigate('Home')
+                       this.props.navigation.navigate('Home')
+            }else{
+                this.refs.toast.show('用户名或密码错误')
             }
             
         })

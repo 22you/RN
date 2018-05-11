@@ -44,7 +44,7 @@ import axios from 'axios';
  
       render(){
          let {data}=this.state;
-        console.log(data);
+      //  console.log(data);
         
           let business=global.user.loginState?
           

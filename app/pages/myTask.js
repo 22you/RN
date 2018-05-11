@@ -8,35 +8,56 @@ import {
     FlatList,
     TouchableOpacity
   } from 'react-native';
-
+import axios from 'axios';
   export default class Mybusiness extends Component {
- 
+    static navigationOptions = {
+        headerRight: (
+          <View style={{height: 44,width: 55,justifyContent: 'center',paddingRight:15} }/>
+      ),
+      };
+       constructor(props){
+           super(props);
+           this.state={
+           data:[],
+           customName:'',
+           proNumber:''
+           }
+       }
+       componentDidMount(){
+         let url=config.api.mytodo+'?processName=ALL&start=0&limit=25&userIds='+global.user.userData.userIds;
+         axios.get(url)
+         .then((res)=>{
+             this.setState({
+                data:res.data.result
+             })
+           //  console.log(res.data.result);
+         })
+         .catch((error)=>{
+             console.log(error);
+             
+         })
+        
+         
+       }
       render(){
+          let {data}=this.state;
           let business=global.user.loginState?
           <FlatList
-           data={[
-               {
-                   customName:'小w',
-                   taskName:'投资金单申请',
-                   proName:'随意宝20180404001',
-                   contractNum:'092fhe29873',
-                   create_at:'2018-04-03'
-               }
-           ]}
+           data={data}
            renderItem={
                ({item})=> 
                <View style={bus.busItem}>
                <View style={bus.title}>
-                   <View style={{flexDirection:'row',}}><Text style={{color:'#ababab'}}>客户名称</Text><Text style={{color:'#000',marginLeft:matchsize(15)}}>{item.customName}</Text></View>
-                   <View style={{flexDirection:'row',}}><Text style={{color:'#ababab'}}>任务名称</Text><Text style={{color:'#000',marginLeft:matchsize(15)}}>{item.taskName}</Text></View>
+                   <View style={{flexDirection:'row',}}><Text style={{color:'#ababab'}}>客户名称</Text><Text style={{color:'#000',marginLeft:matchsize(15)}}>{item.investPersonName}</Text></View>
+                   <View style={{flexDirection:'row',}}><Text style={{color:'#ababab'}}>任务名称</Text><Text style={{color:'#000',marginLeft:matchsize(15)}}>{item.activityName}</Text></View>
                  </View>
                  <View style={bus.content}>
-                   <View style={{flexDirection:'row',alignItems:'center',}}><Text style={{color:'#ababab',fontSize:matchsize(27)}}>项目名称</Text><Text style={{color:'#99cffe',fontSize:matchsize(27),marginLeft:matchsize(8)}}>{item.proName}</Text></View>
-                   <View style={{flexDirection:'row',alignItems:'center',marginTop:matchsize(20)}}><Text  style={{color:'#ababab',fontSize:matchsize(27)}}>合同编号</Text><Text style={{fontSize:matchsize(27),marginLeft:matchsize(8)}}>{item.contractNum}</Text></View>
+                   <View style={{flexDirection:'row',alignItems:'center',}}><Text style={{color:'#ababab',fontSize:matchsize(27)}}>项目名称</Text><Text style={{color:'#99cffe',fontSize:matchsize(27),marginLeft:matchsize(8)}}>{item.taskName}</Text></View>
+                   <View style={{flexDirection:'row',alignItems:'center',marginTop:matchsize(20)}}><Text  style={{color:'#ababab',fontSize:matchsize(27)}}>合同编号</Text><Text style={{fontSize:matchsize(27),marginLeft:matchsize(8)}}>{item.projectNumber}</Text></View>
                  </View>
                  <View style={bus.bottom}>
                      <Text style={{color:'#ababab',fontSize:matchsize(27)}}>创建时间</Text>
-                     <Text style={{color:'#656565',paddingLeft:matchsize(8),fontSize:matchsize(27)}}>{item.create_at}</Text>
+                     <Text style={{color:'#656565',paddingLeft:matchsize(8),fontSize:matchsize(27)}}>{item.createTime}</Text>
                  </View>
                  
                </View>
