@@ -33,12 +33,11 @@ export default class Buypro extends Component {
         this.state = {
             progress: .5,
             prolists: [],
-            prolength:0
+            prolength:5
         };
     }
     componentDidMount() {
-        let url = config.api.prolist + '?start=1&limit='+this.state.prolength+'&userIds=1';
-       
+        let url = config.api.prolist;
         axios.get(url)
             .then((res) => {
                 let prolists = [];
@@ -62,7 +61,7 @@ export default class Buypro extends Component {
             <ScrollView style={{paddingBottom:20}}>
            {
                prolists.map((item, index) => (
-                    <TouchableOpacity style={buy.column} onPress={()=>this.props.navigation.navigate('Probase')}>
+                    <TouchableOpacity style={buy.column} key={index} onPress={()=>this.props.navigation.navigate('Probase')}>
                     <View style={buy.item}>
                     <View style={buy.left}>
                      <View style={buy.bigtitle}><Text style={{color:'#ff5152',fontSize:35}}>{item.yeaRate}</Text><Text style={{fontSize:25,color:"#ddd"}}>%</Text></View>
