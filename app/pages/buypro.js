@@ -9,7 +9,8 @@ import {
     TouchableOpacity,
     ProgressBarAndroid,
     ProgressViewIOS,
-    ScrollView
+    ScrollView,
+    Alert
 } from 'react-native';
 
 import axios from 'axios';
@@ -36,6 +37,19 @@ export default class Buypro extends Component {
             prolength:5
         };
     }
+    _goProBase=()=>{
+        // this.props.navigation.navigate('Probase')
+        if(global.user.loginState){
+            this.props.navigation.navigate('Probase')
+        }else{
+           Alert.alert('温馨提示','要购买产品请先登录',
+            [
+                {text:"我知道了", onPress:this.confirm},
+                {text:"去登录", onPress:()=>this.props.navigation.navigate('Login')}
+        ]
+          );
+        }
+    }
     componentDidMount() {
         let url = config.api.prolist;
         axios.get(url)
@@ -61,7 +75,7 @@ export default class Buypro extends Component {
             <ScrollView style={{paddingBottom:20}}>
            {
                prolists.map((item, index) => (
-                    <TouchableOpacity style={buy.column} key={index} onPress={()=>this.props.navigation.navigate('Probase')}>
+                    <TouchableOpacity style={buy.column} key={index} onPress={this._goProBase}>
                     <View style={buy.item}>
                     <View style={buy.left}>
                      <View style={buy.bigtitle}><Text style={{color:'#ff5152',fontSize:35}}>{item.yeaRate}</Text><Text style={{fontSize:25,color:"#ddd"}}>%</Text></View>
