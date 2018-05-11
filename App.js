@@ -10,6 +10,9 @@ import {
 
  import FooterComponent from './app/components/root'
 
+console.disableYellowBox = true;
+console.warn('YellowBox is disabled.');
+
 export default class App extends Component {
   render() {
     return (

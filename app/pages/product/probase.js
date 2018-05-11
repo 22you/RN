@@ -8,7 +8,8 @@ import {
     ScrollView,
     Alert
   } from 'react-native';
-  import {Button,Input,Select} from 'teaset'
+  import {Button,Input,Select} from 'teaset';
+  import axios from 'axios';
   export default class Probase extends Component {
     static navigationOptions = {
         headerRight: (
@@ -19,7 +20,7 @@ import {
         super(props);
         // 初始状态
         this.state = {
- 
+            probase:[]
         };
     }
     _buyApply=()=>{
@@ -35,7 +36,25 @@ import {
       this.props.navigation.navigate('Apply')
     }
     componentDidMount(){
-      console.log(this.props);
+     //console.log(this.props.navigation.state.params.item);
+     let mmplanId=this.props.navigation.state.params.item.mmplanId;
+     let url=config.api.probase+'?mmplanId='+mmplanId
+     //console.log(url);
+      axios.get(url)
+      .then((res)=>{
+        if(res.data.succes){
+          console.log(res.data.date.plManageMoneyPlan);
+          this.setState({
+            probase:res.data.date.plManageMoneyPlan
+          })
+        }
+          
+          
+      })
+      .catch((error)=>{
+        console.log(error);
+        
+      })
       
     }
       render(){
@@ -49,16 +68,17 @@ import {
             value: 2,
           }
         ];
+        let {probase}=this.state;
       return(
           <View style={{ backgroundColor:'#fff',}}>
             <ScrollView style={{marginBottom:20}}>
             <View style={base.item}>
             <Text>产品级别</Text>
-            <Text>常规</Text>
+            <Text>{probase.productName}</Text>
             </View>
             <TouchableOpacity style={base.item}>
             <Text>产品名称</Text>
-            <Text>20180402001</Text>
+            <Text>{probase.mmName}</Text>
             </TouchableOpacity>
             <View style={base.item}>
             <Text>产品编号</Text>

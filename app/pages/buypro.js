@@ -37,10 +37,11 @@ export default class Buypro extends Component {
             prolength:5
         };
     }
-    _goProBase=()=>{
+    _goProBase=(item)=>{
         // this.props.navigation.navigate('Probase')
         if(global.user.loginState){
-            this.props.navigation.navigate('Probase')
+           // console.log(this.props.navigation)
+            this.props.navigation.navigate('Probase',{item:item})
         }else{
            Alert.alert('温馨提示','要购买产品请先登录',
             [
@@ -70,12 +71,14 @@ export default class Buypro extends Component {
         let {
             prolists
         } = this.state;
+      // console.log(prolists);
+        
         //  console.log(Array.isArray(prolists))
         return ( 
             <ScrollView style={{paddingBottom:20}}>
            {
                prolists.map((item, index) => (
-                    <TouchableOpacity style={buy.column} key={index} onPress={this._goProBase}>
+                    <TouchableOpacity style={buy.column} key={index} onPress={()=>this._goProBase(item)}>
                     <View style={buy.item}>
                     <View style={buy.left}>
                      <View style={buy.bigtitle}><Text style={{color:'#ff5152',fontSize:35}}>{item.yeaRate}</Text><Text style={{fontSize:25,color:"#ddd"}}>%</Text></View>
