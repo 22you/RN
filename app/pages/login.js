@@ -12,6 +12,7 @@ import {
   import Icon from 'react-native-vector-icons/FontAwesome';
   import matchsize from '../components/matchsize';
   import Toast, {DURATION} from 'react-native-easy-toast'
+import axios from 'axios';
   export default class Login extends Component{
       static navigationOptions={
           headerLeft:null,
@@ -26,42 +27,36 @@ import {
          
         };
     }
-    _submit() {
-        let that = this
+  
+    _submit=()=> {
+       
         const userName = this.state.username
         const password = this.state.password
         if (!userName || !password) {
-            return that.refs.toast.show('手机号或密码不能为空！')
+              return this.refs.toast.show('手机号或密码不能为空！')
         }
         const loginURL = config.api.login + 'username=' + userName + '&password=' + password ;
-        this._getLogin(loginURL)
-            .then((responseText) => {
-                if (responseText.success) {
-                        global.user.loginState = true;  
-                        storage.save({
-                            key:'loginState',
-                            data:responseText,
-                            expires: 1000 * 3600 * 8
-                        })
-                        global.user.userData=responseText;
-                        console.log('存储的信息',global.user.userData)
-                        that.props.navigation.navigate('Home')
-                   
-
-                 } else {
-                    that.refs.toast.show('登录失败')
-                }
-            })
+        axios.get(loginURL)
+        .then((res)=>{
+            if(res.status==200){
+                global.user.loginState = true;  
+                     storage.save({
+                         key:'loginState',
+                         data:res.data,
+                         expires: 1000 * 3600 * 8
+                      })
+                      global.user.userData=res.data;
+                      this.refs.toast.show('登录成功！')
+                      this.props.navigation.navigate('Home')
+            }
+            
+        })
+        .catch((error)=>{
+            console.log(error)
+        })
+   
     }
-    _getLogin = (url) => {
-        return fetch(url, {credentials: 'include'})
-            .then((response) => {
-                console.log('返回的数据是===>', response);
-                return response.json()
-            }).catch(function (error) {
-                console.log('获取用户登录数据报错信息: ' + error.message);
-            });
-    }
+   
       render(){
           return(
               <View style={add.box}>
@@ -82,7 +77,7 @@ import {
                     value={this.state.password}
                     onChangeText={text => this.setState({password: text})}
                     />
-                    <Button type='primary' style={{height:matchsize(80),marginTop:matchsize(60)}} onPress={this._submit.bind(this)} >
+                    <Button type='primary' style={{height:matchsize(80),marginTop:matchsize(60)}} onPress={this._submit} >
                         <Label style={{color: '#fff', fontSize: 16, paddingLeft: 8}} text='登录' />
                     </Button>
                 </View>
