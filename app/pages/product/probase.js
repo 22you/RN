@@ -34,6 +34,10 @@ import {
       }
       this.props.navigation.navigate('Apply')
     }
+    componentDidMount(){
+      console.log(this.props);
+      
+    }
       render(){
         const customItems = [
           {
