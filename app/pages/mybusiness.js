@@ -44,6 +44,8 @@ import axios from 'axios';
  
       render(){
          let {data}=this.state;
+        console.log(data);
+        
           let business=global.user.loginState?
           
           <FlatList
@@ -61,7 +63,7 @@ import axios from 'axios';
                  </View>
                  <View style={bus.bottom}>
                      <Text style={{color:'#ababab',fontSize:matchsize(27)}}>创建时间</Text>
-                     <Text style={{color:'#656565',paddingLeft:matchsize(8),fontSize:matchsize(27)}}>{item.startinInterestTime}</Text>
+                     <Text style={{color:'#656565',paddingLeft:matchsize(8),fontSize:matchsize(27)}}>{item.createTime}</Text>
                  </View>
                  
                </View>
