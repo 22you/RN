@@ -24,6 +24,7 @@ import {
         super(props);
         // 初始状态
         this.state = {
+          cardtypes:[],
           investName:'',
           sex:'',
           cellphone:'',
@@ -40,10 +41,26 @@ import {
 
         };
     }
+    componentDidMount(){
+      let dictionaryUrl=config.api.dictionary+'nodeKey=card_type_key';
+      axios.get(dictionaryUrl)
+      .then((res)=>{
+        if(res.data.success){
+      let cardTypes=res.data.result.map(item=>item.text);
+      this.setState({
+        cardtypes:cardTypes
+      })
+      
+        }
+  
+  
+      })
+    }
    
     _upload_userbase=()=>{
+      
       let {
-        investName,sex,cellphone,alternatePhone,cardtype,cardnumber,birthDay,postcode,selfemail,customerNature,postaddress,belongedName,departmentId
+        cardtypes,investName,sex,cellphone,alternatePhone,cardtype,cardnumber,birthDay,postcode,selfemail,customerNature,postaddress,belongedName,departmentId
           }=this.state;
       let regMobile = /^(((13[0-9]{1})|(17[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
       if(!investName){
@@ -150,7 +167,7 @@ import {
             require
             value={this.state.cardtype} 
             style={base.item}
-            items={['身份证','护照']} 
+            items={this.state.cardtypes} 
             onSelected={
               (item)=>{
                 this.setState({cardtype: item})

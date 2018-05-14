@@ -42,10 +42,10 @@ import {
      //console.log(url);
       axios.get(url)
       .then((res)=>{
-        if(res.data.succes){
-          console.log(res.data.date.plManageMoneyPlan);
+        if(res.data.success){
+          console.log(res.data.data);
           this.setState({
-            probase:res.data.date.plManageMoneyPlan
+            probase:res.data.data
           })
         }
           
@@ -69,6 +69,8 @@ import {
           }
         ];
         let {probase}=this.state;
+        // console.log('jisyanneed',probase);
+        
       return(
           <View style={{ backgroundColor:'#fff',}}>
             <ScrollView style={{marginBottom:20}}>
@@ -142,7 +144,7 @@ import {
             </View>
             <View style={base.item}>
             <Text>结束时间</Text>
-            <Text>2018-04-02</Text>
+            <Text>{probase.buyEndTime}</Text>
             </View>
             <View style={base.item}>
             <Text>业务员提成</Text>
@@ -162,7 +164,7 @@ import {
             </View>
             <View style={base.item}>
             <Text>参照单位</Text>
-            <Text>1倍</Text>
+            <Text>{probase.referenceUnit}</Text>
             </View>
             <View style={base.item}>
             <Text>达标金额</Text>
