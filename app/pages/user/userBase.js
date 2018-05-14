@@ -10,9 +10,10 @@ import {
     ScrollView,
     Alert
   } from 'react-native';
-  import DatePicker from 'react-native-datepicker'
-  import matchsize from '../../components/matchsize'
-  import {Button} from 'teaset'
+  import DatePicker from 'react-native-datepicker';
+  import matchsize from '../../components/matchsize';
+  import {Button} from 'teaset';
+  import axios from 'axios';
   export default class Probase extends Component {
     static navigationOptions = {
       headerRight: (
@@ -73,27 +74,19 @@ import {
         Alert.alert("请输入正确手机号码");
         return null;
     }
-      let formData = new FormData();
-     
-      formData.append('investName', investName);//客户姓名
-      formData.append('sex', sex);//性别
-      formData.append('cellphone', cellphone);
-      formData.append('alternatePhone', alternatePhone);//备用电话
-      formData.append('cardtype', cardtype);//证件类型
-      formData.append('cardnumber',cardnumber);//证件号码
-      formData.append('birthDay', birthDay);//出生日期
-      formData.append('postcode',postcode);//邮政编码
-      formData.append('selfemail',selfemail);//电子邮箱
-      formData.append('customerNature',customerNature);//客户性质
-      formData.append('postaddress',postaddress);//通讯地址
-      formData.append('belongedName',belongedName);//客户授权人
-      formData.append('departmentId',departmentId);//登记团队
-      let url = config.api.userbase;
-      axios.post(url,formData)
-      .then((res)=>console.log(res))
-       this.props.navigation.navigate('UploadId',{...this.state});
-      // console.log(formData)
-    }
+
+       let url = config.api.userbase+'csInvestmentperson.investName='+investName+'&csInvestmentperson.sex='+sex+'&csInvestmentperson.cellphone='+cellphone
+       +'&csInvestmentperson.alternatePhone='+alternatePhone+'&csInvestmentperson.cardtype='+cardtype+'&csInvestmentperson.cardnumber='+cardnumber+'&csInvestmentperson.birthDay='+birthDay+'&csInvestmentperson.postcode='+postcode
+       +'&csInvestmentperson.selfemail='+selfemail+'&csInvestmentperson.customerNature='+customerNature+'&csInvestmentperson.postaddress='+postaddress+'&csInvestmentperson.belongedName='+belongedName+'&csInvestmentperson.departmentId='+departmentId;
+      
+      axios.post(url)       
+      .then((res)=>{
+        if(res.data.success){
+          this.props.navigation.navigate('UploadId',{...this.state});
+        }
+      })
+ 
+     }
   
       render(){
        
@@ -186,7 +179,7 @@ import {
               minDate="null"
               maxDate={new Date()}
               confirmBtnText="确认"
-              showIcon="false"
+              
               cancelBtnText="取消"
               customStyles={{
                 dateIcon: {
