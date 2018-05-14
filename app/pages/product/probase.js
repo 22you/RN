@@ -82,63 +82,63 @@ import {
             </TouchableOpacity>
             <View style={base.item}>
             <Text>产品编号</Text>
-            <Text>001001</Text>
+            <Text>{probase.mmNumber}</Text>
             </View>
             <View style={base.item}>
             <Text>产品策略</Text>
-            <Text>001002</Text>
+            <Text>{probase.proName}</Text>
             </View>
             <TouchableOpacity style={base.item}>
             <Text>计息周期</Text>
-            <Text>3天</Text>
+            <Text>{probase.interestPeriod}天</Text>
             </TouchableOpacity>
             <View style={base.item}>
             <Text>投资期限</Text>
-            <Text>12期</Text>
+            <Text>{probase.investlimit}期</Text>
             </View>
             <TouchableOpacity style={base.item}>
             <Text>超息条件</Text>
-            <Text>互融云</Text>
+            <Text>{probase.startinInterestCondition}</Text>
             </TouchableOpacity>
             <View style={base.item}>
             <Text>基础年化率</Text>
-            <Text>5.65%</Text>
+            <Text>{probase.yeaRate}%</Text>
             </View>
             <View style={base.item}>
             <Text>付息类型</Text>
-            <Text>互融云</Text>
+            <Text>{probase.isCyclingLend==0?'前期支付':'期初一次性给付'}</Text>
             </View>
             <View style={base.item}>
             <Text>付息方式</Text>
-            <Text>支付宝</Text>
+            <Text>{probase.isStartDatePay==3?'前置付息':probase.isStartDatePay}</Text>
             </View>
             <View style={base.item}>
             <Text>礼品年华率</Text>
-            <Text>5.65%</Text>
+            <Text>{probase.baseGiftYearRate}</Text>
             </View>
             <View style={base.item}>
-            <Text>递增全额</Text>
-            <Text>1000元</Text>
+            <Text>递增金额</Text>
+            <Text>{probase.riseMoney}</Text>
             </View>
             <View style={base.item}>
             <Text>梯级限制</Text>
-            <Text>支付宝</Text>
+            <Text>{probase.isLadderProducts==1?'是':'否'}</Text>
             </View>
             <View style={base.item}>
-            <Text>投资起点全额</Text>
-            <Text>1000元</Text>
+            <Text>投资起点金额</Text>
+            <Text>{probase.startMoney}</Text>
             </View>
             <View style={base.item}>
             <Text>投资上线</Text>
             <Text>1000元</Text>
             </View>
             <View style={base.item}>
-            <Text>日期</Text>
-            <Text>2018-04-02</Text>
+            <Text>自定义</Text>
+            <Text>{probase.dayPerPeriod}日/期</Text>
             </View>
             <View style={base.item}>
             <Text>开始时间</Text>
-            <Text>2018-04-02</Text>
+            <Text>{probase.buyStartTime}</Text>
             </View>
             <View style={base.item}>
             <Text>结束时间</Text>
@@ -146,39 +146,39 @@ import {
             </View>
             <View style={base.item}>
             <Text>业务员提成</Text>
-            <Text>10%</Text>
+            <Text>{probase.ommissionCoefficient}%</Text>
             </View>
             <View style={base.item}>
             <Text>是否活动</Text>
-            <Text>是</Text>
+            <Text>{probase.isActivity==0?'否':'是'}</Text>
             </View>
             <View style={base.item}>
             <Text>红包金额</Text>
-            <Text>100元</Text>
+            <Text>{probase.redPacketMoney}元</Text>
             </View>
             <View style={base.item}>
             <Text>期满全利率</Text>
-            <Text>5.50%</Text>
+            <Text>{probase.expirationRate}%</Text>
             </View>
             <View style={base.item}>
             <Text>参照单位</Text>
-            <Text>5.50倍</Text>
+            <Text>1倍</Text>
             </View>
             <View style={base.item}>
             <Text>达标金额</Text>
-            <Text>1000元</Text>
+            <Text>{probase.deductionMoney}元</Text>
             </View>
             <View style={base.item}>
             <Text>赠送礼品</Text>
-            <Text>1000元</Text>
+            <Text>{probase.baseGiftMoney}元</Text>
             </View>
             <View style={base.item}>
             <Text>业务考核</Text>
-            <Text>10%</Text>
+            <Text>{probase.businessCoefficient}%</Text>
             </View>
             <View style={base.item}>
             <Text>团队考核</Text>
-            <Text>10%</Text>
+            <Text>{probase.teamCoefficient}%</Text>
             </View>
             <View style={{ marginTop:20, marginHorizontal:'3%',}} >
             <Text style={{marginBottom:20,color:'red'}}>购买信息:</Text>
