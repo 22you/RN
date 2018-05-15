@@ -21,6 +21,10 @@ import {
       constructor(props) {
         super(props);
     }
+    componentDidMount(){
+        console.log(this.props.navigation.state.params.investId);
+        
+    }
       render(){
           return(
               <View style={add.item}>

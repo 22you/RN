@@ -23,9 +23,8 @@ import {
         };
     }
     componentDidMount(){
-      this.setState(
-        this.props.navigation.state.params
-      )
+       //  console.log( this.props.navigation.state.params);
+
     }
     uploadImage=(isFont)=>{
     
@@ -131,7 +130,7 @@ import {
   }
 
   _upload_card=()=>{
-     this.props.navigation.navigate('BankList')
+     this.props.navigation.navigate('AddBank',{investId:this.props.navigation.state.params.investId})
   }
       render(){
       return(

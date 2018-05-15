@@ -42,6 +42,8 @@ import {
         };
     }
     componentDidMount(){
+     // console.log(this.props.navigation.state.params);
+      
       //获取银行卡下拉列表
       let bankUrl=config.api.bankList;
       axios.get(bankUrl)
@@ -71,8 +73,9 @@ import {
       let {openType,bankid,bankOutletsName,openCurrency,name,accountnum,accountType} =this.state;
       let saveBankUrl=config.api.saveBank+'enterpriseBank.openType='+openType+'&enterpriseBank.bankid='+bankid
                       +'&enterpriseBank.bankOutletsName='+bankOutletsName+'&enterpriseBank.openCurrency='+openCurrency
-                      +'&enterpriseBank.name='+name+'&enterpriseBank.accountnum='+accountnum+'&enterpriseBank.accountType='+accountType;
-  console.log(saveBankUrl);
+                      +'&enterpriseBank.name='+name+'&enterpriseBank.accountnum='+accountnum+'&enterpriseBank.accountType='+accountType
+                      +'&enterpriseBank.isEnterprise=1&enterpriseBank.isInvest=1&enterpriseBank.enterpriseid='+this.props.navigation.state.params.investId;
+     console.log(saveBankUrl);
      axios.post(saveBankUrl)
      .then((res)=>{
        console.log(res.data);

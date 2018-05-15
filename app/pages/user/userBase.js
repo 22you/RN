@@ -95,12 +95,14 @@ import {
        let url = config.api.userbase+'csInvestmentperson.investName='+investName+'&csInvestmentperson.sex='+sex+'&csInvestmentperson.cellphone='+cellphone
        +'&csInvestmentperson.alternatePhone='+alternatePhone+'&csInvestmentperson.cardtype='+cardtype+'&csInvestmentperson.cardnumber='+cardnumber+'&csInvestmentperson.birthDay='+birthDay+'&csInvestmentperson.postcode='+postcode
        +'&csInvestmentperson.selfemail='+selfemail+'&csInvestmentperson.customerNature='+customerNature+'&csInvestmentperson.postaddress='+postaddress+'&csInvestmentperson.belongedName='+belongedName+'&csInvestmentperson.departmentId='+departmentId;
-       // console.log(url);
+        // console.log(url);
         
       axios.post(url)       
       .then((res)=>{
         if(res.data.success){
-          this.props.navigation.navigate('UploadId',{investId:res.data.investId});
+          // console.log(res.data.data.investId);
+          
+          this.props.navigation.navigate('UploadId',{investId:res.data.data.investId});
         }
       })
  

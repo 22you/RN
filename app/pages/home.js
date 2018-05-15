@@ -33,18 +33,7 @@ export default class Home extends Component {
      ]
     };
 }
-// componentDidMount(){
-//   let url=config.api.banner;
-//   request.get(url).then(responseText=>{
-    
-//     let arr=[];
-//     if (responseText.success) {
-//         arr=responseText.data.map((item)=>{return item.author.avatar_url})
-//     //  this.setState({banners:responseText.data.slice(0,3)})
-//        this.setState({banners:arr.slice(0,3)})
-//   }
-//   })
-// }
+
   render() {
     const {banners}=this.state;
     console.log(banners)
@@ -76,7 +65,7 @@ export default class Home extends Component {
       </Swiper>
       </View>
         <View style={styles.indexCenterBox}>
-        <TouchableOpacity style={styles.indexItem} onPress={() => this.props.navigation.navigate('Adduser', {
+        <TouchableOpacity style={styles.indexItem} onPress={() => this.props.navigation.navigate('Userbase', {
                                                 titleName: '增加用户',
                                                 ...this.props
                                                 
