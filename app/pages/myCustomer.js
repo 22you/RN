@@ -10,7 +10,7 @@ import {
     FlatList,
     Alert
   } from 'react-native';
-
+  import Swipeout from 'react-native-swipeout';
 
   export default class Mycustomer extends Component {
     static navigationOptions={
@@ -44,6 +44,7 @@ import {
         }
         ]}
           renderItem={({item})=>
+          
           <CustomItem 
           customName={item.customName} 
           customTeam={item.customTeam} 

@@ -1,9 +1,23 @@
 import React,{Component} from 'react';
 import { TouchableOpacity, View,Text,StyleSheet,} from "react-native";
-import matchsize from '../../components/matchsize'
+import matchsize from '../../components/matchsize';
+import Swipeout from 'react-native-swipeout';
 export default class CustomItem extends Component{
  render(){
+   let swipeoutBtns = [
+        {
+          text: '编辑'
+        },
+        {
+            text: '查看'
+          },
+          {
+            text: '删除'
+          }
+
+      ]
      return(
+        <Swipeout right={swipeoutBtns} style={{marginTop:matchsize(30)}}>
         <TouchableOpacity style={bus.busItem} onPress={()=>this.props.navigation.navigate('ChangeUserInfo',{
              ...this.props
         })}>
@@ -21,12 +35,12 @@ export default class CustomItem extends Component{
               <Text style={{color:'#656565',paddingLeft:matchsize(8),fontSize:matchsize(27)}}>{this.props.customSettime}</Text>
           </View>
         </TouchableOpacity>
+        </Swipeout>
      )
  }
 }
 const bus=StyleSheet.create({
     busItem:{
-        marginTop:matchsize(30),
         backgroundColor:'#fff',
         paddingHorizontal:'3%',
     },
