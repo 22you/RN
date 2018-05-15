@@ -20,7 +20,9 @@ import {
         super(props);
         // 初始状态
         this.state = {
-            probase:[]
+            probase:[
+              
+            ]
         };
     }
     _buyApply=()=>{

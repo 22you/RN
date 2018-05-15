@@ -46,9 +46,9 @@ import {
       axios.get(dictionaryUrl)
       .then((res)=>{
         if(res.data.success){
-      let cardTypes=res.data.result.map(item=>item.text);
+      // let cardTypes=res.data.result.map(item=>item);
       this.setState({
-        cardtypes:cardTypes
+        cardtypes:res.data.result
       })
       
         }
@@ -95,11 +95,12 @@ import {
        let url = config.api.userbase+'csInvestmentperson.investName='+investName+'&csInvestmentperson.sex='+sex+'&csInvestmentperson.cellphone='+cellphone
        +'&csInvestmentperson.alternatePhone='+alternatePhone+'&csInvestmentperson.cardtype='+cardtype+'&csInvestmentperson.cardnumber='+cardnumber+'&csInvestmentperson.birthDay='+birthDay+'&csInvestmentperson.postcode='+postcode
        +'&csInvestmentperson.selfemail='+selfemail+'&csInvestmentperson.customerNature='+customerNature+'&csInvestmentperson.postaddress='+postaddress+'&csInvestmentperson.belongedName='+belongedName+'&csInvestmentperson.departmentId='+departmentId;
-      
+       // console.log(url);
+        
       axios.post(url)       
       .then((res)=>{
         if(res.data.success){
-          this.props.navigation.navigate('UploadId',{...this.state});
+          this.props.navigation.navigate('UploadId',{investId:res.data.investId});
         }
       })
  
@@ -129,10 +130,10 @@ import {
              require
              value={this.state.sex} 
              style={base.item}
-             items={['男','女']} 
+             items={[{text:'男',value:312},{text:'女',value:313}]} 
              onSelected={(text)=>{
                this.setState({
-                 sex:text
+                 sex:text.value
                })
              }}
              />
@@ -170,7 +171,7 @@ import {
             items={this.state.cardtypes} 
             onSelected={
               (item)=>{
-                this.setState({cardtype: item})
+                this.setState({cardtype: item.value})
              }}
             />
 

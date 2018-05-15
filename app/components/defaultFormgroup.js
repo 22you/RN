@@ -19,6 +19,8 @@ import {Input,Select} from 'teaset'
           style={{paddingLeft: 0, borderWidth: 0}}
           value={props.value}
           items={props.items}
+          getItemValue={(item, index) => item.value}
+          getItemText={(item, index) => item.text}
           editable={props.editable}
           icon={<Icon name="angle-right"/>}
           placeholder={props.placeholder}
