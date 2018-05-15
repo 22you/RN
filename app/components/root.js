@@ -5,8 +5,8 @@ import common from '../styles/global'
 import Home  from '../pages/home' //首页
 import Mybusiness from '../pages/mybusiness'//我的业务
 import MyTodo from '../pages/myTask'//待办任务
-import Adduser from '../pages/adduser' //新增客户
-import Mycustomer from '../pages/myCustomer'//我的客户
+import Adduser from '../pages/adduser' //查看客户信息
+import Mycustomer from '../pages/customer/myCustomer'//我的客户
 import Buypro from '../pages/buypro'//产品购买
 import Userbase from '../pages/user/userBase'//新增客户-基本信息
 import UploadId from '../pages/user/uploadId'//上传身份证证件
@@ -19,7 +19,7 @@ import Buyinfo from '../pages/product/buyinfo' //购买信息
 import Chaohe from  '../pages/product/chaohe' //朝禾优品
 import Upload from '../pages/product/upload' //上传材料
 import Suggest from '../pages/product/suggest'//意见与说明
-import BankList from '../pages/user/banklist'//用户 银行账户信息
+import BankList from '../pages/customer/banklist'//用户 银行账户信息
 import AddBank from '../pages/user/addBank'//添加银行卡
 import ChangeUserInfo from '../pages/user/changeUserInfo'//修改基本信息
 import Login from '../pages/login' //登录页面
@@ -104,7 +104,7 @@ const Addnavigator=StackNavigator({
   Adduser:{
     screen:Adduser,
     navigationOptions:{
-      headerTitle:'新增客户'
+      headerTitle:'客户信息'
     }
 
   },
@@ -203,7 +203,7 @@ const Addnavigator=StackNavigator({
     ChangeUserInfo:{
       screen:ChangeUserInfo,
       navigationOptions:{
-        headerTitle:"修改基本信息"
+        headerTitle:"用户基本信息"
       }
     },
     Login:{

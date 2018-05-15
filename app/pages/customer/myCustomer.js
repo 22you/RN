@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import matchsize from '../components/matchsize'
-import CustomItem from '../pages/user/customItem'
+import matchsize from '../../components/matchsize'
+import CustomItem from './customItem'
 import {
     Platform,
     StyleSheet,

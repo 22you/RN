@@ -18,7 +18,7 @@ export default class CustomItem extends Component{
       ]
      return(
         <Swipeout right={swipeoutBtns} style={{marginTop:matchsize(30)}}>
-        <TouchableOpacity style={bus.busItem} onPress={()=>this.props.navigation.navigate('ChangeUserInfo',{
+        <TouchableOpacity style={bus.busItem} onPress={()=>this.props.navigation.navigate('Adduser',{
              ...this.props
         })}>
         <View style={bus.title}>

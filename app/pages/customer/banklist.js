@@ -22,7 +22,7 @@ import {
         super(props);
     }
     componentDidMount(){
-        console.log(this.props.navigation.state.params.investId);
+        console.log(this.props.navigation.state.params);
         
     }
       render(){

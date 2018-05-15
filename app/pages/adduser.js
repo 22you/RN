@@ -28,12 +28,12 @@ import {
         
       return(
           <View>
-            <TouchableOpacity style={add.item} onPress={()=>this.props.navigation.navigate('Userbase')}>
+            <TouchableOpacity style={add.item} onPress={()=>this.props.navigation.navigate('ChangeUserInfo')}>
             <Text>个人基本信息</Text>
             <Text>></Text>
             </TouchableOpacity>
             <TouchableOpacity style={add.item} onPress={()=>this.props.navigation.navigate('UploadId')}>
-            <Text>身份证上传</Text>
+            <Text>身份证信息</Text>
             <Text>></Text>
             </TouchableOpacity>
             <TouchableOpacity style={add.item} onPress={()=>this.props.navigation.navigate('BankList')}>
