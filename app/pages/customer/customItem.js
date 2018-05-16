@@ -23,7 +23,7 @@ export default class CustomItem extends Component{
         })}>
          
           <View style={bus.content}>
-            <View style={{flexDirection:'row',felx:1,justifyContent:'space-between'}}>
+            <View style={{flexDirection:'row',flex:1,justifyContent:'space-between'}}>
                 <Text style={{color:'#99cffe',fontSize:matchsize(27),marginLeft:matchsize(8)}}><Text style={{color:'#ababab'}}>部门名称:</Text>{this.props.customName}</Text>
                 <Text style={{marginLeft:matchsize(8)}}><Text style={{color:'#ababab'}}>所属部门：</Text>{this.props.customTeam}</Text>
             </View>
