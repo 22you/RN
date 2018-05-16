@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import matchsize from '../components/matchsize'
+import matchsize from '../../components/matchsize'
 import {
     Platform,
     StyleSheet,
@@ -46,7 +46,7 @@ import axios from 'axios';
            data={data}
            renderItem={
                ({item})=> 
-               <View style={bus.busItem}>
+               <TouchableOpacity style={bus.busItem} onPress={()=>this.props.navigation.navigate('Apply')}>
                <View style={bus.title}>
                    <View style={{flexDirection:'row',}}><Text style={{color:'#ababab'}}>客户名称</Text><Text style={{color:'#000',marginLeft:matchsize(15)}}>{item.investPersonName}</Text></View>
                    <View style={{flexDirection:'row',}}><Text style={{color:'#ababab'}}>任务名称</Text><Text style={{color:'#000',marginLeft:matchsize(15)}}>{item.activityName}</Text></View>
@@ -60,7 +60,7 @@ import axios from 'axios';
                      <Text style={{color:'#656565',paddingLeft:matchsize(8),fontSize:matchsize(27)}}>{item.createTime}</Text>
                  </View>
                  
-               </View>
+               </TouchableOpacity>
             }
 
           />

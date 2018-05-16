@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import common from '../styles/global'
 import Home  from '../pages/home' //首页
 import Mybusiness from '../pages/mybusiness'//我的业务
-import MyTodo from '../pages/myTask'//待办任务
+import MyTodo from '../pages/tasks/myTask'//待办任务
 import Adduser from '../pages/adduser' //查看客户信息
 import Mycustomer from '../pages/customer/myCustomer'//我的客户
 import Buypro from '../pages/buypro'//产品购买
