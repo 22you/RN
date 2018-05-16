@@ -20,9 +20,10 @@ import {
         super(props);
         // 初始状态
         this.state = {
-            probase:[
-              
-            ]
+            probase:[],
+            customItems:[],
+            valueCustom:'',
+            valueCustomtext:''
         };
     }
     _buyApply=()=>{
@@ -35,17 +36,45 @@ import {
         Alert.alert('请输入投资金额');
         return false;
       }
-      this.props.navigation.navigate('Apply')
+   let startUrl=config.api.start+'mmplanId='+this.props.navigation.state.params.item.mmplanId+'&businessFlow=SingleInApprovalFlow'+
+                '&plManageMoneyPlanBuyinfo.buyMoney='+this.state.InvestAmount+'&csInvestmentperson.investId='+
+                this.state.valueCustom+'&csInvestmentperson.investName='+this.state.valueCustomtext;//购买流程启动
+                console.log(startUrl);
+    
+      // this.props.navigation.navigate('Apply')
     }
     componentDidMount(){
      //console.log(this.props.navigation.state.params.item);
      let mmplanId=this.props.navigation.state.params.item.mmplanId;
-     let url=config.api.probase+'?mmplanId='+mmplanId
-     //console.log(url);
+     let url=config.api.probase+'?mmplanId='+mmplanId;//查询产品基本信息
+     let customersUrl=config.api.customers+'userIds='+global.user.userData.userIds;//查询客户列表
+     
+     axios.post(customersUrl)
+     .then((res)=>{
+       if(res.data.success){
+       let customItems=res.data.result.map(item=>{
+         return { 
+           text:item.investName,
+           value:item.investId}
+        
+       })
+       this.setState({
+        customItems:customItems
+       })
+        
+       }
+  
+     
+     })
+     .catch((error)=>{
+       console.log(error);
+       
+     })
+     //console.log(url)
       axios.get(url)
       .then((res)=>{
         if(res.data.success){
-          console.log(res.data.data);
+          //console.log(res.data.data);
           this.setState({
             probase:res.data.data
           })
@@ -60,18 +89,10 @@ import {
       
     }
       render(){
-        const customItems = [
-          {
-            text: 'Long long long long long long long',
-            value: 1,
-          },
-          {
-            text: 'Short',
-            value: 2,
-          }
-        ];
-        let {probase}=this.state;
-        // console.log('jisyanneed',probase);
+    
+        let {probase,customItems,valueCustomtext}=this.state;
+       
+        
         
       return(
           <View style={{ backgroundColor:'#fff',}}>
@@ -198,7 +219,14 @@ import {
                iconTintColor='#8a6d3b'
                placeholder='请选择客户'
                pickerTitle='请选择客户姓名'
-               onSelected={(item, index) => this.setState({valueCustom: item.value})}
+               onSelected={(item, index) => {
+                 this.setState({
+                   valueCustom: item.value,
+                   valueCustomtext:item.text
+                  });
+                 //console.log('anyneed',valueCustomtext);
+                 
+                }}
               />
               </View>
               <View style={{marginTop:15}}>
@@ -237,3 +265,6 @@ import {
    
   }
   })
+  
+  
+  
