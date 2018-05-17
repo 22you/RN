@@ -49,11 +49,11 @@ import {
           
           <CustomItem 
           customName={item.investName} 
-          customTeam={item.customTeam} 
+          belongedName={item.belongedName} 
           customSex={item.sexvalue} 
           customPhone={item.cellphone} 
           customCardNumber={item.cardnumber}
-          customSettime={item.customSettime}
+          createdate={item.createdate}
           item={item}
           {...this.props}
           />}
