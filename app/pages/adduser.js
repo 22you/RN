@@ -20,15 +20,20 @@ import {
         super(props);
         // 初始状态
         this.state = {
- 
+          userinfo:null
         };
     }
+    componentDidMount(){
+      this.setState({
+        userinfo:this.props.navigation.state.params.item
+      })
+    }
       render(){
-        console.log("props",this.props);
+        //console.log("props",this.state.userinfo);
         
       return(
           <View>
-            <TouchableOpacity style={add.item} onPress={()=>this.props.navigation.navigate('ChangeUserInfo')}>
+            <TouchableOpacity style={add.item} onPress={()=>this.props.navigation.navigate('ChangeUserInfo',{...this.state})}>
             <Text>个人基本信息</Text>
             <Text>></Text>
             </TouchableOpacity>

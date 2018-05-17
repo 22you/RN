@@ -19,7 +19,7 @@ import {
       headerRight: (
        
         <TouchableOpacity onPress={()=>navigation.state.params.navigatePress()}> 
-        <Icon style={{marginRight:20}} name="edit" size={20} color="#fff" />
+          <Icon style={{marginRight:20}} name="edit" size={20} color="#fff" />
         </TouchableOpacity>
     )
     });
@@ -29,7 +29,8 @@ import {
           maritalStatusValue:'男',
           cardType:'身份证',
           userName:"",
-          disabled:true
+          disabled:true,
+          userinfo:null
         };
         if(false){
            this.state={
@@ -43,6 +44,11 @@ import {
       this.setState({maritalStatusValue: item})
     }
     componentDidMount(){
+      this.setState({
+        userinfo:this.props.navigation.state.params.userinfo
+      })
+      
+      
       this.props.navigation.setParams({navigatePress:this.clickFinishButton})
     }
     clickFinishButton = ()=> {
@@ -52,13 +58,14 @@ import {
 
   }
       render(){
-        let {userName,customPhone,customCardNumber,customSettime,customSex,customTeam}=this.state;
+        console.log(this.state.userinfo);
+        let {investName,customPhone,customCardNumber,customSettime,sexvalue,customTeam}=this.state.userinfo;
         return(
           <View style={{ backgroundColor:'#fff',}}>
             <ScrollView style={{marginBottom:matchsize(20)}}>
             <KeyboardAwareScrollView>
             <DefaultInput name={'客户姓名'} style={base.item}
-            value={userName}
+            value={investName}
             
 					  onChangeText={(text) => {
                this.setState({
@@ -70,7 +77,7 @@ import {
              <DefaultSelect  
              placeholder={'请选择性别'} 
              name={'性别'} 
-             value={customSex} 
+             value={sexvalue} 
              style={base.item}
              items={['男','女']} 
              editable

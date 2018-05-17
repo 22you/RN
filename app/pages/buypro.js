@@ -38,7 +38,6 @@ export default class Buypro extends Component {
         };
     }
     _goProBase=(item)=>{
-        // this.props.navigation.navigate('Probase')
         if(global.user.loginState){
            // console.log(this.props.navigation)
             this.props.navigation.navigate('Probase',{item:item})

@@ -19,7 +19,7 @@ export default class CustomItem extends Component{
      return(
         <Swipeout right={swipeoutBtns}  style={{marginTop:matchsize(30)}} autoClose>
         <TouchableOpacity style={bus.busItem} onPress={()=>this.props.navigation.navigate('Adduser',{
-             ...this.props
+            item:this.props.item
         })}>
          
           <View style={bus.content}>

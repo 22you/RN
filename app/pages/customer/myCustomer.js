@@ -11,47 +11,50 @@ import {
     Alert
   } from 'react-native';
   import Swipeout from 'react-native-swipeout';
+  import config from '../../common/config';
+  import axios from 'axios';
 
   export default class Mycustomer extends Component {
     static navigationOptions={
         headerLeft:null
        }
+       constructor(props){
+           super(props)
+           this.state={
+            customerData:[]
+           }
+
+       }
        componentWillMount(){
-        console.log('登录状态',global.user.loginState)
+         let customersUrl=config.api.customers+'userIds='+global.user.userData.userIds;//查询客户列表
+          axios.get(customersUrl)
+          .then((res)=>{
+              if(res.data.success){
+                console.log(res.data.result);
+                this.setState({
+                    customerData:res.data.result
+                })
+              }
+           
+           
+          }) 
+       // console.log('登录状态',global.user.loginState)
           
        }
       render(){
           let customers=global.user.loginState?
           <FlatList
-          data={[
-            {
-                key: '1',
-                customName:'xiaohang',
-                customTeam:'信息部',
-                customSex:'女',
-                customPhone:'19082378236',
-                customCardNumber:'127892132937',
-                customSettime:'2018-12-12'
-            }, 
-            {  
-            key: '2',
-            customName:'戴旭',
-            customTeam:'广告部',
-            customSex:'男',
-            customPhone:'1232382378236',
-            customCardNumber:'99927892132937',
-            customSettime:'2012-12-12'
-        }
-        ]}
+          data={this.state.customerData}
           renderItem={({item})=>
           
           <CustomItem 
-          customName={item.customName} 
+          customName={item.investName} 
           customTeam={item.customTeam} 
-          customSex={item.customSex} 
-          customPhone={item.customPhone} 
-          customCardNumber={item.customCardNumber}
+          customSex={item.sexvalue} 
+          customPhone={item.cellphone} 
+          customCardNumber={item.cardnumber}
           customSettime={item.customSettime}
+          item={item}
           {...this.props}
           />}
         />
