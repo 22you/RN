@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
-import {View,Text} from 'react-native';
-
+import {View,Text,ScrollView,ALert,TouchableOpacity} from 'react-native';
+import {Checkbox} from 'teaset';
+import Icon from 'react-native-vector-icons/FontAwesome';
 export default class MenuExample extends Component {
   constructor(args) {
     super(args);
@@ -17,23 +18,31 @@ export default class MenuExample extends Component {
      return arr.map((item,index)=>{
         if(item.children) { 
         return ( 
-            <View>
-                <Text>{item.children[0].text}</Text>
-                <Text>{this.menu(item.children)}</Text>
+            <View style={{paddingLeft:10,marginTop:5}}>
+          
+                <View style={{flexDirection:'row'}}>
+                    <Icon name="chevron-circle-down" size={15} style={{marginRight:5,color:'#666'}}/>
+                    <TouchableOpacity onPress={()=>{ALert.alert('jiayan 加油！')}}><Text>{item.text}</Text></TouchableOpacity>
+                </View>
+                {this.menu(item.children)}
             </View>
             )
           
         }else{
-            return <Text>{item.text}</Text>
+            return (
+            <View style={{paddingLeft:20,marginTop:5}}>
+             <TouchableOpacity onPress={()=>{ALert.alert('jiayan 加油！')}}><Text>{item.text}</Text></TouchableOpacity>
+            </View>
+        )
         }
       })
   }
   render() {
     let {arr}=this.state;
     return (
-      <View>
+      <ScrollView style={{paddingHorizontal:10,paddingVertical:20}}>
          {this.menu(arr)}
-      </View>
+      </ScrollView>
     );
   }
 }
