@@ -25,6 +25,7 @@ import ChangeUserInfo from '../pages/user/changeUserInfo'//修改基本信息
 import Login from '../pages/login' //登录页面
 import UserCenter from '../pages/user/usercenter'//账户中心
 import EditData from '../pages/user/editData'
+import MenuExample from '../components/treeItem' //树结构测试
 import '../Global'
 import { TabNavigator,TabBarBottom,StackNavigator } from 'react-navigation'
 import {
@@ -67,6 +68,14 @@ const Navigator=TabNavigator({
     screen:UserCenter,
     navigationOptions:{
       title:'账户中心',
+      tabBarIcon: ({tintColor})=> (<Icon name="user" size={matchsize(35)} color={tintColor} />)
+      
+    }
+  },
+  tree:{
+    screen:MenuExample,
+    navigationOptions:{
+      title:'tree',
       tabBarIcon: ({tintColor})=> (<Icon name="user" size={matchsize(35)} color={tintColor} />)
       
     }

@@ -46,14 +46,12 @@ import {
       axios.get(dictionaryUrl)
       .then((res)=>{
         if(res.data.success){
-      // let cardTypes=res.data.result.map(item=>item);
-      this.setState({
-        cardtypes:res.data.result
-      })
-      
+          console.log(res.data.result);
+          // let cardTypes=res.data.result.map(item=>item);
+          this.setState({
+            cardtypes:res.data.result
+          })
         }
-  
-  
       })
     }
    

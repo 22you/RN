@@ -36,13 +36,21 @@ import {
         Alert.alert('请输入投资金额');
         return false;
       }
-   let startUrl=config.api.start+'userIds='+global.user.userData.userId+'&mmplanId='+this.props.navigation.state.params.item.mmplanId+'&businessFlow=SingleInApprovalFlow'+
+   let startUrl=config.api.start+'userIds='+global.user.userData.userIds+'&mmplanId='+this.props.navigation.state.params.item.mmplanId+'&businessFlow=SingleInApprovalFlow'+
                 '&plManageMoneyPlanBuyinfo.buyMoney='+this.state.InvestAmount+'&csInvestmentperson.investId='+
                 this.state.valueCustom+'&csInvestmentperson.investName='+this.state.valueCustomtext;//购买流程启动
-                console.log(startUrl);
+    axios.post(startUrl)
+    .then((res)=>{
+      if(res.data.success){
+        console.log(res.data.data);
+       // this.props.navigation.navigate('Apply');
+        
+      }
     
+      
+    })
      
-               this.props.navigation.navigate('Apply')
+               
     }
     componentDidMount(){
      //console.log(this.props.navigation.state.params.item);

@@ -53,7 +53,7 @@ import {
     
     componentDidMount(){
       this.setState({
-        memberName:global.user.userData.username,
+        memberName:global.user.userData.username.split("@")[0],
         memberfullname:global.user.userData.fullname,
         memberdepName:global.user.userData.depName
       })
