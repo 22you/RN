@@ -12,7 +12,7 @@ import {
   Alert,
   StatusBar
 } from 'react-native'
-import {Button} from 'teaset'
+import {Button,Toast} from 'teaset'
 import matchsize from '../components/matchsize'
 import Swiper from 'react-native-swiper'
 import styles from '../styles/style-app'
@@ -32,6 +32,17 @@ export default class Home extends Component {
       require('../images/index/banner.jpg')
      ]
     };
+}
+addUserMethod=()=>{
+  if(!global.user.loginState){
+    Toast.info('请先登录！')
+  }else{
+    this.props.navigation.navigate('Userbase', {
+      titleName: '增加用户',
+      ...this.props
+      
+  })
+  }
 }
 
   render() {
@@ -65,11 +76,7 @@ export default class Home extends Component {
       </Swiper>
       </View>
         <View style={styles.indexCenterBox}>
-        <TouchableOpacity style={styles.indexItem} onPress={() => this.props.navigation.navigate('Userbase', {
-                                                titleName: '增加用户',
-                                                ...this.props
-                                                
-                                            })}>
+        <TouchableOpacity style={styles.indexItem} onPress={()=>this.addUserMethod()}>
            <Image source={require('../images/index/add-cu.png')} style={{width:matchsize(55),height:matchsize(55),marginRight:matchsize(8)}}/>
            <Text>新增客户</Text>
          </TouchableOpacity>

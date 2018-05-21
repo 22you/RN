@@ -36,6 +36,8 @@ import axios from 'axios';
               return this.refs.toast.show('手机号或密码不能为空！')
         }
         const loginURL = config.api.login + 'username=' + userName + '&password=' + password ;
+        console.log(loginURL);
+        
         axios.get(loginURL)
         .then((res)=>{
             //let resnew= eval("(" + res.data + ")");

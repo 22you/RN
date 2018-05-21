@@ -1,7 +1,8 @@
 // 新增用户的基本信息
 import React, { Component } from 'react';
 import {DefaultInput,DefaultSelect}  from '../../components/defaultFormgroup' 
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import Tree from '../../components/treeItem'
 import {
     Platform,
     StyleSheet,
@@ -9,7 +10,8 @@ import {
     View,
     TouchableOpacity,
     ScrollView,
-    Alert
+    Alert,
+    Modal
   } from 'react-native';
   import DatePicker from 'react-native-datepicker';
   import matchsize from '../../components/matchsize';
@@ -25,6 +27,7 @@ import {
         super(props);
         // 初始状态
         this.state = {
+          modal:false,
           cardtypes:[],
           investName:'',
           sex:'',
@@ -43,11 +46,15 @@ import {
         };
     }
     componentDidMount(){
+      this.setState({
+        departmentId:this.props.navigation.state.params.departmentid,
+        departmentName:this.props.navigation.state.params.departmentName
+      })
       let dictionaryUrl=config.api.dictionary+'nodeKey=card_type_key';
       axios.get(dictionaryUrl)
       .then((res)=>{
         if(res.data.success){
-          console.log(res.data.result);
+          //console.log(res.data.result);
           // let cardTypes=res.data.result.map(item=>item);
           this.setState({
             cardtypes:res.data.result
@@ -108,8 +115,10 @@ import {
      }
   
       render(){
-       console.log(this.props);
+       //console.log(this.props.navigation.state.params.departmentName);
+       console.log('当前用户是',global.user.userData.fullname);
        
+       let {departmentId,departmentName}=this.state;
       return(
           <View style={{ backgroundColor:'#fff',}}>
             <ScrollView style={{marginBottom:matchsize(20)}}>
@@ -244,21 +253,11 @@ import {
                             postaddress: text
                         })
                         }} />
-            <DefaultInput placeholder={'请输入...'} name={'客户授权人'} style={base.item}
-					              onChangeText={(text)=>{
-                          this.setState({
-                            belongedName: text
-                        })
-                        }} />
-            <DefaultInput placeholder={'请输入...'} name={'登记团队'} style={base.item}
-					              onChangeText={(text)=>{
-                          this.setState({
-                            departmentId: text
-                        })
-                        }} />
-            <TouchableOpacity onPress={()=>{ this.props.navigation.navigate('tree')}}>
+            <DefaultInput  name={'客户授权人'} disabled style={base.item} value={global.user.userData.fullname}  />
+          
+            <TouchableOpacity style={base.item} onPress={()=>{this.setState({modal:true})}}>
               <Text>选择登记团队</Text>
-              <Text>{this.props.navigation.state.params.departmentId}</Text>
+              <Text>{departmentName}</Text>
             </TouchableOpacity>
          
             <TouchableOpacity style={{marginTop:15,marginHorizontal:'5%'}}>
@@ -269,6 +268,14 @@ import {
             </TouchableOpacity>
             </KeyboardAwareScrollView>
             </ScrollView>
+            <Modal
+                    animationType={'slide'}
+                    transparent={true}
+                    onRequestClose={() => console.log('onRequestClose...')}
+                    visible={this.state.modal}
+                >
+                <Tree onPress={(departmentName,departmentid)=>{this.setState({modal:false,departmentName:departmentName,departmentid:departmentid})}}/>
+            </Modal>
           </View>
       )
       }
