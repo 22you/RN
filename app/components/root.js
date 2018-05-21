@@ -8,7 +8,7 @@ import MyTodo from '../pages/tasks/myTask'//待办任务
 import Adduser from '../pages/adduser' //查看客户信息
 import Mycustomer from '../pages/customer/myCustomer'//我的客户
 import Buypro from '../pages/buypro'//产品购买
-import Userbase from '../pages/user/userBase'//新增客户-基本信息
+
 import UploadId from '../pages/user/uploadId'//上传身份证证件
 import Probase from '../pages/product/probase'//产品基本信息
 import Apply from '../pages/product/apply'//产品购买申请
@@ -25,7 +25,9 @@ import ChangeUserInfo from '../pages/user/changeUserInfo'//修改基本信息
 import Login from '../pages/login' //登录页面
 import UserCenter from '../pages/user/usercenter'//账户中心
 import EditData from '../pages/user/editData'
-import MenuExample from '../components/treeItem' //树结构测试
+import Tree from '../components/treeItem' //树结构测试
+// 新增用户模块？
+import Userbase from '../pages/user/userBase'//新增客户-基本信息
 import '../Global'
 import { TabNavigator,TabBarBottom,StackNavigator } from 'react-navigation'
 import {
@@ -71,15 +73,8 @@ const Navigator=TabNavigator({
       tabBarIcon: ({tintColor})=> (<Icon name="user" size={matchsize(35)} color={tintColor} />)
       
     }
-  },
-  tree:{
-    screen:MenuExample,
-    navigationOptions:{
-      title:'tree',
-      tabBarIcon: ({tintColor})=> (<Icon name="user" size={matchsize(35)} color={tintColor} />)
-      
-    }
   }
+
 },{
   
   tabBarComponent:TabBarBottom,
@@ -222,6 +217,14 @@ const Addnavigator=StackNavigator({
       screen:EditData,
       navigationOptions:{
         headerTitle:"编辑资料"
+      }
+    },
+    tree:{
+      screen:Tree,
+      navigationOptions:{
+        title:'选择登记团队',
+        tabBarIcon: ({tintColor})=> (<Icon name="user" size={matchsize(35)} color={tintColor} />)
+        
       }
     }
 },{

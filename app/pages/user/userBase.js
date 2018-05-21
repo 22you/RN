@@ -1,3 +1,4 @@
+// 新增用户的基本信息
 import React, { Component } from 'react';
 import {DefaultInput,DefaultSelect}  from '../../components/defaultFormgroup' 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
@@ -73,10 +74,10 @@ import {
         Alert.alert('请输入主联系电话！')
         return false;
       }
-      if(!cardtype){
-        Alert.alert('请选择证件类型！')
-        return false;
-      }
+      // if(!cardtype){
+      //   Alert.alert('请选择证件类型！')
+      //   return false;
+      // }
       if(!cardnumber){
         Alert.alert('请输入证件号码')
         return false;
@@ -93,7 +94,7 @@ import {
        let url = config.api.userbase+'csInvestmentperson.investName='+investName+'&csInvestmentperson.sex='+sex+'&csInvestmentperson.cellphone='+cellphone
        +'&csInvestmentperson.alternatePhone='+alternatePhone+'&csInvestmentperson.cardtype='+cardtype+'&csInvestmentperson.cardnumber='+cardnumber+'&csInvestmentperson.birthDay='+birthDay+'&csInvestmentperson.postcode='+postcode
        +'&csInvestmentperson.selfemail='+selfemail+'&csInvestmentperson.customerNature='+customerNature+'&csInvestmentperson.postaddress='+postaddress+'&csInvestmentperson.belongedName='+belongedName+'&csInvestmentperson.departmentId='+departmentId;
-        // console.log(url);
+         console.log(url);
         
       axios.post(url)       
       .then((res)=>{
@@ -107,6 +108,7 @@ import {
      }
   
       render(){
+       console.log(this.props);
        
       return(
           <View style={{ backgroundColor:'#fff',}}>
@@ -254,6 +256,10 @@ import {
                             departmentId: text
                         })
                         }} />
+            <TouchableOpacity onPress={()=>{ this.props.navigation.navigate('tree')}}>
+              <Text>选择登记团队</Text>
+              <Text>{this.props.navigation.state.params.departmentId}</Text>
+            </TouchableOpacity>
          
             <TouchableOpacity style={{marginTop:15,marginHorizontal:'5%'}}>
               <Button title="下一步" type="primary"
