@@ -8,9 +8,11 @@ import {
     ScrollView,
     FlatList
   } from 'react-native';
-  import Icon from 'react-native-vector-icons/FontAwesome';
-  import matchsize from '../../components/matchsize';
-  import BankItem from './bankItem'
+import Icon from 'react-native-vector-icons/FontAwesome';
+import matchsize from '../../components/matchsize';
+import BankItem from './bankItem'
+import config from '../../common/config';
+import axios from 'axios';
 
   export default class BankList extends Component{
     static navigationOptions = {
@@ -20,31 +22,38 @@ import {
       }
       constructor(props) {
         super(props);
+        this.state={
+            userinfo:this.props.navigation.state.params.userinfo,
+            bankdata:null,
+        }
     }
     componentDidMount(){
-        console.log(this.props.navigation.state.params);
+      let {investId}=this.state.userinfo; 
+      let bankUrl=config.api.bankInfo+'id='+investId+'&isEnterpriseStr=1&isInvest=3&start=0&limit=25'
+      console.log(bankUrl);
+      axios.get(bankUrl)
+      .then((res)=>{
+          if(res.data.totalProperty){
+            console.log(res.data.topics);
+            this.setState({
+                bankdata:res.data.topics
+            })
+          }
+          
+          
+      })
+      
         
     }
       render(){
+          let {bankdata}=this.state;
           return(
               <View style={add.item}>
                   <ScrollView>
                   <FlatList
-                    data={[
-                        {
-                            key: '1',
-                            cardNum:'6314111111117235',
-                            cardTitle:'招商银行',
-                            cardUser:'小说'
-                        }, 
-                        { key: '2',
-                        cardNum:'6314111111117235',
-                        cardTitle:'邮政银行',
-                        cardUser:'小尚未'
-                    }
-                    ]}
+                    data={bankdata}
                     renderItem={
-                        ({item}) => <BankItem  cardNum={item.cardNum} cardUser={item.cardUser} cardTitle={item.cardTitle}  {...this.props}/>
+                        ({item}) => <BankItem  cardNum={item.accountnum} cardUser={item.name} cardTitle={item.bankname}  {...this.props}/>
                     }
                     />
                     <TouchableOpacity style={add.addbtn} onPress={()=>this.props.navigation.navigate('AddBank',{...this.state})}>

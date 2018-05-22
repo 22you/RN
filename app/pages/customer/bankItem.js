@@ -16,15 +16,15 @@ import {
             >
             <TouchableOpacity  onPress={()=>this.props.navigation.navigate('AddBank',{...this.props})}>
             <View>
-                <Text style={{letterSpacing:matchsize(30),color:'#fff',fontSize:matchsize(36)}}>{this.props.cardTitle}</Text>
+                <Text style={{letterSpacing:matchsize(5),color:'#fff',fontSize:matchsize(36)}}>{this.props.cardTitle}</Text>
                  <Text style={{color:'#fff'}}>zhao shang yin hang</Text>
             </View>
             <View style={{paddingVertical:matchsize(40)}}>
                 <View style={{justifyContent:'space-between',flexDirection:'row'}}>
-                <Text style={{color:'#fff',fontSize:matchsize(34)}}>6314</Text>
+                <Text style={{color:'#fff',fontSize:matchsize(34)}}>{this.props.cardNum.trim().substr(0,4)}</Text>
                 <Text style={{color:'#fff',fontSize:matchsize(34)}}>****</Text>
                 <Text style={{color:'#fff',fontSize:matchsize(34)}}>****</Text>
-                <Text style={{color:'#fff',fontSize:matchsize(34)}}>7235</Text>
+                <Text style={{color:'#fff',fontSize:matchsize(34)}}>{this.props.cardNum.trim().substr(this.props.cardNum.length-4,4)}</Text>
                  
                 </View>
             </View>

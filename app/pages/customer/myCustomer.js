@@ -30,7 +30,7 @@ import {
           axios.get(customersUrl)
           .then((res)=>{
               if(res.data.success){
-                console.log(res.data.result);
+                //console.log(res.data.result);
                 this.setState({
                     customerData:res.data.result
                 })
@@ -55,6 +55,7 @@ import {
           customCardNumber={item.cardnumber}
           createdate={item.createdate}
           item={item}
+          investId={item.investId}
           {...this.props}
           />}
         />

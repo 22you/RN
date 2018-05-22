@@ -29,19 +29,20 @@ import {
       })
     }
       render(){
-        //console.log("props",this.state.userinfo);
+        console.log("props",this.state.userinfo);
+        
         
       return(
           <View>
-            <TouchableOpacity style={add.item} onPress={()=>this.props.navigation.navigate('ChangeUserInfo',{...this.state})}>
+            <TouchableOpacity style={add.item} onPress={()=>this.props.navigation.navigate('ChangeUserInfo',{'userinfo':this.state.userinfo})}>
             <Text>个人基本信息</Text>
             <Text>></Text>
             </TouchableOpacity>
-            <TouchableOpacity style={add.item} onPress={()=>this.props.navigation.navigate('UploadId')}>
+            <TouchableOpacity style={add.item} onPress={()=>this.props.navigation.navigate('UploadId',{'userinfo':this.state.userinfo})}>
             <Text>身份证信息</Text>
             <Text>></Text>
             </TouchableOpacity>
-            <TouchableOpacity style={add.item} onPress={()=>this.props.navigation.navigate('BankList')}>
+            <TouchableOpacity style={add.item} onPress={()=>this.props.navigation.navigate('BankList',{'userinfo':this.state.userinfo})}>
             <Text>银行账户信息</Text>
             <Text>></Text>
             </TouchableOpacity>
