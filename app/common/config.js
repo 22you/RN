@@ -42,10 +42,9 @@ export default {
         start:baseUrl+'api/startTurnoverCustomerFlow2ProcessActivity.do?',//理财购买流程启动
         customers:baseUrl+'api/listCsInvestmentperson.do?',//我的客户列表userIds
         common: {
-            uploadFile: baseUrl + 'uploadFilesFileFormApi.do',//上传图片
+            uploadFile: baseUrl + 'api/uploadPhotoProduceHelper.do',//chaohe 身份证上传 mark
             uploadMaterial: baseUrl + 'uploadMaterialFileFormApi.do',//上传材料
             getNextCommon: baseUrl + 'getNextCommonApi.do',//获取省市区 node
-            uploadImg: baseUrl + 'uploadImgFileFormApi.do',//上传身份证图片
             memberInfo: baseUrl + 'memberInfoCommonApi.do',//获取用户的信息
         }
 

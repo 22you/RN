@@ -11,7 +11,8 @@ import {
   } from 'react-native';
   import {Button} from 'teaset'
   import matchsize from '../../components/matchsize'
-  import ImagePicker from 'react-native-image-picker'
+  import ImagePicker from 'react-native-image-picker';
+  import axios from 'axios';
   export default class Userbase extends Component {
    
     constructor(props) {
@@ -23,7 +24,7 @@ import {
         };
     }
     componentDidMount(){
-       //  console.log( this.props.navigation.state.params);
+         console.log( this.props.navigation.state.params);
 
     }
     uploadImage=(isFont)=>{
@@ -57,17 +58,16 @@ import {
         }
         else {
           let source = {uri: response.uri};
-                let tempImgArr = [];
-                tempImgArr.push(source);
-              //   if (isFont) {
-              //     this.setState({
-              //       myIdcardFront: {uri: response.uri},
-              //     })
-              // } else {
-              //     this.setState({
-              //       myIdcardReverse: {uri: response.uri},
-              //     })
-              // }
+            
+                if (isFont) {
+                  this.setState({
+                    myIdcardFront: {uri: response.uri},
+                  })
+              } else {
+                  this.setState({
+                    myIdcardReverse: {uri: response.uri},
+                  })
+              }
             //上传图片
              this.uploadIdcard(response.uri,isFont);
         }
@@ -78,50 +78,44 @@ import {
      * 上传身份证图片
      */
     uploadIdcard = (uri, isFont) => {
-      console.log("11111111")
+     
       let formData = new FormData();
-      let file = {uri: uri, type: 'application/octet-stream', name: 'image.jpg'};
-      console.log("uri", uri)
+      const file = { uri: uri, type: 'multipart/form-data', name: 'a.jpg' };
       formData.append("myUpload", file);
+      //console.log("formdata", formData.get('myUpload'))
+  
       let url;
       if (isFont) {
-          url = config.api.common.uploadImg + "?myUploadFileName=myBlogImage1.jpg&myBlogImage=myBlogImage1";
+          url = config.api.common.uploadFile + "?mark=cs_person_sfzz."+this.props.navigation.state.params.investId;
       } else {
-          url = config.api.common.uploadImg + "?myUploadFileName=myBlogImage2.jpg&myBlogImage=myBlogImage2";
+          url = config.api.common.uploadFile + "?mark=cs_person_sfzf."+this.props.navigation.state.params.investId;
       }
-
-      request.upImage(url, formData).then((responseText) => {
-
-          console.log('上传的身份证的返回的数据内容=====>', responseText, config.imageUrl + responseText.map[0].photoSrc)
-          this.setState({
-              visible: false
-          })
-          if (responseText.result === 1) {
-              if (isFont) {
+    // let config = {
+    //     Accept: 'Application/json',
+    //     'Content-Type': 'multipart/form-data',
+    // };
+    axios.post(url,formData,config)
+      .then((responseText) => {
+          console.log('上传的身份证的返回的数据内容=====>',responseText.data)
+          if (responseText.success == true) {
+                if (isFont) {
                   this.setState({
-                      idFontImage: config.imageUrl + responseText.map[0].photoSrc,
-                      name: responseText.map[0].name,
-                      cardnumber: responseText.map[0].cardnumber,
-                      sex: responseText.map[0].sex
+                    myIdcardFront: {uri: responseText.uri},
                   })
               } else {
                   this.setState({
-                      idBackImage: config.imageUrl + responseText.map[0].photoSrc,
-                      validityEnd: responseText.map[0].validityEnd,
-                      validityStart: responseText.map[0].validityStart,
-
+                    myIdcardReverse: {uri: responseText.uri},
                   })
               }
           } else {
-              return Alert.alert(responseText.map[0].msg);
+              return Alert.alert('akns');
 
 
           }
 
       }).catch((error) => {
-          this.setState({
-              visible: false
-          })
+          console.log(error);
+          
           return Alert.alert('上传失败');
 
 

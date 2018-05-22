@@ -79,6 +79,11 @@ import {
      axios.post(saveBankUrl)
      .then((res)=>{
        console.log(res.data);
+       this.props.navigation.navigate('Home')
+       
+     })
+     .catch((error)=>{
+       console.log(error);
        
      })
   
