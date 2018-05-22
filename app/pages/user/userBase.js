@@ -116,7 +116,7 @@ import {
   
       render(){
        //console.log(this.props.navigation.state.params.departmentName);
-       console.log('当前用户是',global.user.userData.fullname);
+       //console.log('当前用户是',global.user.userData.fullname);
        
        let {departmentId,departmentName}=this.state;
       return(
@@ -273,8 +273,9 @@ import {
                     transparent={true}
                     onRequestClose={() => console.log('onRequestClose...')}
                     visible={this.state.modal}
+                    
                 >
-                <Tree onPress={(departmentName,departmentid)=>{this.setState({modal:false,departmentName:departmentName,departmentid:departmentid})}}/>
+                <Tree treePass={(departmentName,departmentId)=>{this.setState({modal:false,departmentName:departmentName,departmentId:departmentId})}}/>
             </Modal>
           </View>
       )
