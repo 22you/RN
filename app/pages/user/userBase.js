@@ -66,7 +66,7 @@ import {
     _upload_userbase=()=>{
       
       let {
-        cardtypes,investName,sex,cellphone,alternatePhone,cardtype,cardnumber,birthDay,postcode,selfemail,customerNature,postaddress,belongedName,departmentId
+        cardtypes,investName,sex,cellphone,alternatePhone,cardtype,cardnumber,birthDay,postcode,selfemail,personProperty,postaddress,belongedName,departmentName,departmentId
           }=this.state;
       let regMobile = /^(((13[0-9]{1})|(17[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
       if(!investName){
@@ -100,14 +100,15 @@ import {
 
        let url = config.api.userbase+'csInvestmentperson.investName='+investName+'&csInvestmentperson.sex='+sex+'&csInvestmentperson.cellphone='+cellphone
        +'&csInvestmentperson.alternatePhone='+alternatePhone+'&csInvestmentperson.cardtype='+cardtype+'&csInvestmentperson.cardnumber='+cardnumber+'&csInvestmentperson.birthDay='+birthDay+'&csInvestmentperson.postcode='+postcode
-       +'&csInvestmentperson.selfemail='+selfemail+'&csInvestmentperson.customerNature='+customerNature+'&csInvestmentperson.postaddress='+postaddress+'&csInvestmentperson.belongedName='+belongedName+'&csInvestmentperson.departmentId='+departmentId;
+       +'&csInvestmentperson.selfemail='+selfemail+'&csInvestmentperson.personProperty='+personProperty
+       +'&csInvestmentperson.postaddress='+postaddress+'&csInvestmentperson.belongedName='+global.user.userData.fullname
+       +'&csInvestmentperson.belongedId='+'global.user.userData.userIds'
+       +'&csInvestmentperson.departmentName='+departmentName+'&csInvestmentperson.departmentId='+departmentId;
          console.log(url);
         
       axios.post(url)       
       .then((res)=>{
         if(res.data.success){
-          // console.log(res.data.data.investId);
-          
           this.props.navigation.navigate('UploadId',{investId:res.data.data.investId});
         }
       })
@@ -244,7 +245,7 @@ import {
              <DefaultInput placeholder={'请输入...'} name={'客户性质'} style={base.item}
 					              onChangeText={(text)=>{
                           this.setState({
-                            customerNature: text
+                            personProperty: text
                         })
                         }} />
              <DefaultInput placeholder={'请输入...'} require name={'通讯地址'} style={base.item}
