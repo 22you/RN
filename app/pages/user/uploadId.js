@@ -80,8 +80,8 @@ import {
     uploadIdcard = (uri, isFont) => {
      
       let formData = new FormData();
-      const file = { uri: uri, type: 'multipart/form-data', name: 'a.jpg' };
-      formData.append("myUpload", file);
+      const file = { uri: uri, type: 'multipart/form-data', name: 'image.jpg' };
+      formData.append("fileUpload", file);
       //console.log("formdata", formData.get('myUpload'))
   
       let url;
@@ -94,32 +94,44 @@ import {
     //     Accept: 'Application/json',
     //     'Content-Type': 'multipart/form-data',
     // };
-    axios.post(url,formData,config)
-      .then((responseText) => {
-          console.log('上传的身份证的返回的数据内容=====>',responseText.data)
-          if (responseText.success == true) {
-                if (isFont) {
-                  this.setState({
-                    myIdcardFront: {uri: responseText.uri},
-                  })
-              } else {
-                  this.setState({
-                    myIdcardReverse: {uri: responseText.uri},
-                  })
-              }
-          } else {
-              return Alert.alert('akns');
+    fetch(url,{
+      method: 'POST',
+      headers: {
+          'Content-Type': 'multipart/form-data',
+      },
+      body: formData
+  })
+  .then((response) =>console.log(response.json())    )//fileid 保存的时候传过去
+  
+  .catch(function (error) {
+      console.log('获取用户登录数据报错信息: ' + error.message);
+      Toast.message("请检查网络连接");
+  })
+      // .then((responseText) => {
+      //     console.log('上传的身份证的返回的数据内容=====>',responseText.data)
+      //     if (responseText.success == true) {
+      //           if (isFont) {
+      //             this.setState({
+      //               myIdcardFront: {uri: responseText.uri},
+      //             })
+      //         } else {
+      //             this.setState({
+      //               myIdcardReverse: {uri: responseText.uri},
+      //             })
+      //         }
+      //     } else {
+      //         return Alert.alert('akns');
 
 
-          }
+      //     }
 
-      }).catch((error) => {
-          console.log(error);
+      // }).catch((error) => {
+      //     console.log(error);
           
-          return Alert.alert('上传失败');
+      //     return Alert.alert('上传失败');
 
 
-      });
+      // });
 
   }
 

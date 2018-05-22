@@ -76,7 +76,7 @@ import {
                 <Text>{this.state.memberdepName}</Text>
               </View>
               <View style={{paddingHorizontal:'3%',paddingVertical:matchsize(50),flexDirection:'row',justifyContent:'space-around'}}>
-              <Button title='编辑资料' size="md" type="default" onPress={() => this.props.navigation.navigate('EditData')} />
+              {/* <Button title='编辑资料' size="md" type="default" onPress={() => this.props.navigation.navigate('EditData')} /> */}
               <Button title='退出登录' size="md" type="primary" 
                 onPress={this.loginOut.bind(this)} />
               </View>

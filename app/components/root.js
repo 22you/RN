@@ -10,7 +10,7 @@ import Mycustomer from '../pages/customer/myCustomer'//我的客户
 import Buypro from '../pages/buypro'//产品购买
 
 import UploadId from '../pages/user/uploadId'//上传身份证证件
-import Probase from '../pages/product/probase'//产品基本信息
+
 import Apply from '../pages/product/apply'//产品购买申请
 import Applybase from '../pages/product/applybase'//投资进件申请基本信息
 import Investor from '../pages/product/investor'//投资人账户
@@ -26,6 +26,8 @@ import Login from '../pages/login' //登录页面
 import UserCenter from '../pages/user/usercenter'//账户中心
 import EditData from '../pages/user/editData'
 import Tree from '../components/treeItem' //树结构测试
+//产品
+import Probase from '../pages/product/probase'//产品基本信息
 // 新增用户模块？
 import Userbase from '../pages/user/userBase'//新增客户-基本信息
 import '../Global'

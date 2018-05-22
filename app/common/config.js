@@ -42,6 +42,7 @@ export default {
         start:baseUrl+'api/startTurnoverCustomerFlow2ProcessActivity.do?',//理财购买流程启动
         customers:baseUrl+'api/listCsInvestmentperson.do?',//我的客户列表userIds
         bankInfo:baseUrl+'api/queryListEnterpriseBank.do?',//客户银行信息列表
+        department:baseUrl+'api/treeOrganization.do?',//所属团队/所属部门  传参：type=undefined   branchCompanyId=undefined
         common: {
             uploadFile: baseUrl + 'api/uploadPhotoProduceHelper.do',//chaohe 身份证上传 mark
             uploadMaterial: baseUrl + 'uploadMaterialFileFormApi.do',//上传材料
