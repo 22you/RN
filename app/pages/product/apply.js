@@ -9,6 +9,7 @@ import {
   } from 'react-native';
   import {Button} from 'teaset'
 import matchsize from '../../components/matchsize';
+import config from '../../common/config';
   export default class Adduser extends Component {
     static navigationOptions = {
       headerRight: (
@@ -16,15 +17,21 @@ import matchsize from '../../components/matchsize';
     ),
     };
     constructor(props) {
-
         super(props);
         // 初始状态
         this.state = {
- 
+          projectId:this.props.navigation.state.params.projectId,
+          taskId:this.props.navigation.state.params.taskId
         };
     }
+    componentDidMount(){
+      let {projectId,taskId}=this.state;
+      let loadingUrl=config.api.loading+'projectId='+projectId+'&taskId='+taskId;//流程加载
+      console.log(loadingUrl);
+      
+    }
       render(){
-        console.log("props",this.props);
+        console.log("props",this.props.navigation.state.params);
         
       return(
           <View>

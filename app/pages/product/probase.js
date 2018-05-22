@@ -43,7 +43,8 @@ import {
     .then((res)=>{
       if(res.data.success){
         console.log(res.data.data);
-       // this.props.navigation.navigate('Apply');
+        let {projectId,taskId}=res.data.data;
+        this.props.navigation.navigate('Apply',{projectId:projectId,taskId:taskId});
         
       }
     
