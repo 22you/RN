@@ -36,10 +36,10 @@ import config from '../../common/config';
       return(
           <View>
             <ScrollView>
-            <TouchableOpacity style={add.item} onPress={()=>this.props.navigation.navigate('Probase')}>
+            {/* <TouchableOpacity style={add.item} onPress={()=>this.props.navigation.navigate('Probase')}>
             <Text>产品基本信息</Text>
             <Text>></Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
             <TouchableOpacity style={add.item} onPress={()=>this.props.navigation.navigate('Applybase')}>
             <Text>基本信息</Text>
             <Text>></Text>

@@ -34,11 +34,14 @@ import {
         address
       })
     }
-    // saveFirst=()=>{
-    //   let saveUrl=config.api.
-    // }
+  
     componentDidMount(){
+      //上一级页面传过来的客户id
+      this.setState({
+        investName:'',
+      })
       let dictionaryUrl=config.api.dictionary+'nodeKey=card_type_key';
+      let customersUrl=config.api.customers+'userIds='+global.user.userData.userIds;//查询客户列表
       axios.get(dictionaryUrl)
       .then((res)=>{
         if(res.data.success){
@@ -49,24 +52,51 @@ import {
           })
         }
       })
+      .catch((error)=>{
+        console.log(error);
+
+      })
+      //查询客户列表
+      axios.post(customersUrl)
+      .then((res)=>{
+        if(res.data.success){
+        let customItems=res.data.result.map(item=>{
+          return { 
+            text:item.investName,
+            value:item.investId}
+         
+        })
+        this.setState({
+         customItems:customItems
+        })
+         
+        }
+   
+      
+      })
+      .catch((error)=>{
+        console.log(error);
+        
+      })
     }
  
    
       render(){
         let {cardtypes,investName,sex,cellphone,alternatePhone,cardtype,cardnumber,birthDay,postcode,selfemail,personProperty,postaddress,
-            belongedName,belongedId,departmentName,departmentId}=this.state;
+            belongedName,belongedId,departmentName,departmentId,customItems}=this.state;
       return(
           <View style={{ backgroundColor:'#fff',}}>
           
             <ScrollView style={{marginBottom:20}}>
             <KeyboardAwareScrollView>
-             <DefaultInput placeholder={'客户姓名'} name={'客户姓名'} style={base.item} value={investName}
-					              onChangeText={(text)=>{
-                            this.setState({
-                              investName:text
-                            })
-                        }} />
-                        
+              
+          <DefaultSelect  placeholder={'请选择客户'} name={'客户姓名'} value={investName} style={base.item}
+                      items={customItems} onSelected={(item, index)=>{
+                        this.setState({
+                          investId: item.value,
+                          investName:item.text
+                         });
+                      }}/>            
             <DefaultSelect  placeholder={'请选择性别'} name={'性别'} value={sex} style={base.item}
 					               items={[{text:'男',value:312},{text:'女',value:313}]} onSelected={(item, index)=>{
                            this.setState({

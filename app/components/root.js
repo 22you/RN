@@ -11,7 +11,6 @@ import Buypro from '../pages/buypro'//产品购买
 
 import UploadId from '../pages/user/uploadId'//上传身份证证件
 
-import Applybase from '../pages/product/applybase'//投资进件申请基本信息
 import Investor from '../pages/product/investor'//投资人账户
 import Other from '../pages/product/other'  //其他信息
 import Buyinfo from '../pages/product/buyinfo' //购买信息
@@ -19,7 +18,7 @@ import Chaohe from  '../pages/product/chaohe' //朝禾优品
 import Upload from '../pages/product/upload' //上传材料
 import Suggest from '../pages/product/suggest'//意见与说明
 import BankList from '../pages/customer/banklist'//用户 银行账户信息
-import AddBank from '../pages/user/addBank'//添加银行卡
+
 import ChangeUserInfo from '../pages/user/changeUserInfo'//修改基本信息
 import Login from '../pages/login' //登录页面
 import UserCenter from '../pages/user/usercenter'//账户中心
@@ -28,8 +27,10 @@ import Tree from '../components/treeItem' //树结构测试
 //产品
 import Probase from '../pages/product/probase'//产品基本信息
 import Apply from '../pages/product/apply'//产品购买申请
+import Applybase from '../pages/product/applybase'//投资进件申请基本信息
 // 新增用户模块？
 import Userbase from '../pages/user/userBase'//新增客户-基本信息
+import AddBank from '../pages/user/addBank'//添加银行卡
 import '../Global'
 import { TabNavigator,TabBarBottom,StackNavigator } from 'react-navigation'
 import {
