@@ -97,6 +97,10 @@ import {
     //     Alert.alert("请输入正确手机号码");
     //     return null;
     // }
+    // if (!regMobile.test(alternatePhone)) {
+    //       Alert.alert("请输入正确手机号码");
+    //       return null;
+    //   }
 
        let url = config.api.userbase+'csInvestmentperson.investName='+investName+'&csInvestmentperson.sex='+sex+'&csInvestmentperson.cellphone='+cellphone
        +'&csInvestmentperson.alternatePhone='+alternatePhone+'&csInvestmentperson.cardtype='+cardtype+'&csInvestmentperson.cardnumber='+cardnumber+'&csInvestmentperson.birthDay='+birthDay+'&csInvestmentperson.postcode='+postcode

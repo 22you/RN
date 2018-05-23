@@ -8,7 +8,7 @@ import {
     ScrollView,
     Alert
   } from 'react-native';
-  import {Button,Input,Select} from 'teaset';
+  import {Button,Input,Select,Toast} from 'teaset';
   import axios from 'axios';
   export default class Probase extends Component {
     static navigationOptions = {
@@ -27,15 +27,29 @@ import {
         };
     }
     _buyApply=()=>{
+      let regNumber = /^[0-9]+.?[0-9]*$/;
       let {valueCustom,InvestAmount}=this.state;
       if(!valueCustom){
-        Alert.alert('请选择客户');
+        Toast.info('请选择客户');
         return false;
       }
       if(!InvestAmount){
-        Alert.alert('请输入投资金额');
+        Toast.info('请输入投资金额');
         return false;
+      }else{
+        if(!regNumber.test(InvestAmount)){
+          Toast.info('投资金额要输入数字哦！')
+        }else{
+          console.log(this.state.probase.startMoney);
+          
+          if(InvestAmount<this.state.probase.startMoney||InvestAmount>this.state.probase.limitMoney){
+            Toast.info('投资金额需要大于起点金额')
+            return false;
+          }
+        }
       }
+      
+      
    let startUrl=config.api.start+'userIds='+global.user.userData.userIds+'&mmplanId='+this.props.navigation.state.params.item.mmplanId+'&businessFlow=SingleInApprovalFlow'+
                 '&plManageMoneyPlanBuyinfo.buyMoney='+this.state.InvestAmount+'&csInvestmentperson.investId='+
                 this.state.valueCustom+'&csInvestmentperson.investName='+this.state.valueCustomtext;//购买流程启动
@@ -160,12 +174,12 @@ import {
             <Text>{probase.isLadderProducts==1?'是':'否'}</Text>
             </View>
             <View style={base.item}>
-            <Text>投资起点金额</Text>
+            <Text>投资起点金额(元)</Text>
             <Text>{probase.startMoney}</Text>
             </View>
             <View style={base.item}>
-            <Text>投资上线</Text>
-            <Text>1000元</Text>
+            <Text>投资上限(元)</Text>
+            <Text>1{probase.limitMoney}</Text>
             </View>
             <View style={base.item}>
             <Text>自定义</Text>
@@ -241,7 +255,7 @@ import {
               </View>
               <View style={{marginTop:15}}>
                 <Text style={{marginBottom:10}}><Text style={{color:'red'}}>*</Text>投资金额:</Text>
-                <Input placeholder="请输入..." value={this.state.InvestAmount}
+                <Input placeholder="请输入..." keyboardType='numeric' value={this.state.InvestAmount}
                  onChangeText={(text)=>{this.setState({InvestAmount:text})}}
                 />
               </View>
