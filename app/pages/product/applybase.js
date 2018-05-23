@@ -45,7 +45,9 @@ import {
       let investOrderUrl=config.api.investOrder+'plManageMoneyPlanBuyinfo.orderId='+this.state.orderId+'&csInvestmentperson.investId='+this.state.investId+'&csInvestmentperson.investName='+this.state.investName;
       axios.post(investOrderUrl)
       .then((res)=>{
-      console.log(res.data);
+        if(res.data.success){
+          Toast.message('保存成功')
+        }
       
       })
       .catch((error)=>{
@@ -99,7 +101,10 @@ import {
         postaddress:postaddress,
         shopName:shopName,
         orderId:orderId,
-        investId:investId
+        investId:investId,
+        plManageMoneyPlanBuyinfo:this.props.navigation.state.params.plManageMoneyPlanBuyinfo,
+        csInvestmentperson:this.props.navigation.state.params.csInvestmentperson,
+        enterpriseBank:this.props.navigation.state.params.enterpriseBank
         
       })
       let dictionaryUrl=config.api.dictionary+'nodeKey=card_type_key'; //证件类型数据字典
@@ -210,7 +215,11 @@ import {
             <View>
             <TouchableOpacity style={[base.btnbox,{marginTop:15,marginHorizontal:'12%'}]}>
               <Button title="保存" style={{width:100}} type="primary" color="#ddd" accessibilityLabel="下一步" onPress={()=>this.saveInvestOrder()}/>
-              <Button title="下一步"  style={{width:100}} accessibilityLabel="下一步"  onPress={()=>this.props.navigation.navigate('Investor')} />
+              <Button title="下一步"  style={{width:100}} accessibilityLabel="下一步"  onPress={()=>this.props.navigation.navigate('Investor',{
+                 enterpriseBank:this.state.enterpriseBank,
+                 plManageMoneyPlanBuyinfo:this.state.plManageMoneyPlanBuyinfo,
+                 
+              })} />
             </TouchableOpacity>
             </View>
             </KeyboardAwareScrollView>

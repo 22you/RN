@@ -10,7 +10,7 @@ import {
     ScrollView,
     Alert
   } from 'react-native';
-  import {Input,Button} from 'teaset'
+  import {Input,Button,Toast} from 'teaset'
 import config from '../../common/config';
 import axios from 'axios';
   export default class Investor extends Component {
@@ -28,10 +28,26 @@ import axios from 'axios';
           accountnum:'',
           bankOutletsName:'',
           bankname:'',
-          enterpriseid:''
+          enterpriseid:'',
+          orderId:''
         };
     }
+    //投资人账户和订单绑定
+    saveBankOrder=()=>{
+      let bankOrderUrl=config.api.investBankOrder+'plManageMoneyPlanBuyinfo.orderId='+this.state.orderId+'&enterpriseBank.id='+this.state.bankid;
+      axios.post(bankOrderUrl)
+      .then((res)=>{
+        if(res.data.success){
+         Toast.message('保存成功')
+        }
+       // console.log(res.data);
+        
+      })
+    }
     componentDidMount(){
+     let {orderId}=this.props.navigation.state.params.plManageMoneyPlanBuyinfo;
+     //console.log(this.props.navigation.state.params);
+     
      let {name,bankid,accountnum,bankOutletsName,enterpriseid}=this.props.navigation.state.params.enterpriseBank;
       this.setState({
         name:name,
@@ -39,7 +55,8 @@ import axios from 'axios';
         accountnum:accountnum,
         bankOutletsName:bankOutletsName,
         enterpriseid:enterpriseid,
-        customBanks:null
+        customBanks:null,
+        orderId:orderId
         
       })
       //查询银行卡列表 并给bankname赋值
@@ -59,10 +76,9 @@ import axios from 'axios';
       let investBankUrl=config.api.bankInfo+'id='+enterpriseid+'&isEnterpriseStr=1&isInvest=3&start=0&limit=25'
       axios.get(investBankUrl)
       .then((res)=>{
-        console.log('jiayan',res.data);
         this.setState({
           customBanks:res.data.topics.map((item)=>{
-             return item.accountnum
+             return item.accountnum;
           })
         })
       })
@@ -96,7 +112,7 @@ import axios from 'axios';
             
             <View>
             <TouchableOpacity style={[base.btnbox,{marginTop:15,marginHorizontal:'12%'}]}>
-              <Button title="保存" style={{width:100}} color="#ddd" type="primary" accessibilityLabel="下一步" onPress={()=>Alert.alert('保存成功')}/>
+              <Button title="保存" style={{width:100}} color="#ddd" type="primary"  onPress={()=>this.saveBankOrder()}/>
               <Button title="下一步"
             accessibilityLabel="下一步" style={{width:100}} onPress={()=>{
                     this.props.navigation.navigate('Other');

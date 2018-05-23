@@ -59,12 +59,17 @@ import axios from 'axios';
             </TouchableOpacity> */}
             <TouchableOpacity style={add.item} onPress={()=>this.props.navigation.navigate('Applybase',{
               csInvestmentperson:this.state.csInvestmentperson,
-              plManageMoneyPlanBuyinfo:this.state.plManageMoneyPlanBuyinfo
+              plManageMoneyPlanBuyinfo:this.state.plManageMoneyPlanBuyinfo,
+              enterpriseBank:this.state.enterpriseBank,
               })}>
             <Text>基本信息</Text>
             <Text>></Text>
             </TouchableOpacity>
-            <TouchableOpacity style={add.item} onPress={()=>this.props.navigation.navigate('Investor',{enterpriseBank:this.state.enterpriseBank})}>
+            <TouchableOpacity style={add.item} onPress={()=>this.props.navigation.navigate('Investor',{
+              
+              enterpriseBank:this.state.enterpriseBank,
+              plManageMoneyPlanBuyinfo:this.state.plManageMoneyPlanBuyinfo
+              })}>
             <Text>投资人账户</Text>
             <Text>></Text>
             </TouchableOpacity>

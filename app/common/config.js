@@ -46,6 +46,7 @@ export default {
         department:baseUrl+'api/treeOrganization.do?',//所属团队/所属部门  传参：type=undefined   branchCompanyId=undefined
         InvestorInfo:baseUrl+'api/getCsInvestmentperson.do?',//投资人信息 传参：investId
         investOrder:baseUrl+'api/saveOrderInfoPlManageMoneyPlanBuyinfo.do?',//客户信息和订单绑定  传参：plManageMoneyPlanBuyinfo.orderId（订单id）csInvestmentperson.investId（客户id）csInvestmentperson.investName（客户姓名）
+        investBankOrder:baseUrl+'api/saveOrderInfoPlManageMoneyPlanBuyinfo.do?',//投资人账户和订单的绑定 传参：订单id  plManageMoneyPlanBuyinfo.orderId  银行账户id  enterpriseBank.id
         common: {
             uploadFile: baseUrl + 'api/uploadPhotoProduceHelper.do',//chaohe 身份证上传 mark
             uploadMaterial: baseUrl + 'uploadMaterialFileFormApi.do',//上传材料
