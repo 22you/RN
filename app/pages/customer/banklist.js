@@ -30,11 +30,11 @@ import axios from 'axios';
     componentDidMount(){
       let {investId}=this.state.userinfo; 
       let bankUrl=config.api.bankInfo+'id='+investId+'&isEnterpriseStr=1&isInvest=3&start=0&limit=25'
-      console.log(bankUrl);
+     // console.log(bankUrl);
       axios.get(bankUrl)
       .then((res)=>{
           if(res.data.totalProperty){
-            console.log(res.data.topics);
+           // console.log(res.data.topics);
             this.setState({
                 bankdata:res.data.topics
             })

@@ -40,7 +40,8 @@ import axios from 'axios';
           this.setState({
             csInvestmentperson:res.data.data.csInvestmentperson,
             plManageMoneyPlan:res.data.data.plManageMoneyPlan,
-            enterpriseBank:res.data.data.enterpriseBank
+            enterpriseBank:res.data.data.enterpriseBank,
+            plManageMoneyPlanBuyinfo:res.data.data.plManageMoneyPlanBuyinfo
           })
         }
        
@@ -56,11 +57,14 @@ import axios from 'axios';
             <Text>产品基本信息</Text>
             <Text>></Text>
             </TouchableOpacity> */}
-            <TouchableOpacity style={add.item} onPress={()=>this.props.navigation.navigate('Applybase',{csInvestmentperson:this.state.csInvestmentperson})}>
+            <TouchableOpacity style={add.item} onPress={()=>this.props.navigation.navigate('Applybase',{
+              csInvestmentperson:this.state.csInvestmentperson,
+              plManageMoneyPlanBuyinfo:this.state.plManageMoneyPlanBuyinfo
+              })}>
             <Text>基本信息</Text>
             <Text>></Text>
             </TouchableOpacity>
-            <TouchableOpacity style={add.item} onPress={()=>this.props.navigation.navigate('Investor')}>
+            <TouchableOpacity style={add.item} onPress={()=>this.props.navigation.navigate('Investor',{enterpriseBank:this.state.enterpriseBank})}>
             <Text>投资人账户</Text>
             <Text>></Text>
             </TouchableOpacity>

@@ -35,18 +35,34 @@ import {
           selfemail:'',
           postaddress:'',
           cardText:'',
-          shopName:''
-          
+          shopName:'',
+          orderId:'',
+          investId:''
         };
     }
+    //保存  客户信息和订单的绑定
+    saveInvestOrder=()=>{
+      let investOrderUrl=config.api.investOrder+'plManageMoneyPlanBuyinfo.orderId='+this.state.orderId+'&csInvestmentperson.investId='+this.state.investId+'&csInvestmentperson.investName='+this.state.investName;
+      axios.post(investOrderUrl)
+      .then((res)=>{
+      console.log(res.data);
+      
+      })
+      .catch((error)=>{
+        console.log(error);
+        
+      })
+    }
+    //选择客户
     selectEvent=(investId)=>{
        let InvestorInfoUrl=config.api.InvestorInfo+'investId='+investId;
        axios.get(InvestorInfoUrl)
        .then((res)=>{
          if(res.data.success){
-          console.log('selectEvent',res.data.data);
-          let {investName,sex,cellphone,alternatePhone,cardtype,cardnumber,birthDay,postcode,selfemail,postaddress,cardText,shopName}=res.data.data;
+         // console.log('selectEvent',res.data.data);
+          let {investId,investName,sex,cellphone,alternatePhone,cardtype,cardnumber,birthDay,postcode,selfemail,postaddress,cardText,shopName}=res.data.data;
           this.setState({
+          investId:investId, 
           investName:investName,
           sex:sex,
           cellphone:cellphone,
@@ -68,7 +84,8 @@ import {
     componentDidMount(){
       //初始化的时候是从上一个页面中传过来的数据（客户基本信息）
       //console.log(this.props.navigation.state.params);
-      let {investName,sex,cellphone,alternatePhone,cardtype,cardnumber,birthDay,postcode,selfemail,postaddress,shopName}=this.props.navigation.state.params.csInvestmentperson
+      let {orderId}=this.props.navigation.state.params.plManageMoneyPlanBuyinfo;
+      let {investId,investName,sex,cellphone,alternatePhone,cardtype,cardnumber,birthDay,postcode,selfemail,postaddress,shopName}=this.props.navigation.state.params.csInvestmentperson
       this.setState({
         investName:investName,
         sex:sex,
@@ -80,7 +97,9 @@ import {
         postcode:postcode,
         selfemail:selfemail,
         postaddress:postaddress,
-        shopName:shopName
+        shopName:shopName,
+        orderId:orderId,
+        investId:investId
         
       })
       let dictionaryUrl=config.api.dictionary+'nodeKey=card_type_key'; //证件类型数据字典
@@ -190,7 +209,7 @@ import {
             <DefaultInput placeholder={'未知'} value={shopName} name={'登记团队'} style={base.item} disabled/> 
             <View>
             <TouchableOpacity style={[base.btnbox,{marginTop:15,marginHorizontal:'12%'}]}>
-              <Button title="保存" style={{width:100}} type="primary" color="#ddd" accessibilityLabel="下一步" onPress={this.saveFirst}/>
+              <Button title="保存" style={{width:100}} type="primary" color="#ddd" accessibilityLabel="下一步" onPress={()=>this.saveInvestOrder()}/>
               <Button title="下一步"  style={{width:100}} accessibilityLabel="下一步"  onPress={()=>this.props.navigation.navigate('Investor')} />
             </TouchableOpacity>
             </View>
