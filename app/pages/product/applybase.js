@@ -24,32 +24,79 @@ import {
         super(props);
         // 初始状态
         this.state = {
+          investName:'',
+          sex:'',
+          cellphone:'',
+          alternatePhone:'',
           cardtype:'',
-          cardTypes:null
+          cardnumber:'',
+          birthDay:'',
+          postcode:'',
+          selfemail:'',
+          postaddress:'',
+          cardText:'',
+          shopName:''
           
         };
     }
-    onChangeAddressText=(address) => {
-      this.setState({
-        address
-      })
+    selectEvent=(investId)=>{
+       let InvestorInfoUrl=config.api.InvestorInfo+'investId='+investId;
+       axios.get(InvestorInfoUrl)
+       .then((res)=>{
+         if(res.data.success){
+          console.log('selectEvent',res.data.data);
+          let {investName,sex,cellphone,alternatePhone,cardtype,cardnumber,birthDay,postcode,selfemail,postaddress,cardText,shopName}=res.data.data;
+          this.setState({
+          investName:investName,
+          sex:sex,
+          cellphone:cellphone,
+          alternatePhone:alternatePhone,
+          cardtype:cardtype,
+          cardnumber:cardnumber,
+          birthDay:birthDay,
+          postcode:postcode,
+          selfemail:selfemail,
+          postaddress:postaddress,
+          cardText:cardText,
+          shopName:shopName
+          })
+         }
+       
+       })
     }
   
     componentDidMount(){
-      //上一级页面传过来的客户id
+      //初始化的时候是从上一个页面中传过来的数据（客户基本信息）
+      //console.log(this.props.navigation.state.params);
+      let {investName,sex,cellphone,alternatePhone,cardtype,cardnumber,birthDay,postcode,selfemail,postaddress,shopName}=this.props.navigation.state.params.csInvestmentperson
       this.setState({
-        investName:'',
+        investName:investName,
+        sex:sex,
+        cellphone:cellphone,
+        alternatePhone:alternatePhone,
+        cardtype:cardtype,
+        cardnumber:cardnumber,
+        birthDay:birthDay,
+        postcode:postcode,
+        selfemail:selfemail,
+        postaddress:postaddress,
+        shopName:shopName
+        
       })
-      let dictionaryUrl=config.api.dictionary+'nodeKey=card_type_key';
+      let dictionaryUrl=config.api.dictionary+'nodeKey=card_type_key'; //证件类型数据字典
       let customersUrl=config.api.customers+'userIds='+global.user.userData.userIds;//查询客户列表
       axios.get(dictionaryUrl)
       .then((res)=>{
+        
         if(res.data.success){
-          console.log(res.data.result);
-          // let cardTypes=res.data.result.map(item=>item);
-          this.setState({
-            cardtypes:res.data.result
+          res.data.result.map((item)=>{
+            if(item.value==cardtype){
+                this.setState({
+                  cardText:item.text
+                })
+            }
           })
+     
         }
       })
       .catch((error)=>{
@@ -82,66 +129,45 @@ import {
  
    
       render(){
-        let {cardtypes,investName,sex,cellphone,alternatePhone,cardtype,cardnumber,birthDay,postcode,selfemail,personProperty,postaddress,
-            belongedName,belongedId,departmentName,departmentId,customItems}=this.state;
+        let {investName,sex,cellphone,alternatePhone,cardtype,cardnumber,birthDay,postcode,selfemail,personProperty,postaddress,
+            belongedName,belongedId,departmentName,departmentId,customItems,cardText,shopName}=this.state;
+            
       return(
           <View style={{ backgroundColor:'#fff',}}>
           
             <ScrollView style={{marginBottom:20}}>
             <KeyboardAwareScrollView>
               
-          <DefaultSelect  placeholder={'请选择客户'} name={'客户姓名'} value={investName} style={base.item}
+           <DefaultSelect  placeholder={'请选择客户'} name={'客户姓名'} value={investName} style={base.item}
                       items={customItems} onSelected={(item, index)=>{
                         this.setState({
                           investId: item.value,
                           investName:item.text
                          });
+                     
+                      
+                      this.selectEvent(item.value);
                       }}/>            
-            <DefaultSelect  placeholder={'请选择性别'} name={'性别'} value={sex} style={base.item}
-					               items={[{text:'男',value:312},{text:'女',value:313}]} onSelected={(item, index)=>{
-                           this.setState({
-                            sex:item.value
-                           })
-                         }}/>
+            <DefaultInput  placeholder={'未知'} name={'性别'} value={sex==312?'男':'女'} style={base.item} disabled/>
           
-          
-            <DefaultInput placeholder={'请输入'} name={'联系电话'} style={base.item} value={cellphone}
-					              onChangeText={(text)=>{
-                          this.setState({
-                            cellphone:text
-                          })
-                        }} />
-            <DefaultInput placeholder={'请输入'} name={'备用电话'} style={base.item} value={alternatePhone}
-					              onChangeText={(text)=>{
-                          this.setState({
-                            alternatePhone:text
-                          })
-                        }} />
+            <DefaultInput placeholder={'请输入'} name={'联系电话'} style={base.item} value={cellphone} disabled/>
+            <DefaultInput placeholder={'未填写'} name={'备用电话'} style={base.item} value={alternatePhone} disabled/>
 
-             <DefaultSelect  placeholder={'请选择'} name={'证件类型'} value={cardtype} style={base.item}
-					               items={cardtypes} onSelected={(item, index) => {
-                          this.setState({
-                            cardtype:item.value
-                          })
-                        }}/>
-        
-            <DefaultInput placeholder={'请输入'} name={'证件号码'} style={base.item} value={cardnumber}
-					              onChangeText={(text)=>{
-                          this.setState({
-                            cardnumber:text
-                          })
-                        }} />
+             <DefaultInput  placeholder={'未知'} name={'证件类型'} value={cardText} style={base.item}  disabled/>
+          
+            <DefaultInput placeholder={''} name={'证件号码'} style={base.item} value={cardnumber} disabled/>
             <TouchableOpacity style={base.item}>
                 <Text>出生日期</Text>
                 <DatePicker
+                 disabled={true}
                   date={birthDay}
                   mode="date"
-                  placeholder="select date"
+                  placeholder="请选择日期"
                   format="YYYY-MM-DD"
                   minDate='null'
                   maxDate={new Date()}
-                  confirmBtnText="Confirm"
-                  showIcon="false"
+                  confirmBtnText="确认"
+                  showIcon='false'
                   cancelBtnText="Cancel"
                   customStyles={{
                       dateIcon: {
@@ -152,36 +178,16 @@ import {
                           borderWidth:0
                       }
                   }}
-                  onDateChange={(date) => {
-                      this.setState({
-                          birthDay:date
-                      })
-                  }}/>
+             />
             </TouchableOpacity>
-            <DefaultInput placeholder={'请输入'} name={'邮政编码'} style={base.item} value={postcode}
-					              onChangeText={(text)=>{
-                          this.setState({
-                            postcode:text
-                          })
-                        }} />
-            <DefaultInput placeholder={'请输入'} name={'电子邮箱'} style={base.item} value={selfemail}
-					              onChangeText={(text)=>{
-                          this.setState({
-                            selfemail:text
-                          })
-                        }} />
+            <DefaultInput placeholder={'未知'} name={'邮政编码'} style={base.item} value={postcode} disabled/>
+            <DefaultInput placeholder={'未知'} name={'电子邮箱'} style={base.item} value={selfemail} disabled/>
             {/* <DefaultInput placeholder={'vip'} name={'客户性质'} style={base.item}
 					              onChangeText={()=>{}} /> */}
          
-            <DefaultInput placeholder={'请输入通讯地址'} name={'通讯地址'} style={base.item} value={postaddress}
-					              onChangeText={(text)=>{
-                          this.setState({
-                            postaddress:text
-                          })
-                        }} />           
-             <DefaultInput  name={'客户授权人'} style={base.item} value={global.user.userData.fullname} disabled/>  
-            <DefaultInput placeholder={'互融云'} name={'登记团队'} style={base.item}
-					              onChangeText={()=>{}} /> 
+            <DefaultInput placeholder={'未知'} name={'通讯地址'} style={base.item} value={postaddress} disabled/>           
+            <DefaultInput  name={'客户授权人'} style={base.item} value={global.user.userData.fullname} disabled/>  
+            <DefaultInput placeholder={'未知'} value={shopName} name={'登记团队'} style={base.item} disabled/> 
             <View>
             <TouchableOpacity style={[base.btnbox,{marginTop:15,marginHorizontal:'12%'}]}>
               <Button title="保存" style={{width:100}} type="primary" color="#ddd" accessibilityLabel="下一步" onPress={this.saveFirst}/>

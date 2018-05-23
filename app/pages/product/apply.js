@@ -7,9 +7,10 @@ import {
     TouchableOpacity,
     ScrollView,
   } from 'react-native';
-  import {Button} from 'teaset'
+import {Button} from 'teaset'
 import matchsize from '../../components/matchsize';
 import config from '../../common/config';
+import axios from 'axios';
   export default class Adduser extends Component {
     static navigationOptions = {
       headerRight: (
@@ -21,18 +22,33 @@ import config from '../../common/config';
         // 初始状态
         this.state = {
           projectId:this.props.navigation.state.params.projectId,
-          taskId:this.props.navigation.state.params.taskId
+          taskId:this.props.navigation.state.params.taskId,
+          csInvestmentperson:null,
+          enterpriseBank:null,
+          plManageMoneyPlan:null
+
         };
     }
     componentDidMount(){
       let {projectId,taskId}=this.state;
       let loadingUrl=config.api.loading+'projectId='+projectId+'&taskId='+taskId;//流程加载
-      console.log(loadingUrl);
+     
+      
+      axios.get(loadingUrl)
+      .then((res)=>{
+        if(res.data.success){
+          this.setState({
+            csInvestmentperson:res.data.data.csInvestmentperson,
+            plManageMoneyPlan:res.data.data.plManageMoneyPlan,
+            enterpriseBank:res.data.data.enterpriseBank
+          })
+        }
+       
+
+      })
       
     }
       render(){
-        console.log("props",this.props.navigation.state.params);
-        
       return(
           <View>
             <ScrollView>
@@ -40,7 +56,7 @@ import config from '../../common/config';
             <Text>产品基本信息</Text>
             <Text>></Text>
             </TouchableOpacity> */}
-            <TouchableOpacity style={add.item} onPress={()=>this.props.navigation.navigate('Applybase')}>
+            <TouchableOpacity style={add.item} onPress={()=>this.props.navigation.navigate('Applybase',{csInvestmentperson:this.state.csInvestmentperson})}>
             <Text>基本信息</Text>
             <Text>></Text>
             </TouchableOpacity>

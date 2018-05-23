@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {DefaultInput,DefaultSelect}  from '../../components/defaultFormgroup' 
+import {DefaultInput}  from '../../components/defaultFormgroup' 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import {
     Platform,

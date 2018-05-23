@@ -40,10 +40,11 @@ import {
         if(!regNumber.test(InvestAmount)){
           Toast.info('投资金额要输入数字哦！')
         }else{
-          console.log(this.state.probase.startMoney);
-          
-          if(InvestAmount<this.state.probase.startMoney||InvestAmount>this.state.probase.limitMoney){
+          if(InvestAmount<this.state.probase.startMoney){
             Toast.info('投资金额需要大于起点金额')
+            return false;
+          }else if(this.state.probase.limitMoney&&InvestAmount>this.state.probase.limitMoney){
+            Toast.info('投资金额需要小于投资上限')
             return false;
           }
         }
@@ -56,7 +57,7 @@ import {
     axios.post(startUrl)
     .then((res)=>{
       if(res.data.success){
-        console.log(res.data.data);
+        //console.log(res.data.data);
         let {projectId,taskId}=res.data.data;
         this.props.navigation.navigate('Apply',{projectId:projectId,taskId:taskId});
         
@@ -179,7 +180,7 @@ import {
             </View>
             <View style={base.item}>
             <Text>投资上限(元)</Text>
-            <Text>1{probase.limitMoney}</Text>
+            <Text>{probase.limitMoney}</Text>
             </View>
             <View style={base.item}>
             <Text>自定义</Text>

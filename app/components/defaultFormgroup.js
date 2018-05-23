@@ -25,6 +25,7 @@ import {Input,Select} from 'teaset'
           icon={<Icon name="angle-right"/>}
           placeholder={props.placeholder}
           pickerTitle={`请选择 ${props.name}`}
+          disabled={props.disabled}
           onSelected={props.onSelected ? props.onSelected : () => console.log('没回调')}
         />
       </View>
