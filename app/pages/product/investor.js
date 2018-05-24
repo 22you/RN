@@ -29,7 +29,8 @@ import axios from 'axios';
           bankOutletsName:'',
           bankname:'',
           enterpriseid:'',
-          orderId:''
+          orderId:'',
+          plManageMoneyPlanBuyinfo:null,
         };
     }
     //投资人账户和订单绑定
@@ -46,8 +47,6 @@ import axios from 'axios';
     }
     componentDidMount(){
      let {orderId}=this.props.navigation.state.params.plManageMoneyPlanBuyinfo;
-     //console.log(this.props.navigation.state.params);
-     
      let {name,bankid,accountnum,bankOutletsName,enterpriseid}=this.props.navigation.state.params.enterpriseBank;
       this.setState({
         name:name,
@@ -56,7 +55,8 @@ import axios from 'axios';
         bankOutletsName:bankOutletsName,
         enterpriseid:enterpriseid,
         customBanks:null,
-        orderId:orderId
+        orderId:orderId,
+        plManageMoneyPlanBuyinfo:this.props.navigation.state.params.plManageMoneyPlanBuyinfo,
         
       })
       //查询银行卡列表 并给bankname赋值
@@ -88,7 +88,8 @@ import axios from 'axios';
       })
     }
       render(){
-        let {name,bankid,accountnum,bankOutletsName,bankname,customBanks}=this.state;
+        let {name,bankid,accountnum,bankOutletsName,bankname,customBanks,plManageMoneyPlanBuyinfo}=this.state;
+      //  console.log(plManageMoneyPlanBuyinfo);
         
       return(
           <View style={{ backgroundColor:'#fff',}}>
@@ -115,8 +116,10 @@ import axios from 'axios';
               <Button title="保存" style={{width:100}} color="#ddd" type="primary"  onPress={()=>this.saveBankOrder()}/>
               <Button title="下一步"
             accessibilityLabel="下一步" style={{width:100}} onPress={()=>{
-                    this.props.navigation.navigate('Other');
-                    console.log(this.props.navigation.navigate);
+                    this.props.navigation.navigate('Other',{
+                      plManageMoneyPlanBuyinfo:plManageMoneyPlanBuyinfo
+                    });
+                   // console.log(this.props.navigation.navigate);
                 }} />
            
             </TouchableOpacity>

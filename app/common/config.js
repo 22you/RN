@@ -47,6 +47,9 @@ export default {
         InvestorInfo:baseUrl+'api/getCsInvestmentperson.do?',//投资人信息 传参：investId
         investOrder:baseUrl+'api/saveOrderInfoPlManageMoneyPlanBuyinfo.do?',//客户信息和订单绑定  传参：plManageMoneyPlanBuyinfo.orderId（订单id）csInvestmentperson.investId（客户id）csInvestmentperson.investName（客户姓名）
         investBankOrder:baseUrl+'api/saveOrderInfoPlManageMoneyPlanBuyinfo.do?',//投资人账户和订单的绑定 传参：订单id  plManageMoneyPlanBuyinfo.orderId  银行账户id  enterpriseBank.id
+        gift:baseUrl+'api/listAllPlActivityDetails.do?',//获取礼品名称 传参：start limit
+        others:baseUrl+'api/savePlManageMoneyPlanOtherInfo.do?',//保存其他信息 
+        companyBank:baseUrl+'api/list2SlBankAccount.do?',//转入我司开户行
         common: {
             uploadFile: baseUrl + 'api/uploadPhotoProduceHelper.do',//chaohe 身份证上传 mark
             uploadMaterial: baseUrl + 'uploadMaterialFileFormApi.do',//上传材料

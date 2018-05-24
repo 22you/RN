@@ -36,7 +36,7 @@ export default class Tree extends Component {
      return arr.map((item,index)=>{
         if(item.children) { 
         return ( 
-            <View style={{paddingLeft:10,marginTop:5}}>
+            <View style={{paddingLeft:10,marginTop:5}} >
           
                 <View style={{flexDirection:'row'}}>
                     <Icon name="chevron-circle-down" size={15} style={{marginRight:5,color:'#666'}} 

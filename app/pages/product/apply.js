@@ -73,11 +73,15 @@ import axios from 'axios';
             <Text>投资人账户</Text>
             <Text>></Text>
             </TouchableOpacity>
-            <TouchableOpacity style={add.item} onPress={()=>this.props.navigation.navigate('Other')}>
+            <TouchableOpacity style={add.item} onPress={()=>this.props.navigation.navigate('Other',{
+               plManageMoneyPlanBuyinfo:this.state.plManageMoneyPlanBuyinfo
+            })}>
             <Text>其他信息</Text>
             <Text>></Text>
             </TouchableOpacity>
-            <TouchableOpacity style={add.item} onPress={()=>this.props.navigation.navigate('Buyinfo')}>
+            <TouchableOpacity style={add.item} onPress={()=>this.props.navigation.navigate('Buyinfo',{
+              plManageMoneyPlanBuyinfo:this.state.plManageMoneyPlanBuyinfo
+            })}>
             <Text>购买信息</Text>
             <Text>></Text>
             </TouchableOpacity>

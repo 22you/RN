@@ -12,12 +12,12 @@ import {
   Alert,
   StatusBar
 } from 'react-native'
-import {Button,Toast} from 'teaset'
+import {Button,Toast,Overlay,Label} from 'teaset'
 import matchsize from '../components/matchsize'
 import Swiper from 'react-native-swiper'
 import styles from '../styles/style-app'
 import Header from '../components/header'
-
+import Icon from 'react-native-vector-icons/FontAwesome';
 export default class Home extends Component {
   static navigationOptions = {
     header:Header,
@@ -59,6 +59,34 @@ addUserMethod=()=>{
     <View style={{justifyContent:'center',alignItems:'center',flex:1}}>
       <Text style={{flexDirection:'row',justifyContent:'center'}}>loading...</Text>
     </View>;
+    let overlayView = (
+      <Overlay.PullView side='bottom' modal={false}>
+      <ScrollView style={{backgroundColor: '#fff'}}>
+      <View style={{height:300,justifyContent:'flex-start'}}>
+        <View style={{paddingVertical:10,paddingLeft:15}}><Text>请选择您的银行卡</Text></View>
+        <View style={{borderBottomColor:'#ddd',borderBottomWidth:1,paddingHorizontal:20,paddingVertical:15,flexDirection:'row',justifyContent:'space-between'}}>
+         <View>
+           <Text>招商银行</Text>
+           <Text>尾号1735储蓄卡</Text>
+         </View>
+         <Icon name="check" size={matchsize(29)}
+                              color={'#ddd'}
+                              style={{paddingHorizontal:matchsize(20)}}/>
+        </View>
+        <View style={{borderBottomColor:'#ddd',borderBottomWidth:1,paddingHorizontal:20,paddingVertical:15,flexDirection:'row',justifyContent:'space-between'}}>
+         <View>
+           <Text>招商银行</Text>
+           <Text>尾号1735储蓄卡</Text>
+         </View>
+         <Icon name="check" size={matchsize(29)}
+                              color={'#ddd'}
+                              style={{paddingHorizontal:matchsize(20)}}/>
+        </View>
+        </View>
+      </ScrollView>
+    </Overlay.PullView>
+    );
+    
     return (
       
       <View style={[styles.indexBox,{flex: 1}]}>
@@ -121,7 +149,7 @@ addUserMethod=()=>{
           <Button
             title="立即购买"
             accessibilityLabel="立即购买"
-            onPress={()=>Alert.alert('aaa')}
+            onPress={()=>Overlay.show(overlayView)}
             type="primary"
             style={{height:matchsize(70)}}
           />

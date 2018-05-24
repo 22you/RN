@@ -10,7 +10,10 @@ import {
     ScrollView,
     Alert
   } from 'react-native';
-  import {Button} from 'teaset'
+import {Button} from 'teaset';
+import DatePicker from 'react-native-datepicker'
+import config from '../../common/config';
+import axios from 'axios';
   export default class Buyinfo extends Component {
     static navigationOptions = {
       headerRight: (
@@ -21,64 +24,180 @@ import {
         super(props);
         // 初始状态
         this.state = {
- 
+          contractNumber:'',//合同编号
+          //投资金额 可更改
+          //累计金额 禁用
+          buyDatetime:'',//进账日期 可选日期
+          startinInterestTime:'',//起息日 读写
+          endinInterestTime:'',//到期日 禁用
+          totleRate:'',//利率  只读
+          totalGiftRate:'',//礼品率 只读
+          giftMoney:'',//礼品金额 只读
+          giftType:'',//礼品 读选
+          commissionMoney:'',//业务员提成 只读
+          isBirthday:'',//是否生日月
+          totleRate:'',//利率
+          giftLists:[],//礼品列表
+          //转入我司开户行
+          //开户行id
+          //银行账户名
+          //银行账号
+          //转入我司其他
+          //续投/首投
+          
         };
     }
+    componentDidMount(){
+      //console.log(this.props.navigation.state);
+      let {contractNumber,isBirthday,plManageMoneyPlan,totleRate,commissionMoney,giftType}=this.props.navigation.state.params.plManageMoneyPlanBuyinfo
+      this.setState({
+        plManageMoneyPlanBuyinfo:this.props.navigation.state.params.plManageMoneyPlanBuyinfo,
+        contractNumber:contractNumber,
+        isBirthday:isBirthday,
+        commissionMoney:commissionMoney,
+        giftType:giftType
+      })
+      //获取礼品名称
+      let giftUrl=config.api.gift+'start=0&limit=null';
+      console.log(giftUrl);
+      
+      axios.get(giftUrl)
+      .then((res)=>{
+        if(res.data.success){
+          let giftnames=res.data.result.map((item)=>{
+            return item.name;
+            })
+             this.setState({
+               giftLists:giftnames
+             })
+        }
+        
+      })
+      //公司开户行查询
+      let companyBanksUrl=config.api.companyBank+'start=0&limit=null&isEnterpriseStr=1&isInvest=3';
+      axios.get(companyBanksUrl)
+      .then((res)=>{
+        log(res.data)
+        // if(res.data.totalProperty){
+        //   this.setState({
+        //     companyBanks=res.data.topics
+        //   })
+        // }
+      })
+
+    }
       render(){
+        let {
+          contractNumber,commissionMoney,isBirthday,giftType,giftLists,
+          buyDatetime,startinInterestTime,endinInterestTime,totleRate,totalGiftRate,
+          giftMoney
+        }=this.state;
       return(
           <View style={{ backgroundColor:'#fff',}}>
             <ScrollView style={{marginBottom:20}}>
             <KeyboardAwareScrollView>
-            <DefaultInput placeholder={'合同编号'} name={'合同编号'} style={base.item}
+            <DefaultInput placeholder={'合同编号'} name={'合同编号'} require value={contractNumber} style={base.item}
+					              onChangeText={(text)=>{
+                          this.setState({
+                            contractNumber:text
+                          })
+                        }} />
+            <TouchableOpacity style={base.item}>
+                <Text>进账日期</Text>
+                <DatePicker
+                //  disabled={true}
+                  date={buyDatetime}
+                  mode="date"
+                  placeholder="请选择日期"
+                  format="YYYY-MM-DD"
+                  minDate='null'
+                  maxDate={new Date()}
+                  confirmBtnText="确认"
+                  showIcon='false'
+                  cancelBtnText="Cancel"
+                  customStyles={{
+                      dateIcon: {
+                          display:'none'
+                      },
+                      dateInput: {
+                          marginLeft: 36,
+                          borderWidth:0
+                      }
+                  }}
+             />
+            </TouchableOpacity>
+            <DefaultSelect  placeholder={'请选择'} name={'是否生日月'} value={this.state.isBirthday?this.state.isBirthday:'否'} style={base.item}
+					               items={[{text:'是',value:1},{text:'否',value:0}]} onSelected={(item)=>{
+                           this.setState({
+                            isBirthday:item.value
+                           })
+                         }}/>
+            <DefaultInput placeholder={'投资金额'} name={'投资金额'} require style={base.item}
 					              onChangeText={()=>{}} />
+            <TouchableOpacity style={base.item}>
+                <Text>起息日</Text>
+                <DatePicker
+                //  disabled={true}
+                  date={startinInterestTime}
+                  mode="date"
+                  placeholder="请选择日期"
+                  format="YYYY-MM-DD"
+                  minDate='null'
+                  maxDate={new Date()}
+                  confirmBtnText="确认"
+                  showIcon='false'
+                  cancelBtnText="Cancel"
+                  customStyles={{
+                      dateIcon: {
+                          display:'none'
+                      },
+                      dateInput: {
+                          marginLeft: 36,
+                          borderWidth:0
+                      }
+                  }}
+             />
+            </TouchableOpacity>
+            <TouchableOpacity style={base.item}>
+                <Text>到期日</Text>
+                <DatePicker
+                  disabled={true}
+                  date={endinInterestTime}
+                  mode="date"
+                  placeholder="请选择日期"
+                  format="YYYY-MM-DD"
+                  minDate='null'
+                  maxDate={new Date()}
+                  confirmBtnText="确认"
+                  showIcon='false'
+                  cancelBtnText="Cancel"
+                  customStyles={{
+                      dateIcon: {
+                          display:'none'
+                      },
+                      dateInput: {
+                          marginLeft: 36,
+                          borderWidth:0
+                      }
+                  }}
+             />
+            </TouchableOpacity>
+            <DefaultInput placeholder={'累计金额'} name={'累计金额'} require style={base.item} value={`元`} />
+            <DefaultInput placeholder={'业务员提成'} name={'业务员提成'} value={commissionMoney} require style={base.item} disabled/>
+            <DefaultInput placeholder={'利率'} name={'利率'} value={totleRate} require style={base.item} disabled/>
+            <DefaultInput placeholder={'礼品率'} name={'礼品率'} value={totalGiftRate} require style={base.item} disabled/>
+            <DefaultInput placeholder={'礼品金额'} name={'礼品金额'} value={giftMoney} require style={base.item} disabled/>
+            <DefaultSelect value={giftType} name={'礼品'} items={giftLists}  style={base.item}
+            onSelected={(item)=>{
+              this.setState({
+                giftType:item
+              })
+            }}
+            />
          
-            <TouchableOpacity style={base.item}>
-            <Text>刷卡日期</Text>
-            <Text>2018.04.02</Text>
-            </TouchableOpacity>
-            <View style={base.item}>
-            <Text>是否生日月</Text>
-            <Text>是></Text>
-            </View>
-            <DefaultInput placeholder={'累计全额'} name={'累计全额'} style={base.item}
-					              onChangeText={()=>{}} />
-        
-            <TouchableOpacity style={base.item}>
-            <Text>计息起日</Text>
-            <Text>2018.04.02</Text>
-            </TouchableOpacity>
-            
-            <View style={base.item}>
-            <Text>计息止日</Text>
-            <Text>2016.06.02</Text>
-            </View>
-            <View style={base.item}>
-            <Text>累计全额</Text>
-            <Text>1000元</Text>
-            </View>
-            <View style={base.item}>
-            <Text>业务员提成</Text>
-            <Text>1000元</Text>
-            </View>
-            <View style={base.item}>
-            <Text>最终利率</Text>
-            <Text>5.65%</Text>
-            </View>
-            <View style={base.item}>
-            <Text>礼品利率</Text>
-            <Text>5.65%</Text>
-            </View>
-            <View style={base.item}>
-            <Text>礼品全额</Text>
-            <Text>1000元</Text>
-            </View>
-            <View style={base.item}>
-            <Text>礼品</Text>
-            <Text>朝禾优品></Text>
-            </View>
             <View style={base.item}>
             <Text>转入开户行</Text>
-            <Text>172637252777</Text>
+            <Text>请选择{bankName}</Text>
             </View>
             <View style={base.item}>
             <Text>银行账户名</Text>
