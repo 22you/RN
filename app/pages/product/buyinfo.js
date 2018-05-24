@@ -25,8 +25,8 @@ import axios from 'axios';
         // 初始状态
         this.state = {
           contractNumber:'',//合同编号
-          //投资金额 可更改
-          //累计金额 禁用
+          buyMoney:'',//投资金额 可更改
+          sumMoney:'',//累计金额 禁用
           buyDatetime:'',//进账日期 可选日期
           startinInterestTime:'',//起息日 读写
           endinInterestTime:'',//到期日 禁用
@@ -38,28 +38,39 @@ import axios from 'axios';
           isBirthday:'',//是否生日月
           totleRate:'',//利率
           giftLists:[],//礼品列表
-          //转入我司开户行
-          //开户行id
-          //银行账户名
-          //银行账号
-          //转入我司其他
-          //续投/首投
+          bankName:'',//转入我司开户行
+          bankAccountId:'',//开户行id
+          name:'',//银行账户名
+          account:'',//银行账号
+          other:'',//转入我司其他
+          investment:''//续投/首投
           
         };
     }
     componentDidMount(){
       //console.log(this.props.navigation.state);
-      let {contractNumber,isBirthday,plManageMoneyPlan,totleRate,commissionMoney,giftType}=this.props.navigation.state.params.plManageMoneyPlanBuyinfo
+      let {contractNumber,isBirthday,plManageMoneyPlan,totleRate,giftType,buyMoney,sumMoney,endinInterestTime,totalGiftRate,giftMoney,commissionMoney,name,account}=this.props.navigation.state.params.plManageMoneyPlanBuyinfo
+      //console.log(this.props.navigation.state.params.plManageMoneyPlanBuyinfo);
+      
       this.setState({
         plManageMoneyPlanBuyinfo:this.props.navigation.state.params.plManageMoneyPlanBuyinfo,
         contractNumber:contractNumber,
         isBirthday:isBirthday,
+        giftType:giftType,
+        buyMoney:buyMoney,
+        sumMoney:sumMoney,
+        endinInterestTime:endinInterestTime,
+        totleRate:totleRate,
+        totalGiftRate:totalGiftRate,
+        giftMoney:giftMoney,
         commissionMoney:commissionMoney,
-        giftType:giftType
+        name:name,
+        account:account,
+
       })
       //获取礼品名称
       let giftUrl=config.api.gift+'start=0&limit=null';
-      console.log(giftUrl);
+      //console.log(giftUrl);
       
       axios.get(giftUrl)
       .then((res)=>{
@@ -87,11 +98,14 @@ import axios from 'axios';
 
     }
       render(){
+        
         let {
           contractNumber,commissionMoney,isBirthday,giftType,giftLists,
-          buyDatetime,startinInterestTime,endinInterestTime,totleRate,totalGiftRate,
-          giftMoney
+          buyDatetime,startinInterestTime,endinInterestTime,totalGiftRate,
+          giftMoney,bankName,bankAccountId,name,other,investment,buyMoney,sumMoney,
+          endinInterestTime,totleRate,totalGiftRate,account
         }=this.state;
+        
       return(
           <View style={{ backgroundColor:'#fff',}}>
             <ScrollView style={{marginBottom:20}}>
@@ -113,7 +127,7 @@ import axios from 'axios';
                   minDate='null'
                   maxDate={new Date()}
                   confirmBtnText="确认"
-                  showIcon='false'
+                  showIcon={false}
                   cancelBtnText="Cancel"
                   customStyles={{
                       dateIcon: {
@@ -132,8 +146,7 @@ import axios from 'axios';
                             isBirthday:item.value
                            })
                          }}/>
-            <DefaultInput placeholder={'投资金额'} name={'投资金额'} require style={base.item}
-					              onChangeText={()=>{}} />
+            <DefaultInput placeholder={'投资金额'} name={'投资金额'}  value={`${buyMoney}元`} style={base.item} />
             <TouchableOpacity style={base.item}>
                 <Text>起息日</Text>
                 <DatePicker
@@ -145,7 +158,7 @@ import axios from 'axios';
                   minDate='null'
                   maxDate={new Date()}
                   confirmBtnText="确认"
-                  showIcon='false'
+                  showIcon={false}
                   cancelBtnText="Cancel"
                   customStyles={{
                       dateIcon: {
@@ -169,7 +182,7 @@ import axios from 'axios';
                   minDate='null'
                   maxDate={new Date()}
                   confirmBtnText="确认"
-                  showIcon='false'
+                  showIcon={false}
                   cancelBtnText="Cancel"
                   customStyles={{
                       dateIcon: {
@@ -182,7 +195,7 @@ import axios from 'axios';
                   }}
              />
             </TouchableOpacity>
-            <DefaultInput placeholder={'累计金额'} name={'累计金额'} require style={base.item} value={`元`} />
+            <DefaultInput placeholder={'累计金额'} name={'累计金额'} require style={base.item} value={sumMoney}  disabled/>
             <DefaultInput placeholder={'业务员提成'} name={'业务员提成'} value={commissionMoney} require style={base.item} disabled/>
             <DefaultInput placeholder={'利率'} name={'利率'} value={totleRate} require style={base.item} disabled/>
             <DefaultInput placeholder={'礼品率'} name={'礼品率'} value={totalGiftRate} require style={base.item} disabled/>
@@ -196,25 +209,20 @@ import axios from 'axios';
             />
          
             <View style={base.item}>
-            <Text>转入开户行</Text>
+            <Text>转入我司开户行</Text>
             <Text>请选择{bankName}</Text>
             </View>
-            <View style={base.item}>
-            <Text>银行账户名</Text>
-            <Text>WX</Text>
-            </View>
-            <View style={base.item}>
-            <Text>银行账户</Text>
-            <Text>77777</Text>
-            </View>
-            <View style={base.item}>
-            <Text>转入其他</Text>
-            <Text>7777</Text>
-            </View>
-            <View style={base.item}>
-            <Text>续投/首投</Text>
-            <Text>首投</Text>
-            </View>
+           
+            <DefaultInput placeholder={'银行账户名'} name={'银行账户名'} value={name}  style={base.item} disabled/>
+            <DefaultInput placeholder={'银行账号'} name={'银行账号'} value={account}  style={base.item} disabled/>
+            <DefaultInput placeholder={'转入其他'} name={'转入其他'} value={other}  style={base.item} />
+            <DefaultSelect value={investment} name={'续投/首投'} items={[{text:'首投',value:'0'},{text:'续投',value:'1'}]}  style={base.item}
+            onSelected={(item)=>{
+              this.setState({
+                investment:item.text
+              })
+            }}
+            />
             <View>
             <TouchableOpacity style={[base.btnbox,{marginTop:15,marginHorizontal:'12%'}]}>
               <Button title="保存" style={{width:100}} color="#ddd" type="primary" accessibilityLabel="下一步" onPress={()=>Alert.alert('保存成功')}/>
