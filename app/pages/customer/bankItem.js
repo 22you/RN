@@ -17,7 +17,7 @@ import {
             <TouchableOpacity  onPress={()=>this.props.navigation.navigate('AddBank',{...this.props})}>
             <View>
                 <Text style={{letterSpacing:matchsize(5),color:'#fff',fontSize:matchsize(36)}}>{this.props.cardTitle}</Text>
-                 <Text style={{color:'#fff'}}>zhao shang yin hang</Text>
+                 {/* <Text style={{color:'#fff'}}>zhao shang yin hang</Text> */}
             </View>
             <View style={{paddingVertical:matchsize(40)}}>
                 <View style={{justifyContent:'space-between',flexDirection:'row'}}>

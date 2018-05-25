@@ -10,7 +10,7 @@ import {
     ScrollView,
     Alert
   } from 'react-native';
-  import {Input,Button,Toast,Overlay} from 'teaset'
+import {Input,Button,Toast,Overlay} from 'teaset'
 import matchsize from '../../components/matchsize';
 import config from '../../common/config';
 import axios from 'axios';
@@ -39,7 +39,9 @@ import Icon from 'react-native-vector-icons/FontAwesome';
     }
     //投资人账户和订单绑定
     saveBankOrder=()=>{
-      let bankOrderUrl=config.api.investBankOrder+'plManageMoneyPlanBuyinfo.orderId='+this.state.orderId+'&enterpriseBank.id='+this.state.bankid;
+      let bankOrderUrl=config.api.investBankOrder+'plManageMoneyPlanBuyinfo.orderId='+this.state.orderId+'&enterpriseBank.id='+this.state.id;
+      console.log(bankOrderUrl);
+      
       axios.post(bankOrderUrl)
       .then((res)=>{
         if(res.data.success){
@@ -52,8 +54,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
     componentDidMount(){
       
      let {orderId}=this.props.navigation.state.params.plManageMoneyPlanBuyinfo;
-     let {name,bankid,accountnum,bankOutletsName,enterpriseid}=this.props.navigation.state.params.enterpriseBank;
-     console.log('银行卡信息',this.props.navigation.state.params.enterpriseBank);
+     let {name,bankid,accountnum,bankOutletsName,enterpriseid,id}=this.props.navigation.state.params.enterpriseBank;
      
       this.setState({
         name:name,
@@ -64,6 +65,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
         customBanks:null,
         orderId:orderId,
         plManageMoneyPlanBuyinfo:this.props.navigation.state.params.plManageMoneyPlanBuyinfo,
+        id:id
         
       })
   //查询银行卡列表 并给bankname赋值
@@ -88,7 +90,9 @@ import Icon from 'react-native-vector-icons/FontAwesome';
           let banklistCon={
             accountnum:item.accountnum,
             bankname:item.bankname,
-            bankid:item.bankid
+            bankid:item.bankid,
+            bankOutletsName:item.bankOutletsName,
+            id:item.id
           }
           banklists.push(banklistCon);
                 })
@@ -104,7 +108,13 @@ import Icon from 'react-native-vector-icons/FontAwesome';
     //选择当前选择的投资人的银行卡
     setIndex=(item,index)=>{
       this.setState({
-        index:index
+        index:index,
+        accountnum:item.accountnum,
+        bankid:item.bankid,
+        bankOutletsName:item.bankOutletsName,
+        bankname:item.bankname,
+        bankOutletsName:item.bankOutletsName,
+        id:item.id
       })
     }
 
@@ -116,7 +126,9 @@ import Icon from 'react-native-vector-icons/FontAwesome';
         return (<TouchableOpacity key={index} style={{borderBottomColor:'#ddd',borderBottomWidth:1,paddingHorizontal:20,paddingVertical:15,flexDirection:'row',justifyContent:'space-between'}}
           onPress={()=>{
             this.setIndex(item,index);
-            this.overlayPullView.close()
+            this.overlayPullView.close();
+            console.log(item);
+            
           }}>
         <View>
           <Text>{item.bankname}</Text>
@@ -157,7 +169,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
               <Text>{accountnum} ></Text>
             </TouchableOpacity>
             <DefaultInput  value={bankname} placeholder={'未知'} name={'银行名称'} style={base.item} disabled/>
-            <DefaultInput  value={bankOutletsName} placeholder={'未知'} name={'支行名称'} style={base.item} disabled/>
+            <DefaultInput  value={`${bankOutletsName}`} placeholder={'未知'} name={'支行名称'} style={base.item} disabled/>
             
             <View>
             <TouchableOpacity style={[base.btnbox,{marginTop:15,marginHorizontal:'12%'}]}>

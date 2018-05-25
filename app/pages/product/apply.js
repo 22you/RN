@@ -32,6 +32,7 @@ import axios from 'axios';
     componentDidMount(){
       let {projectId,taskId}=this.state;
       let loadingUrl=config.api.loading+'projectId='+projectId+'&taskId='+taskId;//流程加载
+     console.log(loadingUrl);
      
       
       axios.get(loadingUrl)
@@ -50,6 +51,8 @@ import axios from 'axios';
       
     }
       render(){
+        console.log('enterpriseBank',this.state.enterpriseBank);
+        
       return(
           <View>
             <ScrollView>

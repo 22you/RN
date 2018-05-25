@@ -12,7 +12,7 @@ import {
   Alert,
   StatusBar
 } from 'react-native'
-import {Button,Toast,Overlay,Label} from 'teaset'
+import {Button,Toast} from 'teaset'
 import matchsize from '../components/matchsize'
 import Swiper from 'react-native-swiper'
 import styles from '../styles/style-app'
@@ -28,19 +28,6 @@ export default class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      banklists:[{
-        name:'招商银行',
-        number:1730,
-        type:'储蓄卡'
-      },{
-        name:'农业银行',
-        number:1850,
-        type:'储蓄卡'
-      },{
-        name:'jiayan',
-        number:1850,
-        type:'储蓄卡'
-      }],
      index:0,
      banners:[
       require('../images/index/banner.jpg')
@@ -70,32 +57,6 @@ addUserMethod=()=>{
 
 
   render() {
-  let {banklists}=this.state;
-   
-   let banks=
-   banklists.map((item,index)=>{
-    console.log(this.state.index==index);
-    return (<TouchableOpacity key={index} style={{borderBottomColor:'#ddd',borderBottomWidth:1,paddingHorizontal:20,paddingVertical:15,flexDirection:'row',justifyContent:'space-between'}}
-      onPress={()=>{
-        this.setIndex(index);
-        this.overlayPullView.close()
-        console.log('uuu',index);
-      }}>
-    <View>
-      <Text>{item.name}</Text>
-      <Text>尾号{item.number}{item.type}</Text>
-    </View>
-    {/* 判断当前index跟所存储的index值是否一致  */}
-    {
-      this.state.index==index?
-      <Icon name="check" size={matchsize(29)} color={'#ddd'} style={{paddingHorizontal:matchsize(20)}}/>
-      :
-      <View/>
-      
-    }
-  </TouchableOpacity> )
-      
-    })
     const {banners}=this.state;
     const bannerlist=banners.length?
     banners.map((item,index)=>(
@@ -108,20 +69,9 @@ addUserMethod=()=>{
     <View style={{justifyContent:'center',alignItems:'center',flex:1}}>
       <Text style={{flexDirection:'row',justifyContent:'center'}}>loading...</Text>
     </View>;
-    let overlayView = (
-      <Overlay.PullView side='bottom' modal={false} ref={v => this.overlayPullView = v}>
-      <ScrollView style={{backgroundColor: '#fff'}}>
-      <View style={{height:300,justifyContent:'flex-start'}}>
-        <View style={{paddingVertical:10,paddingLeft:15}}><Text>请选择您的银行卡</Text></View>
-        {banks}
-        </View>
-      </ScrollView>
-    </Overlay.PullView>
-    );
     
     return (
-      
-      <View style={[styles.indexBox,{flex: 1}]}>
+    <View style={[styles.indexBox,{flex: 1}]}>
      <StatusBar
           backgroundColor='transparent'
           translucent={true}
@@ -178,13 +128,7 @@ addUserMethod=()=>{
            </View>
           </View>
          <View style={{paddingVertical:matchsize(40),marginHorizontal:'3%'}}>
-          <Button
-            title="立即购买"
-            accessibilityLabel="立即购买"
-            onPress={()=>Overlay.show(overlayView)}
-            type="primary"
-            style={{height:matchsize(70)}}
-          />
+          <Button  title="立即购买" type="primary"  style={{height:matchsize(70)}} onPress={()=>{}} />
          </View>  
          </View>
         <View style={{flex:3,backgroundColor:'steelblue',alignItems:'center'}}>
