@@ -25,6 +25,7 @@ import axios from 'axios';
         this.state={
             userinfo:this.props.navigation.state.params.userinfo,
             bankdata:null,
+            investId:this.props.navigation.state.params.userinfo.investId
         }
     }
     componentDidMount(){
@@ -56,7 +57,7 @@ import axios from 'axios';
                         ({item}) => <BankItem  cardNum={item.accountnum} cardUser={item.name} cardTitle={item.bankname}  {...this.props}/>
                     }
                     />
-                    <TouchableOpacity style={add.addbtn} onPress={()=>this.props.navigation.navigate('AddBank',{...this.state})}>
+                    <TouchableOpacity style={add.addbtn} onPress={()=>this.props.navigation.navigate('AddBank',{investId:this.state.investId})}>
                      <View style={{flexDirection:'row'}}>
                         <Icon name="plus-circle" style={{marginRight:matchsize(20)}} size={matchsize(32)}/>
                        <Text style={{fontSize:matchsize(32)}}>添加银行卡</Text>
