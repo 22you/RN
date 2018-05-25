@@ -28,11 +28,25 @@ export default class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      banklists:[{
+        name:'招商银行',
+        number:1730,
+        type:'储蓄卡'
+      },{
+        name:'农业银行',
+        number:1850,
+        type:'储蓄卡'
+      }],
+     index:1,
      banners:[
       require('../images/index/banner.jpg')
      ]
     };
 }
+componentDidMount(){
+  
+}
+
 addUserMethod=()=>{
   if(!global.user.loginState){
     Toast.info('请先登录！')
@@ -46,8 +60,36 @@ addUserMethod=()=>{
 }
 
   render() {
+  let {banklists}=this.state;
+   // console.log('length',banklists.length);
+    
+   let banks=
+   banklists.map((item,index)=>{
+    return <View key={index} style={{borderBottomColor:'#ddd',borderBottomWidth:1,paddingHorizontal:20,paddingVertical:15,flexDirection:'row',justifyContent:'space-between'}}
+      onPress={()=>{
+        this.setState({
+        index:index
+      })}
+    }
+    >
+    <View>
+      <Text>{item.name}</Text>
+      <Text>尾号{item.number}{item.type}</Text>
+    </View>
+    {/* 判断当前index跟所存储的index值是否一致  一致的话显示icon */}
+    {
+      this.state.index==index?
+      <Icon name="check" size={matchsize(29)} color={'#ddd'} style={{paddingHorizontal:matchsize(20)}}/>
+      :<Text/>
+    }
+    
+   </View>     
+    })
+   
+    
+
     const {banners}=this.state;
-    console.log(banners)
+    console.log(banks)
     const bannerlist=banners.length?
     banners.map((item,index)=>(
     
@@ -64,24 +106,7 @@ addUserMethod=()=>{
       <ScrollView style={{backgroundColor: '#fff'}}>
       <View style={{height:300,justifyContent:'flex-start'}}>
         <View style={{paddingVertical:10,paddingLeft:15}}><Text>请选择您的银行卡</Text></View>
-        <View style={{borderBottomColor:'#ddd',borderBottomWidth:1,paddingHorizontal:20,paddingVertical:15,flexDirection:'row',justifyContent:'space-between'}}>
-         <View>
-           <Text>招商银行</Text>
-           <Text>尾号1735储蓄卡</Text>
-         </View>
-         <Icon name="check" size={matchsize(29)}
-                              color={'#ddd'}
-                              style={{paddingHorizontal:matchsize(20)}}/>
-        </View>
-        <View style={{borderBottomColor:'#ddd',borderBottomWidth:1,paddingHorizontal:20,paddingVertical:15,flexDirection:'row',justifyContent:'space-between'}}>
-         <View>
-           <Text>招商银行</Text>
-           <Text>尾号1735储蓄卡</Text>
-         </View>
-         <Icon name="check" size={matchsize(29)}
-                              color={'#ddd'}
-                              style={{paddingHorizontal:matchsize(20)}}/>
-        </View>
+        {banks}
         </View>
       </ScrollView>
     </Overlay.PullView>

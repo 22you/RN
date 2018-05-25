@@ -48,9 +48,7 @@ import axios from 'axios';
         };
     }
     componentDidMount(){
-      //console.log(this.props.navigation.state);
       let {contractNumber,isBirthday,plManageMoneyPlan,totleRate,giftType,buyMoney,sumMoney,endinInterestTime,totalGiftRate,giftMoney,commissionMoney,name,account}=this.props.navigation.state.params.plManageMoneyPlanBuyinfo
-      //console.log(this.props.navigation.state.params.plManageMoneyPlanBuyinfo);
       
       this.setState({
         plManageMoneyPlanBuyinfo:this.props.navigation.state.params.plManageMoneyPlanBuyinfo,
@@ -70,7 +68,6 @@ import axios from 'axios';
       })
       //获取礼品名称
       let giftUrl=config.api.gift+'start=0&limit=null';
-      //console.log(giftUrl);
       
       axios.get(giftUrl)
       .then((res)=>{
@@ -89,19 +86,28 @@ import axios from 'axios';
       axios.get(companyBanksUrl)
       .then((res)=>{
         log(res.data)
-        // if(res.data.totalProperty){
-        //   this.setState({
-        //     companyBanks=res.data.topics
-        //   })
-        // }
+        if(res.data.totalProperty){
+          let companyBankcon=[];
+          res.data.topics.map((item)=>{
+             let companyBank={
+               name:item.bankName,
+               number:item.account,
+               bankId:item.bankId
+             };
+             companyBankcon.push(companyBank)
+          })
+          this.setState({
+            companyBanks:companyBankcon
+          })
+        }
       })
 
     }
       render(){
-        
+
         let {
           contractNumber,commissionMoney,isBirthday,giftType,giftLists,
-          buyDatetime,startinInterestTime,endinInterestTime,totalGiftRate,
+          buyDatetime,startinInterestTime,
           giftMoney,bankName,bankAccountId,name,other,investment,buyMoney,sumMoney,
           endinInterestTime,totleRate,totalGiftRate,account
         }=this.state;
