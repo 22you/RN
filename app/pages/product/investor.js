@@ -10,9 +10,11 @@ import {
     ScrollView,
     Alert
   } from 'react-native';
-  import {Input,Button,Toast} from 'teaset'
+  import {Input,Button,Toast,Overlay} from 'teaset'
+import matchsize from '../../components/matchsize';
 import config from '../../common/config';
 import axios from 'axios';
+import Icon from 'react-native-vector-icons/FontAwesome';
   export default class Investor extends Component {
     static navigationOptions = {
       headerRight: (
@@ -31,6 +33,8 @@ import axios from 'axios';
           enterpriseid:'',
           orderId:'',
           plManageMoneyPlanBuyinfo:null,
+          banklists:[],
+         index:0,
         };
     }
     //投资人账户和订单绑定
@@ -46,8 +50,11 @@ import axios from 'axios';
       })
     }
     componentDidMount(){
+      
      let {orderId}=this.props.navigation.state.params.plManageMoneyPlanBuyinfo;
      let {name,bankid,accountnum,bankOutletsName,enterpriseid}=this.props.navigation.state.params.enterpriseBank;
+     console.log('银行卡信息',this.props.navigation.state.params.enterpriseBank);
+     
       this.setState({
         name:name,
         bankid:bankid,
@@ -59,16 +66,16 @@ import axios from 'axios';
         plManageMoneyPlanBuyinfo:this.props.navigation.state.params.plManageMoneyPlanBuyinfo,
         
       })
-      //查询银行卡列表 并给bankname赋值
+  //查询银行卡列表 并给bankname赋值
       let bankUrl=config.api.bankList;
       axios.get(bankUrl)
       .then((res)=>{
         if(res.data.success){
           res.data.data.map((item)=>{
             if(item.bankid==this.state.bankid)
-           this.setState({
+          this.setState({
             bankname:item.bankname
-           })
+          })
           })
         }
       })
@@ -76,10 +83,17 @@ import axios from 'axios';
       let investBankUrl=config.api.bankInfo+'id='+enterpriseid+'&isEnterpriseStr=1&isInvest=3&start=0&limit=25'
       axios.get(investBankUrl)
       .then((res)=>{
+        let banklists=[];
+        res.data.topics.map((item)=>{
+          let banklistCon={
+            accountnum:item.accountnum,
+            bankname:item.bankname,
+            bankid:item.bankid
+          }
+          banklists.push(banklistCon);
+                })
         this.setState({
-          customBanks:res.data.topics.map((item)=>{
-             return item.accountnum;
-          })
+          banklists:banklists
         })
       })
       .catch((e)=>{
@@ -87,9 +101,50 @@ import axios from 'axios';
 
       })
     }
+    //选择当前选择的投资人的银行卡
+    setIndex=(item,index)=>{
+      this.setState({
+        index:index
+      })
+    }
+
       render(){
-        let {name,bankid,accountnum,bankOutletsName,bankname,customBanks,plManageMoneyPlanBuyinfo}=this.state;
-      //  console.log(plManageMoneyPlanBuyinfo);
+       //投资人的银行卡列表（下拉弹窗）
+       let {banklists}=this.state;
+   
+       let banks=banklists.map((item,index)=>{
+        return (<TouchableOpacity key={index} style={{borderBottomColor:'#ddd',borderBottomWidth:1,paddingHorizontal:20,paddingVertical:15,flexDirection:'row',justifyContent:'space-between'}}
+          onPress={()=>{
+            this.setIndex(item,index);
+            this.overlayPullView.close()
+          }}>
+        <View>
+          <Text>{item.bankname}</Text>
+          <Text>尾号{item.accountnum.substr(item.accountnum.length-4,4)}</Text>
+        </View>
+        {/* 判断当前index跟所存储的index值是否一致  */}
+        {
+          this.state.index==index?
+          <Icon name="check" size={matchsize(29)} color={'#ddd'} style={{paddingHorizontal:matchsize(20)}}/>
+          :
+          <View/>
+          
+        }
+      </TouchableOpacity> )
+          
+        })
+       let overlayView = (
+        <Overlay.PullView side='bottom' modal={false} ref={v => this.overlayPullView = v}>
+        <ScrollView style={{backgroundColor: '#fff'}}>
+        <View style={{height:300,justifyContent:'flex-start'}}>
+          <View style={{paddingVertical:10,paddingLeft:15}}><Text>请选择您的银行卡</Text></View>
+          {banks}
+          </View>
+        </ScrollView>
+      </Overlay.PullView>
+      );
+       //
+      let {name,bankid,accountnum,bankOutletsName,bankname,customBanks,plManageMoneyPlanBuyinfo}=this.state;
         
       return(
           <View style={{ backgroundColor:'#fff',}}>
@@ -97,25 +152,17 @@ import axios from 'axios';
             <KeyboardAwareScrollView>
            
             <DefaultInput value={name}  placeholder={'未知'} name={'开户名称'} style={base.item} disabled/>
-           
-            <DefaultSelect  placeholder={'选择开户账号'} name={'开户账号'} value={accountnum} style={base.item}
-                  items={customBanks} onSelected={(item, index)=>{
-                    this.setState({
-                      accountnum: item,
-                      });
-                  
-                  this.selectEvent(item.value);
-                  }}/> 
-        
-           <DefaultInput  value={bankname} placeholder={'未知'} name={'银行名称'} style={base.item} disabled/>
-                        
-          <DefaultInput  value={bankOutletsName} placeholder={'未知'} name={'支行名称'} style={base.item} disabled/>
+              <TouchableOpacity style={base.item} onPress={()=>Overlay.show(overlayView)}>
+              <Text>开户账号</Text>
+              <Text>{accountnum} ></Text>
+            </TouchableOpacity>
+            <DefaultInput  value={bankname} placeholder={'未知'} name={'银行名称'} style={base.item} disabled/>
+            <DefaultInput  value={bankOutletsName} placeholder={'未知'} name={'支行名称'} style={base.item} disabled/>
             
             <View>
             <TouchableOpacity style={[base.btnbox,{marginTop:15,marginHorizontal:'12%'}]}>
               <Button title="保存" style={{width:100}} color="#ddd" type="primary"  onPress={()=>this.saveBankOrder()}/>
-              <Button title="下一步"
-            accessibilityLabel="下一步" style={{width:100}} onPress={()=>{
+              <Button title="下一步"  style={{width:100}} onPress={()=>{
                     this.props.navigation.navigate('Other',{
                       plManageMoneyPlanBuyinfo:plManageMoneyPlanBuyinfo
                     });

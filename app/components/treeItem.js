@@ -16,6 +16,7 @@ export default class Tree extends Component {
   }
   componentDidMount(){
     let treeUrl=config.api.department+'type=undefined&branchCompanyId=undefined';
+    //console.log(treeUrl);
     
     axios.get(treeUrl)
     .then((res)=>{
@@ -23,6 +24,8 @@ export default class Tree extends Component {
       arr:res.data
     })
     //console.log(Array.isArray(this.state.arr));
+    console.log(res.data);
+    
     
     }
   )

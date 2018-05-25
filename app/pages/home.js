@@ -36,12 +36,21 @@ export default class Home extends Component {
         name:'农业银行',
         number:1850,
         type:'储蓄卡'
+      },{
+        name:'jiayan',
+        number:1850,
+        type:'储蓄卡'
       }],
-     index:1,
+     index:0,
      banners:[
       require('../images/index/banner.jpg')
      ]
     };
+}
+setIndex=(index)=>{
+  this.setState({
+    index:index
+  })
 }
 componentDidMount(){
   
@@ -59,37 +68,35 @@ addUserMethod=()=>{
   }
 }
 
+
   render() {
   let {banklists}=this.state;
-   // console.log('length',banklists.length);
-    
+   
    let banks=
    banklists.map((item,index)=>{
-    return <View key={index} style={{borderBottomColor:'#ddd',borderBottomWidth:1,paddingHorizontal:20,paddingVertical:15,flexDirection:'row',justifyContent:'space-between'}}
+    console.log(this.state.index==index);
+    return (<TouchableOpacity key={index} style={{borderBottomColor:'#ddd',borderBottomWidth:1,paddingHorizontal:20,paddingVertical:15,flexDirection:'row',justifyContent:'space-between'}}
       onPress={()=>{
-        this.setState({
-        index:index
-      })}
-    }
-    >
+        this.setIndex(index);
+        this.overlayPullView.close()
+        console.log('uuu',index);
+      }}>
     <View>
       <Text>{item.name}</Text>
       <Text>尾号{item.number}{item.type}</Text>
     </View>
-    {/* 判断当前index跟所存储的index值是否一致  一致的话显示icon */}
+    {/* 判断当前index跟所存储的index值是否一致  */}
     {
       this.state.index==index?
       <Icon name="check" size={matchsize(29)} color={'#ddd'} style={{paddingHorizontal:matchsize(20)}}/>
-      :<Text/>
+      :
+      <View/>
+      
     }
-    
-   </View>     
+  </TouchableOpacity> )
+      
     })
-   
-    
-
     const {banners}=this.state;
-    console.log(banks)
     const bannerlist=banners.length?
     banners.map((item,index)=>(
     
@@ -102,7 +109,7 @@ addUserMethod=()=>{
       <Text style={{flexDirection:'row',justifyContent:'center'}}>loading...</Text>
     </View>;
     let overlayView = (
-      <Overlay.PullView side='bottom' modal={false}>
+      <Overlay.PullView side='bottom' modal={false} ref={v => this.overlayPullView = v}>
       <ScrollView style={{backgroundColor: '#fff'}}>
       <View style={{height:300,justifyContent:'flex-start'}}>
         <View style={{paddingVertical:10,paddingLeft:15}}><Text>请选择您的银行卡</Text></View>

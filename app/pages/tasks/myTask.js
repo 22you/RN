@@ -30,7 +30,7 @@ import axios from 'axios';
              this.setState({
                 data:res.data.result
              })
-           //  console.log(res.data.result);
+             console.log(res.data.result);
          })
          .catch((error)=>{
              console.log(error);
@@ -46,7 +46,10 @@ import axios from 'axios';
            data={data}
            renderItem={
                ({item})=> 
-               <TouchableOpacity style={bus.busItem} onPress={()=>this.props.navigation.navigate('Apply')}>
+               <TouchableOpacity style={bus.busItem} onPress={()=>this.props.navigation.navigate('Apply',{
+                   projectId:item.projectId,
+                   taskId:item.taskId
+               })}>
                <View style={bus.title}>
                    <View style={{flexDirection:'row',}}><Text style={{color:'#ababab'}}>客户名称</Text><Text style={{color:'#000',marginLeft:matchsize(15)}}>{item.investPersonName}</Text></View>
                    <View style={{flexDirection:'row',}}><Text style={{color:'#ababab'}}>任务名称</Text><Text style={{color:'#000',marginLeft:matchsize(15)}}>{item.activityName}</Text></View>
