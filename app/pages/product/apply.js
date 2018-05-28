@@ -85,7 +85,9 @@ import axios from 'axios';
             <Text>购买信息</Text>
             <Text>></Text>
             </TouchableOpacity>
-            <TouchableOpacity style={add.item} onPress={()=>this.props.navigation.navigate('Chaohe')}>
+            <TouchableOpacity style={add.item} onPress={()=>this.props.navigation.navigate('Chaohe',{
+              plManageMoneyPlan:this.state.plManageMoneyPlan
+            })}>
             <Text>朝禾优品</Text>
             <Text>></Text>
             </TouchableOpacity>

@@ -58,7 +58,7 @@ import {
 
   }
       render(){
-        console.log(this.state.userinfo);
+       // console.log(this.state.userinfo);
        let {investName,cellphone,alternatePhone,cardnumber,belongedName,postcode,selfemail,birthDay,customSettime,sexvalue,shopName,postaddress,customerNature}=this.state.userinfo;
         return(
           <View style={{ backgroundColor:'#fff',}}>

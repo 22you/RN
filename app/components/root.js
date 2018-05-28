@@ -46,14 +46,14 @@ import {
 
 
 const Navigator=TabNavigator({
-  Tree:{
-    screen:Tree,
-    navigationOptions:{
-      tabBarLabel:'测试',
-      tabBarIcon:   ({tintColor})=>(<Icon name="home" size={matchsize(35)} color={tintColor}/>)
+  // Tree:{
+  //   screen:Tree,
+  //   navigationOptions:{
+  //     tabBarLabel:'测试',
+  //     tabBarIcon:   ({tintColor})=>(<Icon name="home" size={matchsize(35)} color={tintColor}/>)
 
-    }
-  },
+  //   }
+  // },
   Home:{
     screen: Home,
     navigationOptions:{

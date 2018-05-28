@@ -1,7 +1,10 @@
 //寇重阳电脑
-const serverUrl = 'http://172.16.10.219:8041/'
-const baseUrl = serverUrl + 'gd_chsy/'
+// const serverUrl = 'http://172.16.10.219:8041/'
+// const baseUrl = serverUrl + 'gd_chsy/'
 
+//杨岳涛
+const serverUrl = 'http://172.16.10.222:8064/'
+const baseUrl = serverUrl + 'hurong_proj_gd_chsy2/'
 //
 // const serverUrl = 'http://47.94.226.224:8181/hurong_proj_bj_byph/'
 // const baseUrl = serverUrl + 'mobileApi/'
