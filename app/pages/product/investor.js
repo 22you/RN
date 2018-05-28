@@ -40,8 +40,6 @@ import Icon from 'react-native-vector-icons/FontAwesome';
     //投资人账户和订单绑定
     saveBankOrder=()=>{
       let bankOrderUrl=config.api.investBankOrder+'plManageMoneyPlanBuyinfo.orderId='+this.state.orderId+'&enterpriseBank.id='+this.state.id;
-      console.log(bankOrderUrl);
-      
       axios.post(bankOrderUrl)
       .then((res)=>{
         if(res.data.success){

@@ -50,6 +50,7 @@ export default {
         gift:baseUrl+'api/listAllPlActivityDetails.do?',//获取礼品名称 传参：start limit
         others:baseUrl+'api/savePlManageMoneyPlanOtherInfo.do?',//保存其他信息 
         companyBank:baseUrl+'api/list2SlBankAccount.do?',//转入我司开户行
+        suggest:baseUrl+'api/saveCommentsProcessForm.do?',//保存意见与说明  传参：taskid  和commits
         common: {
             uploadFile: baseUrl + 'api/uploadPhotoProduceHelper.do',//chaohe 身份证上传 mark
             uploadMaterial: baseUrl + 'uploadMaterialFileFormApi.do',//上传材料

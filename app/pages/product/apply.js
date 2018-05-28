@@ -32,8 +32,6 @@ import axios from 'axios';
     componentDidMount(){
       let {projectId,taskId}=this.state;
       let loadingUrl=config.api.loading+'projectId='+projectId+'&taskId='+taskId;//流程加载
-     console.log(loadingUrl);
-     
       
       axios.get(loadingUrl)
       .then((res)=>{
@@ -51,7 +49,6 @@ import axios from 'axios';
       
     }
       render(){
-        console.log('enterpriseBank',this.state.enterpriseBank);
         
       return(
           <View>
@@ -96,7 +93,9 @@ import axios from 'axios';
             <Text>上传资料</Text>
             <Text>></Text>
             </TouchableOpacity>
-            <TouchableOpacity style={add.item} onPress={()=>this.props.navigation.navigate('')}s>
+            <TouchableOpacity style={add.item} onPress={()=>this.props.navigation.navigate('Suggest',{
+              taskId:this.state.taskId
+            })}>
             <Text>意见和说明</Text>
             <Text>></Text>
             </TouchableOpacity>
