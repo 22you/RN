@@ -23,16 +23,26 @@ import DatePicker from 'react-native-datepicker'
         super(props);
         // 初始状态
         this.state = {
-         items:[
-            {"detailId":1116,"name":"鸡蛋","price":3,"deductionMoney":null,"conment":"","sendTime":"2018-05-28","payment":"","number":0,"priceDifferences":0,"oldDetailId":1111,"buyId":"6445"},
-            {"detailId":1117,"name":"鸡蛋","price":3,"deductionMoney":null,"conment":"","sendTime":"2018-05-28","payment":"","number":0,"priceDifferences":0,"oldDetailId":1111,"buyId":"6445"}
-         ],
+         items:[],
          giftnames:[],
          plManageMoneyPlan:this.props.navigation.state.params.plManageMoneyPlan,
+         projectId:this.props.navigation.state.params.projectId
         };
     }
     componentDidMount(){
         this.props.navigation.setParams({navigatePress:this.addChaohe})
+
+        //查询当前已有的列表数据
+       let chaoheUrl=config.api.chaoheList+'projectId='+this.state.projectId;
+       axios.get(chaoheUrl)
+       .then((res)=>{
+           this.setState({
+            items: res.data.result
+           })
+       //console.log(res.data,chaoheUrl);
+       
+       })
+
         
         //获取朝禾优品礼品名称
         let gitUrl=config.api.gift+'start=0&limit=25';
@@ -65,7 +75,7 @@ import DatePicker from 'react-native-datepicker'
             items: list
         })  
     }
-    //
+    
     addChaohe=()=>{
         let item = this.state.items;
         let shuj = {"detailId":'',"name":"","price":'',"deductionMoney":null,"conment":"","sendTime":"2018-05-28","payment":"","number":0,"priceDifferences":0,"oldDetailId":'',"buyId":''};
@@ -75,9 +85,7 @@ import DatePicker from 'react-native-datepicker'
         })
     };
       render(){
-          let {giftnames,items,plManageMoneyPlan,deductionMoney}=this.state;
-         console.log(plManageMoneyPlan);
-          
+      let {giftnames,items,plManageMoneyPlan,deductionMoney}=this.state;
           
       return(
             <ScrollView style={{marginBottom:10}}>
@@ -196,7 +204,11 @@ import DatePicker from 'react-native-datepicker'
             
             <View>
             <TouchableOpacity style={[base.btnbox,{marginTop:15,marginHorizontal:'5%'}]}>
-              <Button title="保存" style={{width:100}} color="#ddd" type="primary" accessibilityLabel="下一步" onPress={()=>Alert.alert('保存成功')}/>
+              <Button title="保存" style={{width:100}} color="#ddd" type="primary" accessibilityLabel="下一步" onPress={()=>{
+                  Alert.alert('保存成功')
+console.log(this.state.items);
+
+                }}/>
               <Button title="下一步"
             accessibilityLabel="下一步"  style={{width:100}} onPress={()=>this.props.navigation.navigate('Upload')} />
            

@@ -49,6 +49,7 @@ import axios from 'axios';
       
     }
       render(){
+       console.log('projectId',this.state.projectId);
         
       return(
           <View>
@@ -86,7 +87,8 @@ import axios from 'axios';
             <Text>></Text>
             </TouchableOpacity>
             <TouchableOpacity style={add.item} onPress={()=>this.props.navigation.navigate('Chaohe',{
-              plManageMoneyPlan:this.state.plManageMoneyPlan
+              plManageMoneyPlan:this.state.plManageMoneyPlan,
+              projectId:this.state.projectId
             })}>
             <Text>朝禾优品</Text>
             <Text>></Text>
@@ -101,7 +103,9 @@ import axios from 'axios';
             <Text>意见和说明</Text>
             <Text>></Text>
             </TouchableOpacity>
-            <TouchableOpacity style={add.item} onPress={()=>this.props.navigation.navigate('')}>
+            <TouchableOpacity style={add.item} onPress={()=>this.props.navigation.navigate('Progress',{
+              plManageMoneyPlanBuyinfo:this.state.plManageMoneyPlanBuyinfo
+            })}>
             <Text>流程示意图</Text>
             <Text>></Text>
             </TouchableOpacity>

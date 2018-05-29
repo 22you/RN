@@ -28,6 +28,7 @@ import Tree from '../components/treeItem' //树结构测试
 import Probase from '../pages/product/probase'//产品基本信息
 import Apply from '../pages/product/apply'//产品购买申请
 import Applybase from '../pages/product/applybase'//投资进件申请基本信息
+import Progress from '../pages/product/progress'//流程示意图
 // 新增用户模块？
 import Userbase from '../pages/user/userBase'//新增客户-基本信息
 import AddBank from '../pages/user/addBank'//添加银行卡
@@ -236,6 +237,12 @@ const Addnavigator=StackNavigator({
         title:'选择登记团队',
         tabBarIcon: ({tintColor})=> (<Icon name="user" size={matchsize(35)} color={tintColor} />)
         
+      }
+    },
+    Progress:{
+      screen:Progress,
+      navigationOptions:{
+        headerTitle:"流程示意图"
       }
     }
 },{
