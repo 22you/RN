@@ -126,7 +126,8 @@ export default class Chaohe extends Component {
         
          axios.post(saveChaoheUrl)
          .then((res)=>{
-        console.log(res.data);
+                   
+        Toast.info('保存成功！')
 
          })
          
@@ -278,7 +279,6 @@ export default class Chaohe extends Component {
             {
                 this.state.giftType==1056?
                 <Button title="保存" style={{width:100}} color="#ddd" type="primary" accessibilityLabel="下一步" onPress={()=>{
-                    Alert.alert('保存成功');
                     this.saveChaohe();
   
                   }}/>
