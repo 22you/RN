@@ -13,19 +13,12 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import config from '../../common/config';
 import axios from 'axios';
 import DatePicker from 'react-native-datepicker'
-  export default class Chaohe extends Component {
+export default class Chaohe extends Component {
     static navigationOptions =({navigation})=>({
         headerRight: (
             <TouchableOpacity onPress={()=>navigation.state.params.navigatePress()}>  
-                <Icon style={{marginRight:20}} name="plus-circle" size={15} color="#fff" /></TouchableOpacity>
-            // {
-            //     this.state.giftType==1056
-            //     ?
-            //     <TouchableOpacity onPress={()=>navigation.state.params.navigatePress()}>  
-            //     <Icon style={{marginRight:20}} name="plus-circle" size={15} color="#fff" /></TouchableOpacity>
-            //     :<Text/>
-            // }
-            
+                <Icon style={{marginRight:20}} name="plus-circle" size={15} color="#fff" />
+            </TouchableOpacity>
       ),
       });
     constructor(props) {
@@ -37,7 +30,8 @@ import DatePicker from 'react-native-datepicker'
          plManageMoneyPlan:this.props.navigation.state.params.plManageMoneyPlan,
          projectId:this.props.navigation.state.params.projectId,
          giftType:this.props.navigation.state.params.giftType,
-         taskId:this.props.navigation.state.params.taskId
+         taskId:this.props.navigation.state.params.taskId,
+         oldDetailId:''
         };
     }
     componentDidMount(){
@@ -45,14 +39,33 @@ import DatePicker from 'react-native-datepicker'
 
         //查询当前已有的列表数据
        let chaoheUrl=config.api.chaoheList+'projectId='+this.state.projectId;
+       console.log('chaoheUrl',chaoheUrl);
+       
        axios.get(chaoheUrl)
        .then((res)=>{
            if(res.data.totalCounts){
+            let chaoheLists=[];
+            res.data.result.map((item,index)=>{
+              let chaoheList={
+                "detailId":item.detailId,
+                "name":item.name,
+                "price":item.price,
+                "deductionMoney":item.deductionMoney,
+                "conment":item.conment,
+                "sendTime":item.sendTime,
+                "payment":item.payment,
+                "number":item.number,
+                "priceDifferences":item.priceDifferences,
+                "oldDetailId":item.oldDetailId,
+                "buyId":item.buyId 
+              };
+              chaoheLists.push(chaoheList)
+            })  
             this.setState({
-                items: res.data.result
+                items: chaoheLists
                })
            }else{
-            this.state.items.push( {"detailId":'',"name":"","price":'',"deductionMoney":null,"conment":"","sendTime":"2018-05-28","payment":"","number":0,"priceDifferences":0,"oldDetailId":'',"buyId":''})
+            this.state.items.push( {"detailId":'',"name":"","price":'',"deductionMoney":null,"conment":"","sendTime":"2018-05-28","payment":"","number":0,"priceDifferences":0,"oldDetailId":this.state.oldDetailId,"buyId":this.state.projectId})
             
            }
           
@@ -61,14 +74,13 @@ import DatePicker from 'react-native-datepicker'
 
         
         //获取朝禾优品礼品名称
-        let gitUrl=config.api.gift+'start=0&limit=25';
+        let gitUrl=config.api.gift+'start=0&limit=null';
         axios.get(gitUrl)
         .then((res)=>{
-           // console.log("res",res)
             if(res.data.success){
-                let giftnames=[];
+            let giftnames=[];
             res.data.result.map((item,index)=>{
-                let giftname={name:item.name,price:item.price};
+            let giftname={name:item.name,price:item.price,oldDetailId:item.detailId};
                 giftnames.push(giftname)
              })
              this.setState({
@@ -95,7 +107,7 @@ import DatePicker from 'react-native-datepicker'
     addChaohe=()=>{
         if(this.state.giftType==1056){
             let item = this.state.items;
-            let shuj = {"detailId":'',"name":"","price":'',"deductionMoney":null,"conment":"","sendTime":"2018-05-28","payment":"","number":0,"priceDifferences":0,"oldDetailId":'',"buyId":''};
+            let shuj = {"detailId":'',"name":"","price":'',"deductionMoney":null,"conment":"","sendTime":"2018-05-28","payment":"","number":0,"priceDifferences":0,"oldDetailId":this.state.oldDetailId,"buyId":this.state.projectId};
             item.push(shuj);
             this.setState({
                 items:item
@@ -106,16 +118,21 @@ import DatePicker from 'react-native-datepicker'
         
     };
     saveChaohe=()=>{
-        //let savelists={...this.state.items}
         let savelist = JSON.stringify(this.state.items);
-        let saveListData=savelist.replace("},","}@");
+        let saveListData=savelist.replace(/},/g,"}@");
+        let listdatas=saveListData.slice(1,saveListData.length-1);
+        let saveChaoheUrl=config.api.saveChaohe+'activityStore='+listdatas+'&orderId='+this.state.projectId;
+        //console.log(saveChaoheUrl);
         
-        
-         let saveChaoheUrl=config.api.saveChaohe+'activityStore='+saveListData
-        // console.log(saveChaoheUrl);
+         axios.post(saveChaoheUrl)
+         .then((res)=>{
+        console.log(res.data);
+
+         })
+         
     }
     //删除朝禾优品
-    deleteChaohe=(e)=>{
+    deleteChaohe=(e,i)=>{
         Alert.alert('温馨提醒', '确定要删除吗?', [
             {text: '取消'},
             {
@@ -123,6 +140,7 @@ import DatePicker from 'react-native-datepicker'
                 let deleteChaoheUrl = config.api.deleteChaohe+'detailId='+e.detailId;
                 axios.post(deleteChaoheUrl)
                 .then((res)=>{
+                    this.state.items.splice(i,1)
                     console.log(deleteChaoheUrl,res.data.success);
 
                 })
@@ -134,13 +152,14 @@ import DatePicker from 'react-native-datepicker'
     }
       render(){
       let {giftnames,items,plManageMoneyPlan,deductionMoney}=this.state;
+      console.log(this.state.items);
           
       return(
             <ScrollView style={{marginBottom:10}}>
             {
                 items.map((itemList,index)=>{
                     return(
-                        <TouchableOpacity style={base.list} onLongPress={()=>{this.deleteChaohe(itemList)}}>
+                        <TouchableOpacity style={base.list} onLongPress={()=>{this.deleteChaohe(itemList,index)}}>
                             <View style={base.title}>
                             <View style={{flexDirection:'row',alignItems:'center'}}>
                                 <Text>礼品名称：</Text>
@@ -153,10 +172,14 @@ import DatePicker from 'react-native-datepicker'
                                     placeholder='请选择'
                                     pickerTitle='礼品名称'
                                     onSelected={(item) => {
-                                        //this.setState({name: item.name,price:item.price})
                                         itemList.name = item.name;
                                         itemList.price = item.price;
-                                        this.setValue(itemList,index)
+                                        itemList.oldDetailId=item.oldDetailId
+                                        this.setValue(itemList,index);
+                                        // this.setState({
+                                        //     oldDetailId:item.oldDetailId
+                                        // })
+                                       
                                     }}
                                     />
                             </View>
@@ -168,11 +191,11 @@ import DatePicker from 'react-native-datepicker'
                             </View>
                             <View style={base.center}>
                             <View style={{width:'44%'}}>
-                                <View style={[base.row,{lineHeight:35,height:35}]}>
+                                <View style={[base.row,{height:35}]}>
                                     <Text>单笔差价：</Text>
                                     <Input value={itemList.priceDifferences+""} style={{borderWidth:0,borderBottomWidth:1}} placeholder={'请输入'} 
                                     onChangeText={text => {
-                                        itemList.priceDifferences=text;
+                                        itemList.priceDifferences=parseInt(text);
                                         this.setValue(itemList,index)
                                     }
 
@@ -181,9 +204,9 @@ import DatePicker from 'react-native-datepicker'
                                 </View>
                                 <View style={base.row}>
                                     <Text>数量：</Text>
-                                    <Input value={itemList.number} style={{borderWidth:0,borderBottomWidth:1}} placeholder={'请输入'} 
+                                    <Input value={`${itemList.number}`} style={{borderWidth:0,borderBottomWidth:1}} placeholder={'请输入'} 
                                     onChangeText={text => {
-                                        itemList.numbe=text;
+                                        itemList.number=parseInt(text);
                                         this.setValue(itemList,index)
                                     }
                                     }/>
