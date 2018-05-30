@@ -57,6 +57,7 @@ export default {
         chaoheList:baseUrl+'api/listByProIdPlActivityDetails.do?',//朝禾优品的列表 传参：
         saveChaohe:baseUrl+'api/savePlActivityDetails.do?',//保存朝禾优品  传参
         saveBuyinfo:baseUrl+'api/saveOrderInfoPlManageMoneyPlanBuyinfo.do?',//保存购买信息
+        deleteChaohe:baseUrl+'api/multiDelPlActivityDetails.do?',//删除朝禾优品
         Progress:baseUrl+'/jbpmImage?',//流程示意图  传参：runid
 
         common: {

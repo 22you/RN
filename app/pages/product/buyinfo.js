@@ -29,6 +29,7 @@ import matchsize from '../../components/matchsize';
           projectId:this.props.navigation.state.params.projectId,
           plManageMoneyPlan:this.props.navigation.state.params.plManageMoneyPlan,
           orderId:this.props.navigation.state.params.plManageMoneyPlanBuyinfo.orderId,
+          taskId:this.props.navigation.state.params.taskId,
           contractNumber:'',//合同编号
           buyMoney:'',//投资金额 可更改
           sumMoney:'',//累计金额 禁用
@@ -59,7 +60,6 @@ import matchsize from '../../components/matchsize';
       
       this.setState({
         plManageMoneyPlanBuyinfo:this.props.navigation.state.params.plManageMoneyPlanBuyinfo,
-        ommissionCoefficient:this.props.navigation.state.params.plManageMoneyPlan.ommissionCoefficient,
         contractNumber:contractNumber,
         giftType:giftType,
         buyMoney:buyMoney,
@@ -134,7 +134,14 @@ import matchsize from '../../components/matchsize';
       totleRate+'&plManageMoneyPlanBuyinfo.totalGiftRate='+totalGiftRate+'&plManageMoneyPlanBuyinfo.giftMoney='+giftMoney+'&plManageMoneyPlanBuyinfo.giftType='+
       giftType+'&plManageMoneyPlanBuyinfo.bankName='+bankName+'&plManageMoneyPlanBuyinfo.bankAccountId='+bankAccountId+'&plManageMoneyPlanBuyinfo.name='+
       name+'&plManageMoneyPlanBuyinfo.account='+account+'&plManageMoneyPlanBuyinfo.other='+other+'&plManageMoneyPlanBuyinfo.investment='+investment;
-      console.log(buyInfoUrl);
+      axios.post(buyInfoUrl)
+      .then((res)=>{
+          if(res.data.success){
+            Alert.alert('保存成功')
+          }
+ 
+ 
+      })
       
     }
     
@@ -303,7 +310,7 @@ import matchsize from '../../components/matchsize';
               <Button title="保存" style={{width:100}} color="#ddd" type="primary"  
                  onPress={()=>{
                    this.saveBuyinfo();
-                   Alert.alert('保存成功')}
+                   }
                    }/>
               <Button title="下一步"  style={{width:100}} accessibilityLabel="下一步"  onPress={()=>{
                 this.props.navigation.navigate('Chaohe',{

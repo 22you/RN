@@ -24,6 +24,7 @@ import axios from 'axios'
         // 初始状态
         this.state = {
           plManageMoneyPlanBuyinfo:null,
+          plManageMoneyPlan:this.props.navigation.state.params.plManageMoneyPlan,
           customerPrecidentName:'',
           customerPrecidentId:'',
           teamManagerName:'',
@@ -34,7 +35,8 @@ import axios from 'axios'
           orderManagerId:'',
           belongsTeamName:'',
           belongsTeamId:'',
-          orderId:''
+          orderId:'',
+          taskId:this.props.navigation.state.params.taskId
         };
     }
     //保存其他信息
@@ -45,7 +47,7 @@ import axios from 'axios'
                   +this.state.belongsDepId+'&plManageMoneyPlanOtherInfo.orderManagerName='+this.state.orderManagerName+'&plManageMoneyPlanOtherInfo.orderManagerId='
                   +this.state.orderManagerId+'&plManageMoneyPlanOtherInfo.belongsTeamName='+this.state.belongsTeamNam+'&plManageMoneyPlanOtherInfo.belongsTeamId='
                   +this.state.belongsTeamId+'&orderId='+this.state.orderId;
-    console.log(otherUrl);
+   // console.log(otherUrl);
     axios.post(otherUrl)
     .then((res)=>{
     console.log(res.data);
@@ -91,7 +93,9 @@ import axios from 'axios'
               <Button title="保存" color="#ddd" style={{width:100}} type="primary" accessibilityLabel="下一步" onPress={()=>this.saveOthers()}/>
               <Button title="下一步"   style={{width:100}}  
               onPress={()=>this.props.navigation.navigate('Buyinfo',{
-                                          plManageMoneyPlanBuyinfo:this.state.plManageMoneyPlanBuyinfo
+                                          plManageMoneyPlanBuyinfo:this.state.plManageMoneyPlanBuyinfo,
+                                          plManageMoneyPlan:this.state.plManageMoneyPlan,
+                                          taskId:this.state.taskId
                                         })} />
            
             </TouchableOpacity>

@@ -25,7 +25,8 @@ import axios from 'axios';
           taskId:this.props.navigation.state.params.taskId,
           csInvestmentperson:null,
           enterpriseBank:null,
-          plManageMoneyPlan:null
+          plManageMoneyPlan:null,
+          giftType:''
 
         };
     }
@@ -41,7 +42,8 @@ import axios from 'axios';
             csInvestmentperson:res.data.data.csInvestmentperson,
             plManageMoneyPlan:res.data.data.plManageMoneyPlan,
             enterpriseBank:res.data.data.enterpriseBank,
-            plManageMoneyPlanBuyinfo:res.data.data.plManageMoneyPlanBuyinfo
+            plManageMoneyPlanBuyinfo:res.data.data.plManageMoneyPlanBuyinfo,
+            giftType:res.data.data.plManageMoneyPlanBuyinfo.giftType
           })
         }
        
@@ -50,7 +52,7 @@ import axios from 'axios';
       
     }
       render(){
-       //console.log('projectId',this.state.projectId);
+       console.log('giftType',this.state.giftType);
         
       return(
           <View>
@@ -70,13 +72,17 @@ import axios from 'axios';
             <TouchableOpacity style={add.item} onPress={()=>this.props.navigation.navigate('Investor',{
               
               enterpriseBank:this.state.enterpriseBank,
-              plManageMoneyPlanBuyinfo:this.state.plManageMoneyPlanBuyinfo
+              plManageMoneyPlanBuyinfo:this.state.plManageMoneyPlanBuyinfo,
+              taskId:this.state.taskId
               })}>
             <Text>投资人账户</Text>
             <Text>></Text>
             </TouchableOpacity>
             <TouchableOpacity style={add.item} onPress={()=>this.props.navigation.navigate('Other',{
-               plManageMoneyPlanBuyinfo:this.state.plManageMoneyPlanBuyinfo
+               plManageMoneyPlanBuyinfo:this.state.plManageMoneyPlanBuyinfo,
+               plManageMoneyPlan:this.state.plManageMoneyPlan,
+               projectId:this.state.projectId,
+               taskId:this.state.taskId
             })}>
             <Text>其他信息</Text>
             <Text>></Text>
@@ -84,19 +90,25 @@ import axios from 'axios';
             <TouchableOpacity style={add.item} onPress={()=>this.props.navigation.navigate('Buyinfo',{
               plManageMoneyPlanBuyinfo:this.state.plManageMoneyPlanBuyinfo,
               plManageMoneyPlan:this.state.plManageMoneyPlan,
-              projectId:this.state.projectId
+              projectId:this.state.projectId,
+              taskId:this.state.taskId
             })}>
             <Text>购买信息</Text>
             <Text>></Text>
             </TouchableOpacity>
             <TouchableOpacity style={add.item} onPress={()=>this.props.navigation.navigate('Chaohe',{
               plManageMoneyPlan:this.state.plManageMoneyPlan,
-              projectId:this.state.projectId
+              projectId:this.state.projectId,
+              taskId:this.state.taskId,
+              giftType:this.state.giftType
             })}>
             <Text>朝禾优品</Text>
             <Text>></Text>
             </TouchableOpacity>
-            <TouchableOpacity style={add.item} onPress={()=>this.props.navigation.navigate('Upload')}>
+            <TouchableOpacity style={add.item} onPress={()=>this.props.navigation.navigate('Upload',{
+              taskId:this.state.taskId,
+             
+            })}>
             <Text>上传资料</Text>
             <Text>></Text>
             </TouchableOpacity>

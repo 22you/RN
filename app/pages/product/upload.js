@@ -19,6 +19,9 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
         super(props);
         // 初始状态
+        this.state={
+          taskId:this.props.navigation.state.params.taskId
+        }
          
     }
    
@@ -45,7 +48,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
             <View style={{marginTop:15,marginHorizontal:'3%'}}>
             <Button title="下一步"
           accessibilityLabel="下一步" type="primary"
-            onPress={()=>this.props.navigation.navigate('Suggest')}/>
+            onPress={()=>this.props.navigation.navigate('Suggest',{taskId:this.state.taskId})}/>
             </View>
           </View>
       )

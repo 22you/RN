@@ -8,7 +8,7 @@ import {
     ScrollView,
     Alert
   } from 'react-native';
-import {Button,Select,Input} from 'teaset'
+import {Button,Select,Input,Toast} from 'teaset'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import config from '../../common/config';
 import axios from 'axios';
@@ -16,7 +16,16 @@ import DatePicker from 'react-native-datepicker'
   export default class Chaohe extends Component {
     static navigationOptions =({navigation})=>({
         headerRight: (
-            <TouchableOpacity onPress={()=>navigation.state.params.navigatePress()}>  <Icon style={{marginRight:20}} name="plus-circle" size={15} color="#fff" /></TouchableOpacity>
+            <TouchableOpacity onPress={()=>navigation.state.params.navigatePress()}>  
+                <Icon style={{marginRight:20}} name="plus-circle" size={15} color="#fff" /></TouchableOpacity>
+            // {
+            //     this.state.giftType==1056
+            //     ?
+            //     <TouchableOpacity onPress={()=>navigation.state.params.navigatePress()}>  
+            //     <Icon style={{marginRight:20}} name="plus-circle" size={15} color="#fff" /></TouchableOpacity>
+            //     :<Text/>
+            // }
+            
       ),
       });
     constructor(props) {
@@ -27,7 +36,8 @@ import DatePicker from 'react-native-datepicker'
          giftnames:[],
          plManageMoneyPlan:this.props.navigation.state.params.plManageMoneyPlan,
          projectId:this.props.navigation.state.params.projectId,
-         giftType:this.props.navigation.state.params.giftType
+         giftType:this.props.navigation.state.params.giftType,
+         taskId:this.props.navigation.state.params.taskId
         };
     }
     componentDidMount(){
@@ -37,10 +47,15 @@ import DatePicker from 'react-native-datepicker'
        let chaoheUrl=config.api.chaoheList+'projectId='+this.state.projectId;
        axios.get(chaoheUrl)
        .then((res)=>{
-           this.setState({
-            items: res.data.result
-           })
-       //console.log(res.data,chaoheUrl);
+           if(res.data.totalCounts){
+            this.setState({
+                items: res.data.result
+               })
+           }else{
+            this.state.items.push( {"detailId":'',"name":"","price":'',"deductionMoney":null,"conment":"","sendTime":"2018-05-28","payment":"","number":0,"priceDifferences":0,"oldDetailId":'',"buyId":''})
+            
+           }
+          
        
        })
 
@@ -78,12 +93,17 @@ import DatePicker from 'react-native-datepicker'
     }
     
     addChaohe=()=>{
-        let item = this.state.items;
-        let shuj = {"detailId":'',"name":"","price":'',"deductionMoney":null,"conment":"","sendTime":"2018-05-28","payment":"","number":0,"priceDifferences":0,"oldDetailId":'',"buyId":''};
-        item.push(shuj);
-        this.setState({
-            items:item
-        })
+        if(this.state.giftType==1056){
+            let item = this.state.items;
+            let shuj = {"detailId":'',"name":"","price":'',"deductionMoney":null,"conment":"","sendTime":"2018-05-28","payment":"","number":0,"priceDifferences":0,"oldDetailId":'',"buyId":''};
+            item.push(shuj);
+            this.setState({
+                items:item
+            })
+        }else{
+            Toast.info('您选择的是代金券，不能添加朝禾优品哦！')
+        }
+        
     };
     saveChaohe=()=>{
         //let savelists={...this.state.items}
@@ -92,7 +112,25 @@ import DatePicker from 'react-native-datepicker'
         
         
          let saveChaoheUrl=config.api.saveChaohe+'activityStore='+saveListData
-         console.log(saveChaoheUrl);
+        // console.log(saveChaoheUrl);
+    }
+    //删除朝禾优品
+    deleteChaohe=(e)=>{
+        Alert.alert('温馨提醒', '确定要删除吗?', [
+            {text: '取消'},
+            {
+                text: '确定', onPress: () =>{
+                let deleteChaoheUrl = config.api.deleteChaohe+'detailId='+e.detailId;
+                axios.post(deleteChaoheUrl)
+                .then((res)=>{
+                    console.log(deleteChaoheUrl,res.data.success);
+
+                })
+                
+                }
+                
+            }
+        ])
     }
       render(){
       let {giftnames,items,plManageMoneyPlan,deductionMoney}=this.state;
@@ -102,7 +140,7 @@ import DatePicker from 'react-native-datepicker'
             {
                 items.map((itemList,index)=>{
                     return(
-                        <View style={base.list}>
+                        <TouchableOpacity style={base.list} onLongPress={()=>{this.deleteChaohe(itemList)}}>
                             <View style={base.title}>
                             <View style={{flexDirection:'row',alignItems:'center'}}>
                                 <Text>礼品名称：</Text>
@@ -205,7 +243,7 @@ import DatePicker from 'react-native-datepicker'
                             }
                         />
                             </View>
-                        </View>
+                        </TouchableOpacity>
                     )
                 })
             }
@@ -224,8 +262,9 @@ import DatePicker from 'react-native-datepicker'
                   :''
             }
               
-              <Button title="下一步"
-            accessibilityLabel="下一步"  style={{width:100}} onPress={()=>this.props.navigation.navigate('Upload')} />
+              <Button title="下一步" style={{width:100,marginLeft:'3%'}} onPress={()=>this.props.navigation.navigate('Upload',{
+                taskId:this.state.taskId
+            })} />
            
             </TouchableOpacity>
             </View>
