@@ -26,7 +26,8 @@ import DatePicker from 'react-native-datepicker'
          items:[],
          giftnames:[],
          plManageMoneyPlan:this.props.navigation.state.params.plManageMoneyPlan,
-         projectId:this.props.navigation.state.params.projectId
+         projectId:this.props.navigation.state.params.projectId,
+         giftType:this.props.navigation.state.params.giftType
         };
     }
     componentDidMount(){
@@ -84,6 +85,15 @@ import DatePicker from 'react-native-datepicker'
             items:item
         })
     };
+    saveChaohe=()=>{
+        //let savelists={...this.state.items}
+        let savelist = JSON.stringify(this.state.items);
+        let saveListData=savelist.replace("},","}@");
+        
+        
+         let saveChaoheUrl=config.api.saveChaohe+'activityStore='+saveListData
+         console.log(saveChaoheUrl);
+    }
       render(){
       let {giftnames,items,plManageMoneyPlan,deductionMoney}=this.state;
           
@@ -204,11 +214,16 @@ import DatePicker from 'react-native-datepicker'
             
             <View>
             <TouchableOpacity style={[base.btnbox,{marginTop:15,marginHorizontal:'5%'}]}>
-              <Button title="保存" style={{width:100}} color="#ddd" type="primary" accessibilityLabel="下一步" onPress={()=>{
-                  Alert.alert('保存成功')
-console.log(this.state.items);
-
-                }}/>
+            {
+                this.state.giftType==1056?
+                <Button title="保存" style={{width:100}} color="#ddd" type="primary" accessibilityLabel="下一步" onPress={()=>{
+                    Alert.alert('保存成功');
+                    this.saveChaohe();
+  
+                  }}/>
+                  :''
+            }
+              
               <Button title="下一步"
             accessibilityLabel="下一步"  style={{width:100}} onPress={()=>this.props.navigation.navigate('Upload')} />
            
@@ -231,7 +246,7 @@ console.log(this.state.items);
   btnbox:{
     flexDirection:'row',
     width:'80%',
-    justifyContent:'space-between',
+    justifyContent:'center',
 
   },
   title:{

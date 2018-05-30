@@ -32,6 +32,7 @@ import axios from 'axios';
     componentDidMount(){
       let {projectId,taskId}=this.state;
       let loadingUrl=config.api.loading+'projectId='+projectId+'&taskId='+taskId;//流程加载
+     // console.log(loadingUrl);
       
       axios.get(loadingUrl)
       .then((res)=>{
@@ -49,7 +50,7 @@ import axios from 'axios';
       
     }
       render(){
-       console.log('projectId',this.state.projectId);
+       //console.log('projectId',this.state.projectId);
         
       return(
           <View>
@@ -81,7 +82,9 @@ import axios from 'axios';
             <Text>></Text>
             </TouchableOpacity>
             <TouchableOpacity style={add.item} onPress={()=>this.props.navigation.navigate('Buyinfo',{
-              plManageMoneyPlanBuyinfo:this.state.plManageMoneyPlanBuyinfo
+              plManageMoneyPlanBuyinfo:this.state.plManageMoneyPlanBuyinfo,
+              plManageMoneyPlan:this.state.plManageMoneyPlan,
+              projectId:this.state.projectId
             })}>
             <Text>购买信息</Text>
             <Text>></Text>

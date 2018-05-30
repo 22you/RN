@@ -106,9 +106,9 @@ import {
        +'&csInvestmentperson.alternatePhone='+alternatePhone+'&csInvestmentperson.cardtype='+cardtype+'&csInvestmentperson.cardnumber='+cardnumber+'&csInvestmentperson.birthDay='+birthDay+'&csInvestmentperson.postcode='+postcode
        +'&csInvestmentperson.selfemail='+selfemail+'&csInvestmentperson.personProperty='+personProperty
        +'&csInvestmentperson.postaddress='+postaddress+'&csInvestmentperson.belongedName='+global.user.userData.fullname
-       +'&csInvestmentperson.belongedId='+'global.user.userData.userIds'
-       +'&csInvestmentperson.departmentName='+departmentName+'&csInvestmentperson.departmentId='+departmentId;
-        // console.log(url);
+       +'&csInvestmentperson.belongedId='+global.user.userData.userIds
+       +'&csInvestmentperson.departmentName='+departmentName+'&csInvestmentperson.departmentId='+departmentId+'&csInvestmentperson.createrId='+global.user.userData.userIds;
+      //   console.log(url);
         
       axios.post(url)       
       .then((res)=>{
@@ -121,7 +121,7 @@ import {
   
       render(){
        //console.log(this.props.navigation.state.params.departmentName);
-       //console.log('当前用户是',global.user.userData.fullname);
+       //console.log('当前登记团队',this.state.departmentName);
        
        let {departmentId,departmentName}=this.state;
       return(

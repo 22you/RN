@@ -55,7 +55,10 @@ export default {
         companyBank:baseUrl+'api/list2SlBankAccount.do?',//转入我司开户行
         suggest:baseUrl+'api/saveCommentsProcessForm.do?',//保存意见与说明  传参：taskid  和commits
         chaoheList:baseUrl+'api/listByProIdPlActivityDetails.do?',//朝禾优品的列表 传参：
+        saveChaohe:baseUrl+'api/savePlActivityDetails.do?',//保存朝禾优品  传参
+        saveBuyinfo:baseUrl+'api/saveOrderInfoPlManageMoneyPlanBuyinfo.do?',//保存购买信息
         Progress:baseUrl+'/jbpmImage?',//流程示意图  传参：runid
+
         common: {
             uploadFile: baseUrl + 'api/uploadPhotoProduceHelper.do',//chaohe 身份证上传 mark
             uploadMaterial: baseUrl + 'uploadMaterialFileFormApi.do',//上传材料

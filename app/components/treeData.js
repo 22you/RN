@@ -24,8 +24,7 @@ export default class TreeNodes extends Component {
       arr:res.data
     })
     //console.log(Array.isArray(this.state.arr));
-    console.log(res.data);
-    
+ 
     
     }
   )
@@ -43,13 +42,23 @@ export default class TreeNodes extends Component {
           
                 <View style={{flexDirection:'row'}}>
                     <Icon name="chevron-circle-down" size={15} style={{marginRight:5,color:'#666'}} 
-                    onPress={()=>{this.setState({expanded:!this.state.expanded})}}/>
-                    <TouchableOpacity  onPress={()=>{this.setState({departmentName:item.text,departmentId:item.id})}}><Text style={{color:this.state.departmentId==item.id?'red':'#555'}} >{item.text}</Text></TouchableOpacity>
+                    onPress={()=>{this.setState({show:!this.state.expanded})}}/>
+                    <TouchableOpacity  onPress={()=>{
+                      this.props.selectNode(departmentName,departmentId)
+                      this.setState({
+
+                        departmentName:item.text,departmentId:item.id
+                      })}
+                      }><Text style={{color:this.state.departmentId==item.id?'red':'#555'}} >{item.text}</Text></TouchableOpacity>
                 </View>
-                {
+                
+                {/* {
                   this.state.expanded?
                   this.menu(item.children)
                   :<Text/>
+                } */}
+                {
+                  this.menu(item.children)
                 }
             </View>
             )

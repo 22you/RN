@@ -125,7 +125,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
           onPress={()=>{
             this.setIndex(item,index);
             this.overlayPullView.close();
-            console.log(item);
+          //  console.log(item);
             
           }}>
         <View>
