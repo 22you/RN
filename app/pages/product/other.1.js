@@ -10,12 +10,9 @@ import {
     ScrollView,
     Alert
   } from 'react-native';
-import {Button,Overlay,Label,Checkbox} from 'teaset'
-import Icon from 'react-native-vector-icons/FontAwesome';
+  import {Button} from 'teaset'
 import config from '../../common/config';
-import axios from 'axios';
-import TeamManageTree from '../../components/teamManageTree';
-import Tree from '../../components/treeItem';
+import axios from 'axios'
   export default class Other extends Component {
     static navigationOptions = {
       headerRight: (
@@ -30,7 +27,6 @@ import Tree from '../../components/treeItem';
           plManageMoneyPlan:this.props.navigation.state.params.plManageMoneyPlan,
           customerPrecidentName:'',
           customerPrecidentId:'',
-          teamManagers:[],
           teamManagerName:'',
           teamManagerId:'',
           belongsDepName:'',
@@ -40,9 +36,7 @@ import Tree from '../../components/treeItem';
           belongsTeamName:'',
           belongsTeamId:'',
           orderId:'',
-          taskId:this.props.navigation.state.params.taskId,
-          organization:[],
-          orgTeams:[],
+          taskId:this.props.navigation.state.params.taskId
         };
     }
     //保存其他信息
@@ -64,98 +58,39 @@ import Tree from '../../components/treeItem';
     //
     componentDidMount(){
      // console.log('others',this.props.navigation.state.params);
-      let {orderId}=this.props.navigation.state.params.plManageMoneyPlanBuyinfo;
+      let {orderId}=this.props.navigation.state.params.plManageMoneyPlanBuyinfo
       this.setState({
         plManageMoneyPlanBuyinfo:this.props.navigation.state.params.plManageMoneyPlanBuyinfo,
         orderId:orderId                       
       })
     }
-    
-
       render(){
-      let {teamManagers,teamManagerName,teamManagerId,belongsDepName,orderManagerName,belongsTeamName,organization,orgTeams}=this.state;
-      console.log('teamManagerName',teamManagerName,teamManagerId);
+      let {teamManagerName,belongsDepName,orderManagerName,belongsTeamName}=this.state;
       
-      let overlayView = (
-        <Overlay.PullView side='bottom' modal={false} ref={v => this.overlayPullView = v}>
-          <TeamManageTree 
-           selectTeamManager={(teamManagers)=>{
-             let teamManagerNameArr=[],teamManagerIdArr=[];
-             teamManagers.map((item,index)=>{
-              // console.log(item.text);
-              teamManagerNameArr.push(item.text)
-              teamManagerIdArr.push(item.value)
-             })
-             this.setState({
-              teamManagerName:teamManagerNameArr.join(','),
-              teamManagerId:teamManagerIdArr.join(',')
-              // customerPrecidentId:item.value
-             })
-             this.overlayPullView.close();
-            }
-             }/>
-        </Overlay.PullView>
-      );
-      let overlayDepart=(
-        <Overlay.PullView side='bottom' modal={false} ref={v => this.overlayDepart = v}>
-          <Tree treePass={(departmentName,departmentId)=>{
-            this.setState({belongsDepName:departmentName,belongsDepId:departmentId}), 
-            this.overlayDepart.close();
-          }}/>
-        </Overlay.PullView>
-      );
-      let overlayOrderManager=(
-        <Overlay.PullView side='bottom' modal={false} ref={v => this.overlayPullView = v}>
-          <TeamManageTree  selectTeamManager={(teamManagers)=>{
-            let orderManagerNameArr=[],orderManagerIdArr=[];
-             teamManagers.map((item,index)=>{
-              // console.log(item.text);
-              orderManagerNameArr.push(item.text)
-              orderManagerIdArr.push(item.value)
-             })
-             this.setState({
-              orderManagerName:orderManagerNameArr.join(','),
-              orderManagerId:orderManagerIdArr.join(',')
-              // customerPrecidentId:item.value
-             })
-             this.overlayPullView.close();
-          }}/>
-        </Overlay.PullView>
-      );
-      let overlayTeam=(
-        <Overlay.PullView side='bottom' modal={false} ref={v => this.overlayTeam = v}>
-            <Tree treePass={(departmentName,departmentId)=>{
-            this.setState({belongsTeamName:departmentName,belongsTeamId:departmentId}), 
-            this.overlayTeam.close();
-          }}/>
-         </Overlay.PullView>
-      )
       return(
           <View style={{ backgroundColor:'#fff',}}>
             <ScrollView style={{marginBottom:20}}>
             <KeyboardAwareScrollView>
             <DefaultInput value={global.user.userData.fullname} name={'客户经理'} style={base.item} disabled />
       
+             {/* <DefaultInput placeholder={'请选择'} name={'团队经理'} style={base.item} value={teamManagerName}
+					              onChangeText={()=>{
+
+                        }} /> */}
             <TouchableOpacity style={base.item} onPress={()=>Overlay.show(overlayView)}>
               <Text>团队经理</Text>
               <Text>{teamManagerName} ></Text>
             </TouchableOpacity>
-            {/* 所属部门就直接的是一级组织架构 */}
-            <TouchableOpacity style={base.item} onPress={()=>Overlay.show(overlayDepart)}>
-              <Text>所属部门</Text>
-              <Text>{belongsDepName} ></Text>
-            </TouchableOpacity>
-            {/* 挂单经理 可多选 */}
-            <TouchableOpacity style={base.item} onPress={()=>Overlay.show(overlayOrderManager)}>
-              <Text>挂单经理</Text>
-              <Text>{orderManagerName} ></Text>
-            </TouchableOpacity>
-
-            {/* 所属团队就直接的是一级组织架构 */}
-             <TouchableOpacity style={base.item} onPress={()=>Overlay.show(overlayTeam)}>
-              <Text>所属团队</Text>
-              <Text>{belongsTeamName} ></Text>
-            </TouchableOpacity>
+          
+            <DefaultInput placeholder={'请选择'} name={'所属部门'} style={base.item} value={belongsDepName}
+					              onChangeText={()=>{}} />
+          
+            <DefaultInput placeholder={'请选择'} name={'接单经理'} style={base.item} value={orderManagerName}
+					              onChangeText={()=>{}} />
+      
+            <DefaultInput placeholder={'请选择'} name={'所属团队'} style={base.item} value={belongsTeamName}
+					              onChangeText={()=>{}} />
+           
             
             <View>
             <TouchableOpacity style={[base.btnbox,{marginTop:15,marginHorizontal:'12%'}]}>

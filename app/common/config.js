@@ -47,6 +47,7 @@ export default {
         customers:baseUrl+'api/listCsInvestmentperson.do?',//我的客户列表userIds
         bankInfo:baseUrl+'api/queryListEnterpriseBank.do?',//客户银行信息列表
         department:baseUrl+'api/treeOrganization.do?',//所属团队/所属部门  传参：type=undefined   branchCompanyId=undefined
+        orgTeam:baseUrl+'api/dialogAppUser.do?',//客户经理，团队经理  传参： start limit type=undefined orgId
         InvestorInfo:baseUrl+'api/getCsInvestmentperson.do?',//投资人信息 传参：investId
         investOrder:baseUrl+'api/saveOrderInfoPlManageMoneyPlanBuyinfo.do?',//客户信息和订单绑定  传参：plManageMoneyPlanBuyinfo.orderId（订单id）csInvestmentperson.investId（客户id）csInvestmentperson.investName（客户姓名）
         investBankOrder:baseUrl+'api/saveOrderInfoPlManageMoneyPlanBuyinfo.do?',//投资人账户和订单的绑定 传参：订单id  plManageMoneyPlanBuyinfo.orderId  银行账户id  enterpriseBank.id
