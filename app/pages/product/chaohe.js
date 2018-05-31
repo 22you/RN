@@ -31,7 +31,8 @@ export default class Chaohe extends Component {
          projectId:this.props.navigation.state.params.projectId,
          giftType:this.props.navigation.state.params.giftType,
          taskId:this.props.navigation.state.params.taskId,
-         oldDetailId:''
+         oldDetailId:'',
+         orderManagerNameArr:''
         };
     }
     componentDidMount(){
@@ -153,7 +154,7 @@ export default class Chaohe extends Component {
     }
       render(){
       let {giftnames,items,plManageMoneyPlan,deductionMoney}=this.state;
-      console.log(this.state.items);
+     // console.log(this.state.items);
           
       return(
             <ScrollView style={{marginBottom:10}}>

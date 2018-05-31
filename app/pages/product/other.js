@@ -41,6 +41,7 @@ import Tree from '../../components/treeItem';
           belongsTeamId:'',
           orderId:'',
           taskId:this.props.navigation.state.params.taskId,
+          projectId:this.props.navigation.state.params.projectId,
           organization:[],
           orgTeams:[],
         };
@@ -164,7 +165,8 @@ import Tree from '../../components/treeItem';
               onPress={()=>this.props.navigation.navigate('Buyinfo',{
                                           plManageMoneyPlanBuyinfo:this.state.plManageMoneyPlanBuyinfo,
                                           plManageMoneyPlan:this.state.plManageMoneyPlan,
-                                          taskId:this.state.taskId
+                                          taskId:this.state.taskId,
+                                          projectId:this.props.navigation.state.params.projectId
                                         })} />
            
             </TouchableOpacity>

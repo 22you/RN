@@ -37,7 +37,9 @@ import {
           cardText:'',
           shopName:'',
           orderId:'',
-          investId:''
+          investId:'',
+          plManageMoneyPlan:this.props.navigation.state.params.plManageMoneyPlan,
+          projectId:this.props.navigation.state.params.projectId,
         };
     }
     //保存  客户信息和订单的绑定
@@ -218,6 +220,8 @@ import {
               <Button title="下一步"  style={{width:100}} accessibilityLabel="下一步"  onPress={()=>this.props.navigation.navigate('Investor',{
                  enterpriseBank:this.state.enterpriseBank,
                  plManageMoneyPlanBuyinfo:this.state.plManageMoneyPlanBuyinfo,
+                 plManageMoneyPlan:this.state.plManageMoneyPlan,
+                 projectId:this.state.projectId
                  
               })} />
             </TouchableOpacity>

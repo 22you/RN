@@ -52,7 +52,7 @@ import axios from 'axios';
       
     }
       render(){
-       console.log('giftType',this.state.giftType);
+      // console.log('giftType',this.state.giftType);
         
       return(
           <View>
@@ -65,6 +65,8 @@ import axios from 'axios';
               csInvestmentperson:this.state.csInvestmentperson,
               plManageMoneyPlanBuyinfo:this.state.plManageMoneyPlanBuyinfo,
               enterpriseBank:this.state.enterpriseBank,
+              projectId:this.state.projectId,
+              plManageMoneyPlan:this.state.plManageMoneyPlan
               })}>
             <Text>基本信息</Text>
             <Text>></Text>
@@ -73,7 +75,9 @@ import axios from 'axios';
               
               enterpriseBank:this.state.enterpriseBank,
               plManageMoneyPlanBuyinfo:this.state.plManageMoneyPlanBuyinfo,
-              taskId:this.state.taskId
+              taskId:this.state.taskId,
+              projectId:this.state.projectId,
+              plManageMoneyPlan:this.state.plManageMoneyPlan
               })}>
             <Text>投资人账户</Text>
             <Text>></Text>

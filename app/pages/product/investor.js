@@ -35,6 +35,8 @@ import Icon from 'react-native-vector-icons/FontAwesome';
           plManageMoneyPlanBuyinfo:null,
           banklists:[],
          index:0,
+         projectId:this.props.navigation.state.params.projectId,
+         plManageMoneyPlan:this.props.navigation.state.params.plManageMoneyPlan
         };
     }
     //投资人账户和订单绑定
@@ -50,6 +52,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
       })
     }
     componentDidMount(){
+      console.log('dnag',this.state.plManageMoneyPlan);
       
      let {orderId}=this.props.navigation.state.params.plManageMoneyPlanBuyinfo;
      let {name,bankid,accountnum,bankOutletsName,enterpriseid,id}=this.props.navigation.state.params.enterpriseBank;
@@ -155,6 +158,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
       );
        //
       let {name,bankid,accountnum,bankOutletsName,bankname,customBanks,plManageMoneyPlanBuyinfo}=this.state;
+       //console.log(this.state.projectId);
         
       return(
           <View style={{ backgroundColor:'#fff',}}>
@@ -174,7 +178,9 @@ import Icon from 'react-native-vector-icons/FontAwesome';
               <Button title="保存" style={{width:100}} color="#ddd" type="primary"  onPress={()=>this.saveBankOrder()}/>
               <Button title="下一步"  style={{width:100}} onPress={()=>{
                     this.props.navigation.navigate('Other',{
-                      plManageMoneyPlanBuyinfo:plManageMoneyPlanBuyinfo
+                      plManageMoneyPlan:this.state.plManageMoneyPlan,
+                      plManageMoneyPlanBuyinfo:plManageMoneyPlanBuyinfo,
+                      projectId:this.state.projectId
                     });
                    // console.log(this.props.navigation.navigate);
                 }} />
