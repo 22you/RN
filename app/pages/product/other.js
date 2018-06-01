@@ -16,6 +16,7 @@ import config from '../../common/config';
 import axios from 'axios';
 import TeamManageTree from '../../components/teamManageTree';
 import Tree from '../../components/treeItem';
+import Toast from 'teaset/components/Toast/Toast';
   export default class Other extends Component {
     static navigationOptions = {
       headerRight: (
@@ -28,6 +29,7 @@ import Tree from '../../components/treeItem';
         this.state = {
           plManageMoneyPlanBuyinfo:null,
           plManageMoneyPlan:this.props.navigation.state.params.plManageMoneyPlan,
+          plManageMoneyPlanOtherInfo:this.props.navigation.state.params.plManageMoneyPlanOtherInfo,
           customerPrecidentName:'',
           customerPrecidentId:'',
           teamManagers:[],
@@ -52,12 +54,14 @@ import Tree from '../../components/treeItem';
                   +global.user.userData.userIds+'&plManageMoneyPlanOtherInfo.teamManagerName='+this.state.teamManagerName+'&plManageMoneyPlanOtherInfo.teamManagerId='
                   +this.state.teamManagerId+'&plManageMoneyPlanOtherInfo.belongsDepName='+this.state.belongsDepName+'&plManageMoneyPlanOtherInfo.belongsDepId='
                   +this.state.belongsDepId+'&plManageMoneyPlanOtherInfo.orderManagerName='+this.state.orderManagerName+'&plManageMoneyPlanOtherInfo.orderManagerId='
-                  +this.state.orderManagerId+'&plManageMoneyPlanOtherInfo.belongsTeamName='+this.state.belongsTeamNam+'&plManageMoneyPlanOtherInfo.belongsTeamId='
-                  +this.state.belongsTeamId+'&orderId='+this.state.orderId;
-   // console.log(otherUrl);
+                  +this.state.orderManagerId+'&plManageMoneyPlanOtherInfo.belongsTeamName='+this.state.belongsTeamName+'&plManageMoneyPlanOtherInfo.belongsTeamId='
+                  +this.state.belongsTeamId+'&orderId='+this.state.orderId+'&plManageMoneyPlanOtherInfo.id='+this.state.plManageMoneyPlanOtherInfo.id;
+    //console.log(otherUrl);
     axios.post(otherUrl)
     .then((res)=>{
-    console.log(res.data);
+      if(res.data.success){
+        Toast.success("保存成功！")
+      }
     
     })
     
@@ -66,16 +70,21 @@ import Tree from '../../components/treeItem';
     componentDidMount(){
      // console.log('others',this.props.navigation.state.params);
       let {orderId}=this.props.navigation.state.params.plManageMoneyPlanBuyinfo;
+      let {teamManagerName,belongsDepName,orderManagerName,belongsTeamName}=this.state.plManageMoneyPlanOtherInfo;
       this.setState({
         plManageMoneyPlanBuyinfo:this.props.navigation.state.params.plManageMoneyPlanBuyinfo,
-        orderId:orderId                       
+        orderId:orderId,
+        teamManagerName:teamManagerName,
+        belongsDepName:belongsDepName,
+        orderManagerName:orderManagerName,
+        belongsTeamName:belongsTeamName
       })
     }
     
 
       render(){
-      let {teamManagers,teamManagerName,teamManagerId,belongsDepName,orderManagerName,belongsTeamName,organization,orgTeams}=this.state;
-      console.log('teamManagerName',teamManagerName,teamManagerId);
+      let {teamManagers,teamManagerName,teamManagerId,belongsDepName,orderManagerName,belongsTeamName,belongsTeamId,organization,orgTeams}=this.state;
+     // console.log('orderid',this.props.navigation.state.params.plManageMoneyPlanBuyinfo.orderId);
       
       let overlayView = (
         <Overlay.PullView side='bottom' modal={false} ref={v => this.overlayPullView = v}>

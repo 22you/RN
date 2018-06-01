@@ -36,7 +36,8 @@ import Icon from 'react-native-vector-icons/FontAwesome';
           banklists:[],
          index:0,
          projectId:this.props.navigation.state.params.projectId,
-         plManageMoneyPlan:this.props.navigation.state.params.plManageMoneyPlan
+         plManageMoneyPlan:this.props.navigation.state.params.plManageMoneyPlan,
+         plManageMoneyPlanOtherInfo:this.props.navigation.state.params.plManageMoneyPlanOtherInfo
         };
     }
     //投资人账户和订单绑定
@@ -180,7 +181,8 @@ import Icon from 'react-native-vector-icons/FontAwesome';
                     this.props.navigation.navigate('Other',{
                       plManageMoneyPlan:this.state.plManageMoneyPlan,
                       plManageMoneyPlanBuyinfo:plManageMoneyPlanBuyinfo,
-                      projectId:this.state.projectId
+                      projectId:this.state.projectId,
+                      plManageMoneyPlanOtherInfo:this.state.plManageMoneyPlanOtherInfo
                     });
                    // console.log(this.props.navigation.navigate);
                 }} />

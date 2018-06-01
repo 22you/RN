@@ -33,7 +33,7 @@ import axios from 'axios';
     componentDidMount(){
       let {projectId,taskId}=this.state;
       let loadingUrl=config.api.loading+'projectId='+projectId+'&taskId='+taskId;//流程加载
-     // console.log(loadingUrl);
+      console.log(loadingUrl);
       
       axios.get(loadingUrl)
       .then((res)=>{
@@ -43,6 +43,7 @@ import axios from 'axios';
             plManageMoneyPlan:res.data.data.plManageMoneyPlan,
             enterpriseBank:res.data.data.enterpriseBank,
             plManageMoneyPlanBuyinfo:res.data.data.plManageMoneyPlanBuyinfo,
+            plManageMoneyPlanOtherInfo:res.data.data.plManageMoneyPlanOtherInfo,
             giftType:res.data.data.plManageMoneyPlanBuyinfo.giftType
           })
         }
@@ -66,7 +67,8 @@ import axios from 'axios';
               plManageMoneyPlanBuyinfo:this.state.plManageMoneyPlanBuyinfo,
               enterpriseBank:this.state.enterpriseBank,
               projectId:this.state.projectId,
-              plManageMoneyPlan:this.state.plManageMoneyPlan
+              plManageMoneyPlan:this.state.plManageMoneyPlan,
+              plManageMoneyPlanOtherInfo:this.state.plManageMoneyPlanOtherInfo
               })}>
             <Text>基本信息</Text>
             <Text>></Text>
@@ -77,7 +79,8 @@ import axios from 'axios';
               plManageMoneyPlanBuyinfo:this.state.plManageMoneyPlanBuyinfo,
               taskId:this.state.taskId,
               projectId:this.state.projectId,
-              plManageMoneyPlan:this.state.plManageMoneyPlan
+              plManageMoneyPlan:this.state.plManageMoneyPlan,
+              plManageMoneyPlanOtherInfo:this.state.plManageMoneyPlanOtherInfo
               })}>
             <Text>投资人账户</Text>
             <Text>></Text>
@@ -86,7 +89,8 @@ import axios from 'axios';
                plManageMoneyPlanBuyinfo:this.state.plManageMoneyPlanBuyinfo,
                plManageMoneyPlan:this.state.plManageMoneyPlan,
                projectId:this.state.projectId,
-               taskId:this.state.taskId
+               taskId:this.state.taskId,
+               plManageMoneyPlanOtherInfo:this.state.plManageMoneyPlanOtherInfo
             })}>
             <Text>其他信息</Text>
             <Text>></Text>
@@ -95,7 +99,8 @@ import axios from 'axios';
               plManageMoneyPlanBuyinfo:this.state.plManageMoneyPlanBuyinfo,
               plManageMoneyPlan:this.state.plManageMoneyPlan,
               projectId:this.state.projectId,
-              taskId:this.state.taskId
+              taskId:this.state.taskId,
+              
             })}>
             <Text>购买信息</Text>
             <Text>></Text>
