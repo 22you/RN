@@ -22,7 +22,7 @@ export default class Tree extends Component {
     this.setState({
       arr:res.data
     })
-    //console.log(Array.isArray(this.state.arr));
+    console.log(treeUrl,Array.isArray(this.state.arr));
     
     }
   )
@@ -31,40 +31,46 @@ export default class Tree extends Component {
 
 
 
- menu=(arr)=>{
+//  menu=(arr)=>{
     
-     return arr.map((item,index)=>{
-        if(item.children) { 
-        return ( 
-            <View style={{paddingLeft:10,marginTop:5}} >
+//      return arr.map((item,index)=>{
+//         if(item.children) { 
+//         return ( 
+//             <View style={{paddingLeft:10,marginTop:5}} >
           
-                <View style={{flexDirection:'row'}}>
-                    <Icon name="chevron-circle-down" size={15} style={{marginRight:5,color:'#666'}} 
-                    onPress={()=>{
-                      console.log();
-                    }}/>
-                    <TouchableOpacity  onPress={()=>{this.setState({departmentName:item.text,departmentId:item.id})}}><Text style={{color:this.state.departmentId==item.id?'red':'#555'}} >{item.text}</Text></TouchableOpacity>
-                </View>
-                {this.menu(item.children)}
-            </View>
-            )
+//                 <View style={{flexDirection:'row'}}>
+//                     <Icon name="chevron-circle-down" size={15} style={{marginRight:5,color:'#666'}} 
+//                     onPress={()=>{
+//                       item.expanded=!item.expanded;
+//                       let newarr=this.state.arr.map((option,i)=>{
+//                         return option.id==item.id?item:option;
+//                       })
+//                       this.setState({
+//                         arr:newarr
+//                       })
+//                     }}/>
+//                     <TouchableOpacity  onPress={()=>{this.setState({departmentName:item.text,departmentId:item.id})}}><Text style={{color:this.state.departmentId==item.id?'red':'#555'}} >{item.text}</Text></TouchableOpacity>
+//                 </View>
+//                 {
+//                   item.expanded?this.menu(item.children):'' 
+//                 }
+//             </View>
+//             )
           
-        }else{
-            return (
-            <View style={{paddingLeft:20,marginTop:5}}>
-             <TouchableOpacity onPress={()=>{this.setState({departmentName:item.text,departmentId:item.id})}}><Text style={{color:this.state.departmentId==item.id?'red':'#555'}}>{item.text}</Text></TouchableOpacity>
-            </View>
-        )
-        }
-      })
-  }
+//         }else{
+//             return (
+//             <View style={{paddingLeft:20,marginTop:5}}>
+//              <TouchableOpacity onPress={()=>{this.setState({departmentName:item.text,departmentId:item.id})}}><Text style={{color:this.state.departmentId==item.id?'red':'#555'}}>{item.text}</Text></TouchableOpacity>
+//             </View>
+//         )
+//         }
+//       })
+//   }
   render() {
     let {arr,departmentName,departmentId}=this.state;
-    //console.log(arr);
-    
     return (
       <ScrollView style={{paddingHorizontal:10,paddingVertical:20,backgroundColor:'#fff'}}>
-         {this.menu(arr)}
+         {/* {this.menu(arr)} */}
          <Button style={{marginVertical:20}} title='确认' type='primary' 
              onPress={()=>{this.props.treePass(departmentName,departmentId)}}
          />

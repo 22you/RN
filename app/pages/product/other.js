@@ -56,7 +56,6 @@ import Toast from 'teaset/components/Toast/Toast';
                   +this.state.belongsDepId+'&plManageMoneyPlanOtherInfo.orderManagerName='+this.state.orderManagerName+'&plManageMoneyPlanOtherInfo.orderManagerId='
                   +this.state.orderManagerId+'&plManageMoneyPlanOtherInfo.belongsTeamName='+this.state.belongsTeamName+'&plManageMoneyPlanOtherInfo.belongsTeamId='
                   +this.state.belongsTeamId+'&orderId='+this.state.orderId+'&plManageMoneyPlanOtherInfo.id='+this.state.plManageMoneyPlanOtherInfo.id;
-    //console.log(otherUrl);
     axios.post(otherUrl)
     .then((res)=>{
       if(res.data.success){
@@ -68,7 +67,6 @@ import Toast from 'teaset/components/Toast/Toast';
     }
     //
     componentDidMount(){
-     // console.log('others',this.props.navigation.state.params);
       let {orderId}=this.props.navigation.state.params.plManageMoneyPlanBuyinfo;
       let {teamManagerName,belongsDepName,orderManagerName,belongsTeamName}=this.state.plManageMoneyPlanOtherInfo;
       this.setState({

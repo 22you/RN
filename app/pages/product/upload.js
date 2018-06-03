@@ -6,15 +6,17 @@ import {
     Text,
     View,
     TouchableOpacity,
+    NativeModules
   } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-  export default class Upload extends Component {
-    static navigationOptions = {
+ export default class Upload extends Component {
+    static navigationOptions =({navigation})=>({
         headerRight: (
-          <View style={{}}> <Icon style={{marginRight:20}} name="plus-circle" size={15} color="#fff" /></View>
-   
+          <TouchableOpacity onPress={()=>navigation.state.params.navigatePress()}> 
+          <Icon style={{marginRight:20}} name="plus-circle" size={20} color="#fff" />
+         </TouchableOpacity>
         )
-      };
+      });
     constructor(props) {
 
         super(props);
@@ -24,9 +26,20 @@ import Icon from 'react-native-vector-icons/FontAwesome';
         }
          
     }
+
+    componentDidMount(){
+      this.props.navigation.setParams({navigatePress:this.getFlie})
+    }
+
+  
+
+    getFlie = ()=>{
+      NativeModules.OpenFile.getFilenName((url)=>{
+        console.log("url",url);
+      });
+    }
    
       render(){
-        console.log("props",this.props);
         
       return(
           <View>

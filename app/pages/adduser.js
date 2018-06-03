@@ -38,7 +38,7 @@ import {
             <Text>个人基本信息</Text>
             <Text>></Text>
             </TouchableOpacity>
-            <TouchableOpacity style={add.item} onPress={()=>this.props.navigation.navigate('UploadId',{'userinfo':this.state.userinfo})}>
+            <TouchableOpacity style={add.item} onPress={()=>this.props.navigation.navigate('CustomerIdInfo',{'userinfo':this.state.userinfo})}>
             <Text>身份证信息</Text>
             <Text>></Text>
             </TouchableOpacity>

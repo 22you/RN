@@ -69,6 +69,85 @@ import {
   
       })
     }
+    uploadImage=(isFont)=>{
+    
+      let options = {
+        title: '请选择',
+           cancelButtonTitle: '取消',
+           takePhotoButtonTitle: '拍照',
+         chooseFromLibraryButtonTitle: '选择相册',
+           quality: 0.2,
+           allowsEditing: false,
+           noData: false,
+           storageOptions: {
+               skipBackup: true,
+               path: 'images'
+           }
+       };
+       ImagePicker.showImagePicker(options, (response) => {
+         console.log('Response = ', response);
+   
+         if (response.didCancel) {
+           console.log('User cancelled image picker')
+         }
+         else if (response.error) {
+   
+             console.log('ImagePicker Error: ', response.error);
+         }
+         else if (response.customButton) {
+   
+             console.log('User tapped custom button: ', response.customButton);
+         }
+         else {
+           let source = {uri: response.uri};
+             
+                 if (isFont) {
+                   this.setState({
+                     myBankFront: {uri: response.uri},
+                   })
+               } else {
+                   this.setState({
+                    myBankBack: {uri: response.uri},
+                   })
+               }
+             //上传图片
+              this.uploadIdcard(response.uri,isFont);
+         }
+     })
+     }
+
+    /**
+     * 上传身份证图片
+     */
+    uploadIdcard = (uri, isFont) => {
+     
+      let formData = new FormData();
+      const file = { uri: uri, type: 'multipart/form-data', name: 'image.jpg' };
+      formData.append("fileUpload", file);
+  
+      let url;
+      if (isFont) {
+          url = config.api.common.uploadFile + "?mark=cs_person_sfzz."+this.props.navigation.state.params.investId;
+      } else {
+          url = config.api.common.uploadFile + "?mark=cs_person_sfzf."+this.props.navigation.state.params.investId;
+      }
+  
+    fetch(url,{
+      method: 'POST',
+      headers: {
+          'Content-Type': 'multipart/form-data',
+      },
+      body: formData
+  })
+  .then((response) =>console.log(response.json())    )//fileid 保存的时候传过去
+  
+  .catch(function (error) {
+      console.log('获取用户登录数据报错信息: ' + error.message);
+      Toast.message("请检查网络连接");
+  })
+     
+
+  }
     _saveBank=()=>{
       let {openType,bankid,bankOutletsName,openCurrency,name,accountnum,accountType} =this.state;
       let saveBankUrl=config.api.saveBank+'enterpriseBank.openType='+openType+'&enterpriseBank.bankid='+bankid
@@ -137,7 +216,7 @@ import {
              <Text style={{marginTop:matchsize(15),width:matchsize(300),textAlign:'center'}}>银行卡正面</Text>
             </View>
             <View>
-             <TouchableOpacity style={{flexDirection:'row',justifyContent:'center'}} onPress={() => this.uploadImage(true)} >
+             <TouchableOpacity style={{flexDirection:'row',justifyContent:'center'}} onPress={() => this.uploadImage(false)} >
               <Image style={{width:matchsize(300),height:matchsize(200)}}  source={this.state.myBankBack} />
              </TouchableOpacity>
              <Text style={{marginTop:matchsize(15),width:matchsize(300),textAlign:'center'}}>银行卡反面</Text>

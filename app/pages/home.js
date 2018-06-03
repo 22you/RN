@@ -10,7 +10,8 @@ import {
   Platform,
   TouchableOpacity,
   Alert,
-  StatusBar
+  StatusBar,
+  
 } from 'react-native'
 import {Button,Toast} from 'teaset'
 import matchsize from '../components/matchsize'
@@ -98,6 +99,7 @@ _goProBase=(item)=>{
 }
 
 
+
   render() {
     const {banners}=this.state;
     const bannerlist=banners.length?
@@ -172,7 +174,9 @@ _goProBase=(item)=>{
            </View>
           </View>
          <View style={{paddingVertical:matchsize(40),marginHorizontal:'3%'}}>
-          <Button  title="立即购买" type="primary"  style={{height:matchsize(70)}} onPress={()=>{this._goProBase(this.state.item)}} />
+          <Button  title="立即购买" type="primary"  style={{height:matchsize(70)}} onPress={()=>{
+              this._goProBase(this.state.item)
+            }} />
          </View>  
          </View>
         <View style={{flex:3,backgroundColor:'steelblue',alignItems:'center'}}>

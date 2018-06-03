@@ -43,7 +43,7 @@ import axios from 'axios';
             plManageMoneyPlan:res.data.data.plManageMoneyPlan,
             enterpriseBank:res.data.data.enterpriseBank,
             plManageMoneyPlanBuyinfo:res.data.data.plManageMoneyPlanBuyinfo,
-            plManageMoneyPlanOtherInfo:res.data.data.plManageMoneyPlanOtherInfo,
+            plManageMoneyPlanOtherInfo:res.data.data.plManageMoneyPlanOtherInfo?res.data.data.plManageMoneyPlanOtherInfo:'',
             giftType:res.data.data.plManageMoneyPlanBuyinfo.giftType
           })
         }

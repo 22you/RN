@@ -13,7 +13,7 @@ import {
   import matchsize from '../../components/matchsize'
   import ImagePicker from 'react-native-image-picker';
   import axios from 'axios';
-  export default class Userbase extends Component {
+  export default class CustomerIdInfo extends Component {
    
     constructor(props) {
         super(props);
@@ -24,7 +24,7 @@ import {
         };
     }
     componentDidMount(){
-        // console.log( this.props.navigation.state.params);
+         console.log( this.props.navigation.state.params);
 
     }
     uploadImage=(isFont)=>{
@@ -82,7 +82,6 @@ import {
       let formData = new FormData();
       const file = { uri: uri, type: 'multipart/form-data', name: 'image.jpg' };
       formData.append("fileUpload", file);
-      //console.log("formdata", formData.get('myUpload'))
   
       let url;
       if (isFont) {
@@ -90,10 +89,7 @@ import {
       } else {
           url = config.api.common.uploadFile + "?mark=cs_person_sfzf."+this.props.navigation.state.params.investId;
       }
-    // let config = {
-    //     Accept: 'Application/json',
-    //     'Content-Type': 'multipart/form-data',
-    // };
+ 
     fetch(url,{
       method: 'POST',
       headers: {
@@ -107,31 +103,7 @@ import {
       console.log('获取用户登录数据报错信息: ' + error.message);
       Toast.message("请检查网络连接");
   })
-      // .then((responseText) => {
-      //     console.log('上传的身份证的返回的数据内容=====>',responseText.data)
-      //     if (responseText.success == true) {
-      //           if (isFont) {
-      //             this.setState({
-      //               myIdcardFront: {uri: responseText.uri},
-      //             })
-      //         } else {
-      //             this.setState({
-      //               myIdcardReverse: {uri: responseText.uri},
-      //             })
-      //         }
-      //     } else {
-      //         return Alert.alert('akns');
-
-
-      //     }
-
-      // }).catch((error) => {
-      //     console.log(error);
-          
-      //     return Alert.alert('上传失败');
-
-
-      // });
+ 
 
   }
 
@@ -146,7 +118,7 @@ import {
             <TouchableOpacity style={{flexDirection:'row',width:'100%',justifyContent:'center'}} onPress={() => this.uploadImage(true)} >
               <Image style={{width:matchsize(400),height:matchsize(260)}}  source={this.state.myIdcardFront} />
             </TouchableOpacity>
-            <Text style={{marginTop:matchsize(15)}}>身份证正面</Text>
+            <Text style={{marginTop:matchsize(15)}}  >身份证正面</Text>
            
             </View>
             <View style={base.item}>

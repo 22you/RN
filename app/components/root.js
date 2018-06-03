@@ -32,6 +32,8 @@ import Progress from '../pages/product/progress'//流程示意图
 // 新增用户模块？
 import Userbase from '../pages/user/userBase'//新增客户-基本信息
 import AddBank from '../pages/user/addBank'//添加银行卡
+import CustomerIdInfo from '../pages/customer/customerIdInfo'//查看客户/修改客户身份证信息
+
 import '../Global'
 import { TabNavigator,TabBarBottom,StackNavigator } from 'react-navigation'
 import {
@@ -47,8 +49,8 @@ import {
 
 
 const Navigator=TabNavigator({
-  // Tree:{
-  //   screen:Tree,
+  // Upload:{
+  //   screen:Upload,
   //   navigationOptions:{
   //     tabBarLabel:'测试',
   //     tabBarIcon:   ({tintColor})=>(<Icon name="home" size={matchsize(35)} color={tintColor}/>)
@@ -243,6 +245,12 @@ const Addnavigator=StackNavigator({
       screen:Progress,
       navigationOptions:{
         headerTitle:"流程示意图"
+      }
+    },
+    CustomerIdInfo:{
+      screen:CustomerIdInfo,
+      navigationOptions:{
+        headerTitle:"客户身份证信息"
       }
     }
 },{

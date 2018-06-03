@@ -142,8 +142,11 @@ export default class Chaohe extends Component {
                 let deleteChaoheUrl = config.api.deleteChaohe+'detailId='+e.detailId;
                 axios.post(deleteChaoheUrl)
                 .then((res)=>{
-                    this.state.items.splice(i,1)
-                    console.log(deleteChaoheUrl,res.data.success);
+                   this.state.items.splice(i,1)
+                    this.setState({
+                        items:this.state.items
+                    })
+                    
 
                 })
                 
@@ -154,7 +157,7 @@ export default class Chaohe extends Component {
     }
       render(){
       let {giftnames,items,plManageMoneyPlan,deductionMoney}=this.state;
-     // console.log(this.state.items);
+      console.log(this.state.items);
           
       return(
             <ScrollView style={{marginBottom:10}}>
