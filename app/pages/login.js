@@ -6,7 +6,8 @@ import {
     View,
     Image,
     TouchableOpacity,
-    Alert
+    Alert,
+    ScrollView
   } from 'react-native';
   import {Input,Button,Label} from 'teaset'
   import Icon from 'react-native-vector-icons/FontAwesome';
@@ -64,7 +65,7 @@ import axios from 'axios';
    
       render(){
           return(
-              <View style={add.box}>
+              <ScrollView style={add.box}>
                  <View style={{flexDirection:'row',justifyContent:'center',paddingVertical:matchsize(40)}}>
                  <Icon size={40}   name="user-circle"/>
                  </View>
@@ -87,7 +88,7 @@ import axios from 'axios';
                     </Button>
                 </View>
                 <Toast ref="toast"/>
-              </View>
+              </ScrollView>
           )
       }
   }

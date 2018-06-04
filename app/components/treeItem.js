@@ -22,7 +22,6 @@ export default class Tree extends Component {
     this.setState({
       arr:res.data
     })
-    console.log('jsiyss',treeUrl,Array.isArray(this.state.arr));
     
     }
   )

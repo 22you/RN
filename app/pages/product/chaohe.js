@@ -123,7 +123,6 @@ export default class Chaohe extends Component {
         let saveListData=savelist.replace(/},/g,"}@");
         let listdatas=saveListData.slice(1,saveListData.length-1);
         let saveChaoheUrl=config.api.saveChaohe+'activityStore='+listdatas+'&orderId='+this.state.projectId;
-        //console.log(saveChaoheUrl);
         
          axios.post(saveChaoheUrl)
          .then((res)=>{
@@ -157,12 +156,11 @@ export default class Chaohe extends Component {
     }
       render(){
       let {giftnames,items,plManageMoneyPlan,deductionMoney}=this.state;
-      console.log(this.state.items);
           
       return(
             <ScrollView style={{marginBottom:10}}>
             {
-                items.map((itemList,index)=>{
+                items.length > 0 && items.map((itemList,index)=>{
                     return(
                         <TouchableOpacity style={base.list} onLongPress={()=>{this.deleteChaohe(itemList,index)}}>
                             <View style={base.title}>
@@ -181,9 +179,7 @@ export default class Chaohe extends Component {
                                         itemList.price = item.price;
                                         itemList.oldDetailId=item.oldDetailId
                                         this.setValue(itemList,index);
-                                        // this.setState({
-                                        //     oldDetailId:item.oldDetailId
-                                        // })
+                                       
                                        
                                     }}
                                     />
@@ -286,7 +282,7 @@ export default class Chaohe extends Component {
                     this.saveChaohe();
   
                   }}/>
-                  :''
+                  :<Text/>
             }
               
               <Button title="下一步" style={{width:100,marginLeft:'3%'}} onPress={()=>this.props.navigation.navigate('Upload',{
