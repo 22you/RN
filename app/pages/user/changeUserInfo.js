@@ -14,6 +14,7 @@ import {
   import {Button} from 'teaset';
   import DatePicker from 'react-native-datepicker';
   import Icon from 'react-native-vector-icons/FontAwesome';
+  import axios from 'axios';
   export default class ChangeUserInfo extends Component {
     static navigationOptions =({navigation})=>( {
       headerRight: (
@@ -30,7 +31,8 @@ import {
           cardType:'身份证',
           userName:"",
           disabled:true,
-          userinfo:null
+          userinfo:this.props.navigation.state.params.userinfo,
+          investName:'',
         };
         if(false){
            this.state={
@@ -43,12 +45,7 @@ import {
     onSelectedmaritalStatus=(item, index) => {
       this.setState({maritalStatusValue: item})
     }
-    componentWillMount(){
-      this.setState({
-        userinfo:this.props.navigation.state.params.userinfo
-      })
-      
-      
+    componentDidMount(){
       this.props.navigation.setParams({navigatePress:this.clickFinishButton})
     }
     clickFinishButton = ()=> {
@@ -57,34 +54,57 @@ import {
       })
 
   }
+  _saveUserChange=()=>{
+    let {
+      investId,cardtypes,investName,sex,cellphone,alternatePhone,cardtype,cardnumber,birthDay,postcode,selfemail,personProperty,postaddress,belongedName,departmentName,departmentId
+        }=this.state.userinfo;
+    //保存修改的信息
+    let url = config.api.userbase+'csInvestmentperson.investName='+investName+'&csInvestmentperson.sex='+sex+'&csInvestmentperson.cellphone='+cellphone
+    +'&csInvestmentperson.alternatePhone='+alternatePhone+'&csInvestmentperson.cardtype='+cardtype+'&csInvestmentperson.cardnumber='+cardnumber+'&csInvestmentperson.birthDay='+birthDay+'&csInvestmentperson.postcode='+postcode
+    +'&csInvestmentperson.selfemail='+selfemail+'&csInvestmentperson.personProperty='+personProperty
+    +'&csInvestmentperson.postaddress='+postaddress+'&csInvestmentperson.belongedName='+global.user.userData.fullname
+    +'&csInvestmentperson.belongedId='+global.user.userData.userIds
+    +'&csInvestmentperson.departmentName='+departmentName+'&csInvestmentperson.departmentId='+departmentId+'&csInvestmentperson.createrId='+global.user.userData.userIds+'&csInvestmentperson.investId='+investId;
+     console.log(url);
+     
+   axios.post(url)       
+   .then((res)=>{
+     if(res.data.success){
+      this.setState({disabled:true});
+     }
+   })
+    
+    //保存修改的信息
+  }
       render(){
-        console.log(this.state.userinfo);
        let {investName,cellphone,alternatePhone,cardnumber,belongedName,cardtypevalue,postcode,selfemail,birthDay,customSettime,sexvalue,shopName,postaddress,customerNature}=this.state.userinfo;
-        return(
+       return(
           <View style={{ backgroundColor:'#fff',}}>
             <ScrollView style={{marginBottom:matchsize(20)}}>
             <KeyboardAwareScrollView>
-            <DefaultInput name={'客户姓名'} style={base.item}
-            value={investName}
-            disabled
-            />
-           <DefaultInput name={'性别'} style={base.item} value={sexvalue} disabled/>
-
-            <DefaultInput placeholder={'请输入...'} name={'主联系电话'} style={base.item}
-            value={cellphone}
+            <DefaultInput name={'客户姓名'} style={base.item}    value={investName}  disabled  />
+            <DefaultInput name={'性别'} style={base.item} value={sexvalue} disabled/>
+            <DefaultInput placeholder={'请输入...'} name={'主联系电话'} style={base.item}  value={cellphone}
             disabled={this.state.disabled}
 					              onChangeText={(text)=>{
                           this.setState({
-                            cellphone: text
+                            userinfo:{
+                              ...this.state.userinfo,
+                              cellphone: text
+                            }
+                            
                         })
                         }} />
 
              <DefaultInput placeholder={'请输入...'} name={'备用电话'} style={base.item}
-             value={alternatePhone}
-             disabled={this.state.disabled}
+             value={alternatePhone}     disabled={this.state.disabled}
 					              onChangeText={(text)=>{
                           this.setState({
-                            subPhone: text
+                            userinfo:{
+                              ...this.state.userinfo,
+                              alternatePhone: text
+                            }
+                            
                         })
                         }} />
 
@@ -99,11 +119,11 @@ import {
               mode="date"
               placeholder="请选择日期"
               format="YYYY-MM-DD"
-              minDate=""
+              minDate={null}
               disabled={true}
               maxDate={new Date()}
               confirmBtnText="确定"
-              showIcon="false"
+              showIcon={false}
               cancelBtnText="取消"
               customStyles={{
                 dateIcon: {
@@ -116,7 +136,13 @@ import {
                 }
           
         }}
-        onDateChange={(date) => {this.setState({date: date})}}
+        onDateChange={(date) => {this.setState({
+          userinfo:{
+            ...this.state.userinfo,
+            date: date
+          }
+          
+        })}}
       />
             </TouchableOpacity>
       
@@ -125,32 +151,39 @@ import {
             disabled={this.state.disabled}
 					              onChangeText={(text)=>{
                           this.setState({
-                            userName1: text
+                            userinfo:{
+                              ...this.state.userinfo,
+                              postcode: text
+                            }
+                            
                         })
-                        Alert.alert(text)
                         }} />
              <DefaultInput placeholder={'请输入...'} name={'电子邮箱'} style={base.item}
              value={selfemail}
              disabled={this.state.disabled}
 					              onChangeText={(text)=>{
                           this.setState({
-                            userEmail: text
+                            userinfo:{
+                              ...this.state.userinfo,
+                              selfemail: text
+                            }
+                            
                         })
                         }} />
-             <DefaultInput name={'客户性质'} style={base.item}
-             value={customerNature==="1"?'员工':'客户'}
-             disabled />
+             <DefaultInput name={'客户性质'} style={base.item} value={customerNature==="1"?'员工':'客户'} disabled />
              <DefaultInput placeholder={'请输入...'} name={'通讯地址'} style={base.item}
              value={postaddress}
              disabled={this.state.disabled}
 					              onChangeText={(text)=>{
                           this.setState({
-                            userAddress: text
+                            userinfo:{
+                              ...this.state.userinfo,
+                              postaddress: text
+                            }
+                           
                         })
                         }} />
-            <DefaultInput  name={'客户授权人'} style={base.item}
-            value={belongedName}
-            disabled/>
+            <DefaultInput  name={'客户授权人'} style={base.item}    value={belongedName}     disabled/>
             <DefaultInput 
             placeholder={'请输入...'} 
             name={'登记团队'} 
@@ -159,7 +192,11 @@ import {
             disabled={this.state.disabled}
 					  onChangeText={(text)=>{
                           this.setState({
-                            userTeam: text
+                            userinfo:{
+                              ...this.state.userinfo,
+                              shopName: text
+                            }
+                           
                         })
                         }} />
          {
@@ -169,7 +206,10 @@ import {
            :
            <TouchableOpacity style={{marginTop:15,marginHorizontal:'5%'}}>
               <Button title="保存" type="primary"
-            accessibilityLabel="保存" onPress={()=>this.setState({disabled:true})} />
+                accessibilityLabel="保存" 
+                onPress={()=>{
+                  this._saveUserChange()
+                  }} />
             </TouchableOpacity>
           } 
             

@@ -27,7 +27,6 @@ import {
        }
        componentWillMount(){
          let customersUrl=config.api.customers+'userIds='+global.user.userData.userIds;//查询客户列表
-         console.log('查询客户列表',customersUrl);
           axios.get(customersUrl)
           .then((res)=>{
               if(res.data.success){
