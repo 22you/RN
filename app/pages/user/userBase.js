@@ -69,6 +69,7 @@ import {
         cardtypes,investName,sex,cellphone,alternatePhone,cardtype,cardnumber,birthDay,postcode,selfemail,personProperty,postaddress,belongedName,departmentName,departmentId
           }=this.state;
       let regMobile = /^(((13[0-9]{1})|(17[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+      let resIdCard = /^(^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$)|(^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])((\d{4})|\d{3}[Xx])$)$/;
       if(!investName){
         Alert.alert('请输入客户姓名！')
         return false;
@@ -101,6 +102,12 @@ import {
           Alert.alert("请输入正确手机号码");
           return null;
       }
+    if(cardtype==309){
+      if(!resIdCard.test(cardnumber)){
+        Alert.alert('请输入正确的身份证号码')
+      }
+    }
+    
 
        let url = config.api.userbase+'csInvestmentperson.investName='+investName+'&csInvestmentperson.sex='+sex+'&csInvestmentperson.cellphone='+cellphone
        +'&csInvestmentperson.alternatePhone='+alternatePhone+'&csInvestmentperson.cardtype='+cardtype+'&csInvestmentperson.cardnumber='+cardnumber+'&csInvestmentperson.birthDay='+birthDay+'&csInvestmentperson.postcode='+postcode

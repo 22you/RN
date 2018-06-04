@@ -29,9 +29,6 @@ import {
       })
     }
       render(){
-        console.log("props",this.state.userinfo);
-        
-        
       return(
           <View>
             <TouchableOpacity style={add.item} onPress={()=>this.props.navigation.navigate('ChangeUserInfo',{'userinfo':this.state.userinfo})}>

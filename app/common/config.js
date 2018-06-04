@@ -10,7 +10,7 @@ const baseUrl = serverUrl + 'hurong_proj_gd_chsy2/'
 //  const baseUrl = serverUrl + 'hurong_proj_gd_chsy/'
 
 export default {
-    imageUrl: serverUrl + '',
+    imageUrl: baseUrl + '',
     serverURL: 'http://erp.xiaojinqb.com/mobile/indexmobile.html?recommendCode=',
 
     environmental: {
@@ -60,7 +60,8 @@ export default {
         saveChaohe:baseUrl+'api/savePlActivityDetails.do?',//保存朝禾优品  传参
         saveBuyinfo:baseUrl+'api/saveOrderInfoPlManageMoneyPlanBuyinfo.do?',//保存购买信息
         deleteChaohe:baseUrl+'api/multiDelPlActivityDetails.do?',//删除朝禾优品
-        Progress:baseUrl+'/jbpmImage?',//流程示意图  传参：runid
+        Progress:baseUrl+'/jbpmImage?',//流程示意图  传参：runid,
+        checkIdcard:baseUrl+'api/seePersonCsInvestmentperson.do?',//查看客户的身份证信息  传参：investId
 
         common: {
             uploadFile: baseUrl + 'api/uploadPhotoProduceHelper.do',//chaohe 身份证上传 mark

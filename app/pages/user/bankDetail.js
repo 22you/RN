@@ -58,8 +58,8 @@ import {
                 openCurrency:res.data.data.openCurrency,
                 name:res.data.data.name,
                 accountnum:res.data.data.accountnum,
-                myBankFront:{uri:config.baseUrl+res.data.data.personYHKFUrl},
-                myBankBack:{uri:config.baseUrl+res.data.data.personYHKZUrl}
+                myBankFront:{uri:config.imageUrl+res.data.data.personYHKFUrl},
+                myBankBack:{uri:config.imageUrl+res.data.data.personYHKZUrl}
                 //{uri:res.data.data.uripersonYHKFUrl},
                 
             })
@@ -191,6 +191,7 @@ import {
      // this.props.navigation.navigate('BankList')
     }
       render(){
+      console.log(this.state.myBankBack);
       
         let {banks,bankid,openType,bankOutletsName,openCurrency,name,accountnum,accountType} =this.state;
         

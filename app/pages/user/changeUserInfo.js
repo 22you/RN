@@ -58,8 +58,8 @@ import {
 
   }
       render(){
-       // console.log(this.state.userinfo);
-       let {investName,cellphone,alternatePhone,cardnumber,belongedName,postcode,selfemail,birthDay,customSettime,sexvalue,shopName,postaddress,customerNature}=this.state.userinfo;
+        console.log(this.state.userinfo);
+       let {investName,cellphone,alternatePhone,cardnumber,belongedName,cardtypevalue,postcode,selfemail,birthDay,customSettime,sexvalue,shopName,postaddress,customerNature}=this.state.userinfo;
         return(
           <View style={{ backgroundColor:'#fff',}}>
             <ScrollView style={{marginBottom:matchsize(20)}}>
@@ -88,7 +88,7 @@ import {
                         })
                         }} />
 
-        <DefaultInput  name={'证件类型'} style={base.item}  disabled   value={cardnumber}/>             
+        <DefaultInput  name={'证件类型'} style={base.item}  disabled   value={cardtypevalue}/>             
 
         <DefaultInput name={'证件号码'} style={base.item}  disabled   value={cardnumber}/>
 

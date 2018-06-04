@@ -13,7 +13,7 @@ import {
   import matchsize from '../../components/matchsize'
   import ImagePicker from 'react-native-image-picker';
   import axios from 'axios';
-  export default class CustomerIdInfo extends Component {
+  export default class Userbase extends Component {
    
     constructor(props) {
         super(props);
@@ -21,10 +21,22 @@ import {
         this.state = {
           myIdcardFront:require('../../images/idcard-zh.png'),
           myIdcardReverse:require('../../images/idcard-fan.png'),
+          userinfo:this.props.navigation.state.params.userinfo,
+          investId:this.props.navigation.state.params.userinfo.investId
         };
     }
     componentDidMount(){
-         console.log( this.props.navigation.state.params);
+         //查询用户的身份证信息
+         let idCardUrl=config.api.checkIdcard+'investId='+this.state.investId;
+         axios.get(idCardUrl)
+         .then((res)=>{
+            this.setState({
+                myIdcardReverse:{uri:config.imageUrl+res.data.data.personSFZFUrl},
+                myIdcardFront:{uri:config.imageUrl+res.data.data.personSFZZUrl}
+            })
+
+         })
+         //查询用户的身份证信息
 
     }
     uploadImage=(isFont)=>{
@@ -69,7 +81,7 @@ import {
                   })
               }
             //上传图片
-             this.uploadIdcard(response.uri,isFont);
+             this.uploadIdcard(response.uri,isFont,response.fileName);
         }
     })
     }
@@ -77,19 +89,19 @@ import {
     /**
      * 上传身份证图片
      */
-    uploadIdcard = (uri, isFont) => {
-     
+    uploadIdcard = (uri, isFont,fileName) => {
       let formData = new FormData();
       const file = { uri: uri, type: 'multipart/form-data', name: 'image.jpg' };
       formData.append("fileUpload", file);
-  
+      let extendname = fileName.split(".");
       let url;
       if (isFont) {
-          url = config.api.common.uploadFile + "?mark=cs_person_sfzz."+this.props.navigation.state.params.investId;
+          url = config.api.common.uploadFile + "?mark=cs_investmentperson_sfzz."+this.state.investId+"&extendname=."+extendname[1];
       } else {
-          url = config.api.common.uploadFile + "?mark=cs_person_sfzf."+this.props.navigation.state.params.investId;
+          url = config.api.common.uploadFile + "?mark=cs_investmentperson_sfzf."+this.state.investId+"&extendname=."+extendname[1];
       }
- 
+  console.log(url);
+  
     fetch(url,{
       method: 'POST',
       headers: {
@@ -97,18 +109,20 @@ import {
       },
       body: formData
   })
-  .then((response) =>console.log(response.json())    )//fileid 保存的时候传过去
+  .then(
+    (response) =>console.log(response.json())    
+  )//fileid 保存的时候传过去
   
   .catch(function (error) {
       console.log('获取用户登录数据报错信息: ' + error.message);
       Toast.message("请检查网络连接");
   })
- 
+   
 
   }
 
   _upload_card=()=>{
-     this.props.navigation.navigate('AddBank',{investId:this.props.navigation.state.params.investId})
+     this.props.navigation.navigate('BankList',{userinfo:this.state.userinfo})
   }
       render(){
       return(
@@ -118,7 +132,7 @@ import {
             <TouchableOpacity style={{flexDirection:'row',width:'100%',justifyContent:'center'}} onPress={() => this.uploadImage(true)} >
               <Image style={{width:matchsize(400),height:matchsize(260)}}  source={this.state.myIdcardFront} />
             </TouchableOpacity>
-            <Text style={{marginTop:matchsize(15)}}  >身份证正面</Text>
+            <Text style={{marginTop:matchsize(15)}}>身份证正面</Text>
            
             </View>
             <View style={base.item}>

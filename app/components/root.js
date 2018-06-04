@@ -9,7 +9,7 @@ import Adduser from '../pages/adduser' //查看客户信息
 import Mycustomer from '../pages/customer/myCustomer'//我的客户
 import Buypro from '../pages/buypro'//产品购买
 
-import UploadId from '../pages/user/uploadId'//上传身份证证件
+
 
 import Investor from '../pages/product/investor'//投资人账户
 import Other from '../pages/product/other'  //其他信息
@@ -32,6 +32,7 @@ import Progress from '../pages/product/progress'//流程示意图
 // 新增用户模块？
 import Userbase from '../pages/user/userBase'//新增客户-基本信息
 import AddBank from '../pages/user/addBank'//添加银行卡
+import UploadId from '../pages/user/uploadId'//上传身份证证件
 import CustomerIdInfo from '../pages/customer/customerIdInfo'//查看客户/修改客户身份证信息
 
 import BankDetail from '../pages/user/bankDetail'
