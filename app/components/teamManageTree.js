@@ -18,6 +18,7 @@ export default class TeamManageTree extends Component {
   }
   componentDidMount(){
     let treeUrl=config.api.department+'type=undefined&branchCompanyId=undefined';
+    //console.log(treeUrl);
     
     axios.get(treeUrl)
     .then((res)=>{

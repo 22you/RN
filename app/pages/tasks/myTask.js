@@ -25,7 +25,6 @@ import axios from 'axios';
        }
        componentDidMount(){
          let url=config.api.mytodo+'?processName=ALL&start=0&limit=25&userIds='+global.user.userData.userIds;
-         console.log(url);
          axios.get(url)
          .then((res)=>{
              this.setState({

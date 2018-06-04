@@ -3,11 +3,11 @@
 // const baseUrl = serverUrl + 'gd_chsy/'
 
 //杨岳涛
-// const serverUrl = 'http://172.16.10.222:8064/'
-// const baseUrl = serverUrl + 'hurong_proj_gd_chsy2/'
+const serverUrl = 'http://172.16.10.222:8064/'
+const baseUrl = serverUrl + 'hurong_proj_gd_chsy2/'
 //
- const serverUrl = 'http://112.93.116.168:8181/'
- const baseUrl = serverUrl + 'hurong_proj_gd_chsy/'
+//  const serverUrl = 'http://112.93.116.168:8181/'
+//  const baseUrl = serverUrl + 'hurong_proj_gd_chsy/'
 
 export default {
     imageUrl: serverUrl + '',
@@ -45,8 +45,8 @@ export default {
         start:baseUrl+'api/startTurnoverCustomerFlow2ProcessActivity.do?',//理财购买流程启动
         loading:baseUrl+'api/getTurnoverInfoBpSpecialInterest.do?',//理财购买流程加载//传参：projectId  slTaskId
         customers:baseUrl+'api/listCsInvestmentperson.do?',//我的客户列表userIds
-        // bankInfo:baseUrl+'api/queryListEnterpriseBank.do?',//客户银行信息列表
-        bankInfo:baseUrl+'api/findEnterpriseBank.do?',//客户银行信息列表
+        bankInfo:baseUrl+'api/queryListEnterpriseBank.do?',//客户银行信息列表
+        bankdetail:baseUrl+'api/findEnterpriseBank.do?',//客户银行详细信息
         department:baseUrl+'api/treeOrganization.do?',//所属团队/所属部门  传参：type=undefined   branchCompanyId=undefined
         orgTeam:baseUrl+'api/dialogAppUser.do?',//客户经理，团队经理  传参： start limit type=undefined orgId
         InvestorInfo:baseUrl+'api/getCsInvestmentperson.do?',//投资人信息 传参：investId

@@ -16,7 +16,7 @@ import {
   import config from '../../common/config';
   import axios from 'axios';
   
-  export default class AddBank extends Component {
+  export default class BankDetail extends Component {
     static navigationOptions = {
       headerRight: (
         <View style={{height: 44,width: 55,justifyContent: 'center',paddingRight:15} }/>
@@ -36,14 +36,37 @@ import {
           openCurrency:'',//银行开户类别
           name:'',//开户名称
           accountnum:'',//银行卡号
-          banks:[]
-
+          banks:[],
+          id:this.props.navigation.state.params.id
 
         };
     }
     componentDidMount(){
+       
+        
       //查询银行卡信息
-      //let bankDetail=config.api.bankdetail+'id='+
+      let bankDetail=config.api.bankdetail+'id='+this.state.id;
+      axios.get(bankDetail)
+      .then((res)=>{
+          if(res.data.success){
+            this.setState({
+                openType:res.data.data.openType,
+                accountType:res.data.data.accountType,
+                bankid:res.data.data.bankid,
+                bankName:res.data.data.bankName,
+                bankOutletsName:res.data.data.bankOutletsName,
+                openCurrency:res.data.data.openCurrency,
+                name:res.data.data.name,
+                accountnum:res.data.data.accountnum,
+                myBankFront:{uri:config.baseUrl+res.data.data.personYHKFUrl},
+                myBankBack:{uri:config.baseUrl+res.data.data.personYHKZUrl}
+                //{uri:res.data.data.uripersonYHKFUrl},
+                
+            })
+          }
+       
+
+      })
       //查询银行卡信息
       
       //获取银行卡下拉列表
@@ -155,10 +178,8 @@ import {
                       +'&enterpriseBank.bankOutletsName='+bankOutletsName+'&enterpriseBank.openCurrency='+openCurrency
                       +'&enterpriseBank.name='+name+'&enterpriseBank.accountnum='+accountnum+'&enterpriseBank.accountType='+accountType
                       +'&enterpriseBank.isEnterprise=1&enterpriseBank.isInvest=3&enterpriseBank.enterpriseid='+this.props.navigation.state.params.investId;
-     console.log(saveBankUrl);
      axios.post(saveBankUrl)
      .then((res)=>{
-       console.log(res.data);
        this.props.navigation.navigate('Home')
        
      })

@@ -53,7 +53,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
       })
     }
     componentDidMount(){
-      console.log('dnag',this.state.plManageMoneyPlan);
+     // console.log('dnag',this.state.plManageMoneyPlan);
       
      let {orderId}=this.props.navigation.state.params.plManageMoneyPlanBuyinfo;
      let {name,bankid,accountnum,bankOutletsName,enterpriseid,id}=this.props.navigation.state.params.enterpriseBank;
@@ -85,6 +85,8 @@ import Icon from 'react-native-vector-icons/FontAwesome';
       })
       //查询投资人的银行卡列表
       let investBankUrl=config.api.bankInfo+'id='+enterpriseid+'&isEnterpriseStr=1&isInvest=3&start=0&limit=25'
+      console.log(investBankUrl);
+      
       axios.get(investBankUrl)
       .then((res)=>{
         let banklists=[];

@@ -31,7 +31,7 @@ import axios from 'axios';
     componentDidMount(){
       let {investId}=this.state.userinfo; 
       let bankUrl=config.api.bankInfo+'id='+investId+'&isEnterpriseStr=1&isInvest=3&start=0&limit=25'
-      console.log('bankUrl',bankUrl);
+      //console.log('bankUrl',bankUrl);
       axios.get(bankUrl)
       .then((res)=>{
           if(res.data.totalProperty){
@@ -54,7 +54,7 @@ import axios from 'axios';
                   <FlatList
                     data={bankdata}
                     renderItem={
-                        ({item}) => <BankItem  cardNum={item.accountnum} cardUser={item.name} cardTitle={item.bankname}  {...this.props}/>
+                        ({item}) => <BankItem  cardNum={item.accountnum} cardUser={item.name} cardTitle={item.bankname} id={item.id}  {...this.props}/>
                     }
                     />
                     <TouchableOpacity style={add.addbtn} onPress={()=>this.props.navigation.navigate('AddBank',{investId:this.state.investId})}>

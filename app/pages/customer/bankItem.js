@@ -14,7 +14,7 @@ import {
             <LinearGradient start={{x: 0.25, y: 0.25}} end={{x: 0.75, y: 0.75}} colors={['#ff6162', '#ff8181']} style={add.bankbox}
            
             >
-            <TouchableOpacity  onPress={()=>this.props.navigation.navigate('AddBank',{...this.props})}>
+            <TouchableOpacity  onPress={()=>this.props.navigation.navigate('BankDetail',{id:this.props.id})}>
             <View>
                 <Text style={{letterSpacing:matchsize(5),color:'#fff',fontSize:matchsize(36)}}>{this.props.cardTitle}</Text>
                  {/* <Text style={{color:'#fff'}}>zhao shang yin hang</Text> */}

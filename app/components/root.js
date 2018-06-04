@@ -34,6 +34,8 @@ import Userbase from '../pages/user/userBase'//新增客户-基本信息
 import AddBank from '../pages/user/addBank'//添加银行卡
 import CustomerIdInfo from '../pages/customer/customerIdInfo'//查看客户/修改客户身份证信息
 
+import BankDetail from '../pages/user/bankDetail'
+
 import '../Global'
 import { TabNavigator,TabBarBottom,StackNavigator } from 'react-navigation'
 import {
@@ -251,6 +253,12 @@ const Addnavigator=StackNavigator({
       screen:CustomerIdInfo,
       navigationOptions:{
         headerTitle:"客户身份证信息"
+      }
+    },
+    BankDetail:{
+      screen:BankDetail,
+      navigationOptions:{
+        headerTitle:'银行卡详细信息'
       }
     }
 },{
