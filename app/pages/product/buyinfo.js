@@ -199,7 +199,7 @@ import matchsize from '../../components/matchsize';
                           })
                         }} />
             <TouchableOpacity style={base.item}>
-                <Text>进账日期</Text>
+                <Text><Text style={{color: '#FF1737'}}>*</Text>进账日期</Text>
                 <DatePicker
                 //  disabled={true}
                   date={buyDatetime}

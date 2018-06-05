@@ -38,7 +38,9 @@ import {
           accountnum:'',//银行卡号
           banks:[],
           id:this.props.navigation.state.params.id,
-          enterpriseid:''
+          enterpriseid:'',
+          companyId:'',
+          remarks:''
         };
     }
     componentDidMount(){
@@ -58,7 +60,9 @@ import {
                 accountnum:res.data.data.accountnum,
                 myBankFront:{uri:config.imageUrl+res.data.data.personYHKFUrl},
                 myBankBack:{uri:config.imageUrl+res.data.data.personYHKZUrl},
-                enterpriseid:res.data.data.enterpriseid
+                enterpriseid:res.data.data.enterpriseid,
+                companyId:res.data.data.companyId,
+                remarks:res.data.data.remarks
                 
             })
           }
@@ -133,7 +137,7 @@ import {
                    })
                }
              //上传图片
-              this.uploadIdcard(response.uri,isFont);
+              this.uploadIdcard(response.uri,isFont,response.fileName);
          }
      })
      }
@@ -141,7 +145,7 @@ import {
     /**
      * 上传银行卡图片
      */
-    uploadIdcard = (uri, isFont) => {
+    uploadIdcard = (uri, isFont,fileName) => {
      
       let formData = new FormData();
       const file = { uri: uri, type: 'multipart/form-data', name: 'image.jpg' };
@@ -171,11 +175,12 @@ import {
 
   }
     _saveBank=()=>{
-      let {openType,bankid,bankOutletsName,openCurrency,name,accountnum,accountType} =this.state;
-      let saveBankUrl=config.api.changeBank+'enterpriseBank.openType='+openType+'&enterpriseBank.bankid='+bankid
+      let {openType,bankid,bankOutletsName,openCurrency,name,accountnum,accountType,id,enterpriseid,companyId,remarks} =this.state;
+      let saveBankUrl=config.api.changeBank+'enterpriseBank.openType='+openType+'&enterpriseBank.bankid='+bankid+'&enterpriseBank.remarks='+remarks
                       +'&enterpriseBank.bankOutletsName='+bankOutletsName+'&enterpriseBank.openCurrency='+openCurrency
                       +'&enterpriseBank.name='+name+'&enterpriseBank.accountnum='+accountnum+'&enterpriseBank.accountType='+accountType
-                      +'&enterpriseBank.isEnterprise=1&enterpriseBank.isInvest=3&enterpriseBank.enterpriseid='+this.state.enterpriseid;
+                      +'&enterpriseBank.iscredit=1&enterpriseBank.isEnterprise=1&enterpriseBank.isInvest=3&enterpriseBank.enterpriseid='+enterpriseid+'&enterpriseBank.id='+id+'&enterpriseBank.companyId='+companyId;
+    console.log(saveBankUrl);
     
      axios.post(saveBankUrl)
      .then((res)=>{

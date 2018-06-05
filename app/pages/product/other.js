@@ -145,7 +145,7 @@ import Toast from 'teaset/components/Toast/Toast';
             <DefaultInput value={global.user.userData.fullname} name={'客户经理'} style={base.item} disabled />
       
             <TouchableOpacity style={base.item} onPress={()=>Overlay.show(overlayView)}>
-              <Text>团队经理</Text>
+              <Text> <Text style={{color: '#FF1737'}}>*</Text>团队经理</Text>
               <Text>{teamManagerName} ></Text>
             </TouchableOpacity>
             {/* 所属部门就直接的是一级组织架构 */}

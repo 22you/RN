@@ -133,7 +133,13 @@ import axios from 'axios';
             <Text>流程示意图</Text>
             <Text>></Text>
             </TouchableOpacity>
-           
+            <View style={{flexDirection:'row',justifyContent:'center',paddingVertical:20}}>
+              <Button title="提交到下一步" style={{width:150}} color="#ddd" type="primary"  
+                 onPress={()=>{
+                   
+                   }
+                   }/>
+            </View>
             </ScrollView>
            
           </View>
