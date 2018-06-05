@@ -155,7 +155,6 @@ import {
                       +'&enterpriseBank.bankOutletsName='+bankOutletsName+'&enterpriseBank.openCurrency='+openCurrency
                       +'&enterpriseBank.name='+name+'&enterpriseBank.accountnum='+accountnum+'&enterpriseBank.accountType='+accountType
                       +'&enterpriseBank.isEnterprise=1&enterpriseBank.isInvest=3&enterpriseBank.enterpriseid='+this.props.navigation.state.params.investId;
-     console.log(saveBankUrl);
      axios.post(saveBankUrl)
      .then((res)=>{
        console.log(res.data);

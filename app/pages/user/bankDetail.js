@@ -37,13 +37,11 @@ import {
           name:'',//开户名称
           accountnum:'',//银行卡号
           banks:[],
-          id:this.props.navigation.state.params.id
-
+          id:this.props.navigation.state.params.id,
+          enterpriseid:''
         };
     }
     componentDidMount(){
-       
-        
       //查询银行卡信息
       let bankDetail=config.api.bankdetail+'id='+this.state.id;
       axios.get(bankDetail)
@@ -59,8 +57,8 @@ import {
                 name:res.data.data.name,
                 accountnum:res.data.data.accountnum,
                 myBankFront:{uri:config.imageUrl+res.data.data.personYHKFUrl},
-                myBankBack:{uri:config.imageUrl+res.data.data.personYHKZUrl}
-                //{uri:res.data.data.uripersonYHKFUrl},
+                myBankBack:{uri:config.imageUrl+res.data.data.personYHKZUrl},
+                enterpriseid:res.data.data.enterpriseid
                 
             })
           }
@@ -141,19 +139,19 @@ import {
      }
 
     /**
-     * 上传身份证图片
+     * 上传银行卡图片
      */
     uploadIdcard = (uri, isFont) => {
      
       let formData = new FormData();
       const file = { uri: uri, type: 'multipart/form-data', name: 'image.jpg' };
       formData.append("fileUpload", file);
-  
+      let extendname = fileName.split(".");
       let url;
       if (isFont) {
-          url = config.api.common.uploadFile + "?mark=cs_person_sfzz."+this.props.navigation.state.params.investId;
+          url = config.api.common.uploadFile + "?mark=cs_investmentSlect_yhkz."+this.props.navigation.state.params.investId+this.state.investId+"&extendname=."+extendname[1];;
       } else {
-          url = config.api.common.uploadFile + "?mark=cs_person_sfzf."+this.props.navigation.state.params.investId;
+          url = config.api.common.uploadFile + "?mark=cs_investmentSlect_yhkf."+this.props.navigation.state.params.investId+this.state.investId+"&extendname=."+extendname[1];
       }
   
     fetch(url,{
@@ -174,10 +172,11 @@ import {
   }
     _saveBank=()=>{
       let {openType,bankid,bankOutletsName,openCurrency,name,accountnum,accountType} =this.state;
-      let saveBankUrl=config.api.saveBank+'enterpriseBank.openType='+openType+'&enterpriseBank.bankid='+bankid
+      let saveBankUrl=config.api.changeBank+'enterpriseBank.openType='+openType+'&enterpriseBank.bankid='+bankid
                       +'&enterpriseBank.bankOutletsName='+bankOutletsName+'&enterpriseBank.openCurrency='+openCurrency
                       +'&enterpriseBank.name='+name+'&enterpriseBank.accountnum='+accountnum+'&enterpriseBank.accountType='+accountType
-                      +'&enterpriseBank.isEnterprise=1&enterpriseBank.isInvest=3&enterpriseBank.enterpriseid='+this.props.navigation.state.params.investId;
+                      +'&enterpriseBank.isEnterprise=1&enterpriseBank.isInvest=3&enterpriseBank.enterpriseid='+this.state.enterpriseid;
+    
      axios.post(saveBankUrl)
      .then((res)=>{
        this.props.navigation.navigate('Home')
@@ -188,13 +187,9 @@ import {
        
      })
   
-     // this.props.navigation.navigate('BankList')
     }
       render(){
-      console.log(this.state.myBankBack);
-      
         let {banks,bankid,openType,bankOutletsName,openCurrency,name,accountnum,accountType} =this.state;
-        
         let {cardTitle,cardUser}=this.props.navigation.state.params;
           return(
            <View style={{backgroundColor:'#fff',paddingBottom:30}}>

@@ -42,6 +42,7 @@ export default {
         dictionary:baseUrl+'api/loadItemByNodeKeyDictionary.do?', //单级数据字典 nodeKey
         bankList:baseUrl+'api/getAllBankListCsBank.do',//银行卡列表
         saveBank:baseUrl+'api/addEnterpriseBank.do?',//保存银行卡基本信息
+        changeBank:baseUrl+'api/updateEnterpriseBank.do?',//修改银行卡基本信息 传参：
         start:baseUrl+'api/startTurnoverCustomerFlow2ProcessActivity.do?',//理财购买流程启动
         loading:baseUrl+'api/getTurnoverInfoBpSpecialInterest.do?',//理财购买流程加载//传参：projectId  slTaskId
         customers:baseUrl+'api/listCsInvestmentperson.do?',//我的客户列表userIds

@@ -82,18 +82,14 @@ import {
       let formData = new FormData();
       const file = { uri: uri, type: 'multipart/form-data', name: 'image.jpg' };
       formData.append("fileUpload", file);
-      //console.log("formdata", formData.get('myUpload'))
-  
+      let extendname = fileName.split(".");  
       let url;
       if (isFont) {
-          url = config.api.common.uploadFile + "?mark=cs_person_sfzz."+this.props.navigation.state.params.investId;
+          url = config.api.common.uploadFile + "?mark=cs_investmentperson_sfzz."+this.props.navigation.state.params.investId+"&extendname=."+extendname[1];;
       } else {
-          url = config.api.common.uploadFile + "?mark=cs_person_sfzf."+this.props.navigation.state.params.investId;
+          url = config.api.common.uploadFile + "?mark=cs_investmentperson_sfzf."+this.props.navigation.state.params.investId+"&extendname=."+extendname[1];;
       }
-    // let config = {
-    //     Accept: 'Application/json',
-    //     'Content-Type': 'multipart/form-data',
-    // };
+ 
     fetch(url,{
       method: 'POST',
       headers: {
