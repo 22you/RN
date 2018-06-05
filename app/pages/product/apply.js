@@ -11,6 +11,7 @@ import {Button} from 'teaset'
 import matchsize from '../../components/matchsize';
 import config from '../../common/config';
 import axios from 'axios';
+import Toast from 'teaset/components/Toast/Toast';
   export default class Adduser extends Component {
     static navigationOptions = {
       headerRight: (
@@ -26,7 +27,8 @@ import axios from 'axios';
           csInvestmentperson:null,
           enterpriseBank:null,
           plManageMoneyPlan:null,
-          giftType:''
+          giftType:'',
+          comments:'',
 
         };
     }
@@ -52,9 +54,43 @@ import axios from 'axios';
       })
       
     }
+    //
+    //提交下一步流程节点
+      
+    submitTask=()=>{
+      if(!this.state.plManageMoneyPlanOtherInfo){
+        Toast.message('请检查您的必填信息');
+        return false;
+      }else{
+       if(!this.state.plManageMoneyPlanOtherInfo.teamManagerName){
+        Toast.message('请检查您的必填信息');
+        return false;
+       } 
+      }
+      if(!this.state.plManageMoneyPlanBuyinfo.investment){
+        Toast.message('请选择首投/续投');
+        return false;
+      }
+      if(!this.state.plManageMoneyPlanBuyinfo.buyDatetime){
+        Toast.message('请选择进账日期');
+        return false;
+      }
+      if(!this.state.plManageMoneyPlanBuyinfo.endinInterestTime){
+        Toast.message('请选择到期日');
+        return false;
+      }
+      let submitUrl=config.api.submit+'useTemplate=true'+'&taskId='+this.state.taskId+'&signalName=区域客服'+'&comments='+this.state.comments
+      +"&userIds="+global.user.userData.userIds+'&fullname='+global.user.userData.fullname;
+      console.log(submitUrl);
+      axios.post(submitUrl)
+      .then((res)=>{
+        console.log(res.data);
+        this.props.navigation.navigate('Home')
+      })
+      
+    }
+    //
       render(){
-      // console.log('giftType',this.state.giftType);
-        
       return(
           <View>
             <ScrollView>
@@ -136,7 +172,7 @@ import axios from 'axios';
             <View style={{flexDirection:'row',justifyContent:'center',paddingVertical:20}}>
               <Button title="提交到下一步" style={{width:150}} color="#ddd" type="primary"  
                  onPress={()=>{
-                   
+                   this.submitTask()
                    }
                    }/>
             </View>

@@ -63,7 +63,7 @@ export default {
         deleteChaohe:baseUrl+'api/multiDelPlActivityDetails.do?',//删除朝禾优品
         Progress:baseUrl+'/jbpmImage?',//流程示意图  传参：runid,
         checkIdcard:baseUrl+'api/seePersonCsInvestmentperson.do?',//查看客户的身份证信息  传参：investId
-
+        submit:baseUrl+'api/nextProcessActivity.do?',//提交下一流程 传参：
         common: {
             uploadFile: baseUrl + 'api/uploadPhotoProduceHelper.do',//chaohe 身份证上传 mark
             uploadMaterial: baseUrl + 'uploadMaterialFileFormApi.do',//上传材料
