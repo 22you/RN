@@ -42,10 +42,6 @@ import {
         };
     }
     componentDidMount(){
-      //查询银行卡信息
-      //let bankDetail=config.api.bankdetail+'id='+
-      //查询银行卡信息
-      
       //获取银行卡下拉列表
       let bankUrl=config.api.bankList;
       axios.get(bankUrl)
@@ -112,7 +108,7 @@ import {
                    })
                }
              //上传图片
-              this.uploadIdcard(response.uri,isFont);
+              this.uploadIdcard(response.uri,isFont,response.fileName);
          }
      })
      }
@@ -120,19 +116,20 @@ import {
     /**
      * 上传身份证图片
      */
-    uploadIdcard = (uri, isFont) => {
+    uploadIdcard = (uri, isFont,fileName) => {
      
       let formData = new FormData();
       const file = { uri: uri, type: 'multipart/form-data', name: 'image.jpg' };
       formData.append("fileUpload", file);
-  
+      let extendname = fileName.split(".");
       let url;
       if (isFont) {
-          url = config.api.common.uploadFile + "?mark=cs_person_sfzz."+this.props.navigation.state.params.investId;
+          url = config.api.common.uploadFile + "?mark=cs_investmentSlect_yhkf."+this.props.navigation.state.params.investId+"&extendname=."+extendname[1];
       } else {
-          url = config.api.common.uploadFile + "?mark=cs_person_sfzf."+this.props.navigation.state.params.investId;
+          url = config.api.common.uploadFile + "?mark=cs_investmentSlect_yhkz."+this.props.navigation.state.params.investId+"&extendname=."+extendname[1];
       }
-  
+    console.log(url);
+    
     fetch(url,{
       method: 'POST',
       headers: {
@@ -157,7 +154,6 @@ import {
                       +'&enterpriseBank.isEnterprise=1&enterpriseBank.isInvest=3&enterpriseBank.enterpriseid='+this.props.navigation.state.params.investId;
      axios.post(saveBankUrl)
      .then((res)=>{
-       console.log(res.data);
        this.props.navigation.navigate('Home')
        
      })
@@ -166,7 +162,6 @@ import {
        
      })
   
-     // this.props.navigation.navigate('BankList')
     }
       render(){
       
@@ -225,9 +220,6 @@ import {
             <TouchableOpacity style={{marginTop:matchsize(15),marginHorizontal:'5%'}}>
               <Button title="保存" type="primary"
             accessibilityLabel="保存" onPress={this._saveBank }/>
-             {/* this.props.navigation.navigate('BankList')
-              console.log(this.state) */}
-           
             </TouchableOpacity>
              </ScrollView>
            </View>

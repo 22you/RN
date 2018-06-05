@@ -153,9 +153,9 @@ import {
       let extendname = fileName.split(".");
       let url;
       if (isFont) {
-          url = config.api.common.uploadFile + "?mark=cs_investmentSlect_yhkz."+this.props.navigation.state.params.investId+this.state.investId+"&extendname=."+extendname[1];;
+          url = config.api.common.uploadFile + "?mark=cs_investmentSlect_yhkf."+this.state.id+"&extendname=."+extendname[1];
       } else {
-          url = config.api.common.uploadFile + "?mark=cs_investmentSlect_yhkf."+this.props.navigation.state.params.investId+this.state.investId+"&extendname=."+extendname[1];
+          url = config.api.common.uploadFile + "?mark=cs_investmentSlect_yhkz."+this.state.id+"&extendname=."+extendname[1];
       }
   
     fetch(url,{
@@ -180,8 +180,6 @@ import {
                       +'&enterpriseBank.bankOutletsName='+bankOutletsName+'&enterpriseBank.openCurrency='+openCurrency
                       +'&enterpriseBank.name='+name+'&enterpriseBank.accountnum='+accountnum+'&enterpriseBank.accountType='+accountType
                       +'&enterpriseBank.iscredit=1&enterpriseBank.isEnterprise=1&enterpriseBank.isInvest=3&enterpriseBank.enterpriseid='+enterpriseid+'&enterpriseBank.id='+id+'&enterpriseBank.companyId='+companyId;
-    console.log(saveBankUrl);
-    
      axios.post(saveBankUrl)
      .then((res)=>{
        this.props.navigation.navigate('Home')
@@ -248,9 +246,6 @@ import {
             <TouchableOpacity style={{marginTop:matchsize(15),marginHorizontal:'5%'}}>
               <Button title="保存" type="primary"
             accessibilityLabel="保存" onPress={this._saveBank }/>
-             {/* this.props.navigation.navigate('BankList')
-              console.log(this.state) */}
-           
             </TouchableOpacity>
              </ScrollView>
            </View>
