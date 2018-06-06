@@ -36,6 +36,7 @@
     "react-native-tab-navigator": "^0.3.4",
     "react-native-vector-icons": "^4.6.0",
     "react-navigation": "^1.5.12",
+
     "react-redux": "^5.0.7",
     "react-sortable-tree": "^2.1.1",
     "react-timer-mixin": "^0.13.3",
