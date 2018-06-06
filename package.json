@@ -6,7 +6,8 @@
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
     "ios": "react-native run-ios",
-    "android": "react-native run-android"
+    "android": "react-native run-android",
+    "apk": "cd android && ./gradlew clean && ./gradlew assembleRelease"
   },
   "dependencies": {
     "antd-mobile": "^2.1.8",
@@ -34,7 +35,7 @@
     "react-native-swiper": "^1.5.13",
     "react-native-tab-navigator": "^0.3.4",
     "react-native-vector-icons": "^4.6.0",
-    "react-navigation": "^1.5.11",
+    "react-navigation": "^1.0.0",
     "react-redux": "^5.0.7",
     "react-sortable-tree": "^2.1.1",
     "react-timer-mixin": "^0.13.3",
