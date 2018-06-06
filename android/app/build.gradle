@@ -126,9 +126,13 @@ android {
     buildTypes {
         release {
             minifyEnabled enableProguardInReleaseBuilds
-            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
             signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            
         }
+         debug {
+            signingConfig signingConfigs.debug
+        }   
     }
     // applicationVariants are e.g. debug, release
     applicationVariants.all { variant ->
@@ -146,7 +150,6 @@ android {
 }
 
 dependencies {
-    compile project(':react-native-fetch-blob')
     compile project(':react-native-linear-gradient')
     compile project(':react-native-picker')
     compile project(':react-native-vector-icons')

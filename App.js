@@ -7,7 +7,7 @@ import {
   View,
   ScrollView
 } from 'react-native';
-
+// "react-navigation": "^1.5.11",
  import FooterComponent from './app/components/root'
 
 console.disableYellowBox = true;

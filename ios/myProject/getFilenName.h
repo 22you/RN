@@ -7,7 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <React/RCTBridgeModule.h>
+#import <React/RCTLog.h>
 
-@interface getFilenName : NSObject
+@interface getFilenName : NSObject<RCTBridgeModule>
 
 @end
