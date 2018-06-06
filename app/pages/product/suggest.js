@@ -30,7 +30,6 @@ import axios from 'axios';
     }
     
     componentDidMount(){
-     
       this.setState({
         taskId:this.props.navigation.state.params.taskId,
       })
@@ -42,8 +41,7 @@ import axios from 'axios';
      axios.post(saveSuggestUrl)
      .then((res)=>{
        if(res.data.success){
-//        console.log(saveSuggestUrl);
-        this.props.navigation.navigate('')
+        this.props.navigation.navigate('MyTodo')
        }else{
         Toast.info('上传失败')
        }

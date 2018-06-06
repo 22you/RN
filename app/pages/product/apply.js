@@ -35,8 +35,6 @@ import Toast from 'teaset/components/Toast/Toast';
     componentDidMount(){
       let {projectId,taskId}=this.state;
       let loadingUrl=config.api.loading+'projectId='+projectId+'&taskId='+taskId;//流程加载
-      console.log(loadingUrl);
-      
       axios.get(loadingUrl)
       .then((res)=>{
         if(res.data.success){
@@ -81,7 +79,6 @@ import Toast from 'teaset/components/Toast/Toast';
       }
       let submitUrl=config.api.submit+'useTemplate=true'+'&taskId='+this.state.taskId+'&signalName=区域客服'+'&comments='+this.state.comments
       +"&userIds="+global.user.userData.userIds+'&fullname='+global.user.userData.fullname;
-      console.log(submitUrl);
       axios.post(submitUrl)
       .then((res)=>{
         console.log(res.data);
@@ -152,13 +149,13 @@ import Toast from 'teaset/components/Toast/Toast';
             </TouchableOpacity>
             <TouchableOpacity style={add.item} onPress={()=>this.props.navigation.navigate('Upload',{
               taskId:this.state.taskId,
-             
+              projectId:this.state.projectId
             })}>
             <Text>上传资料</Text>
             <Text>></Text>
             </TouchableOpacity>
             <TouchableOpacity style={add.item} onPress={()=>this.props.navigation.navigate('Suggest',{
-              taskId:this.state.taskId
+              taskId:this.state.taskId,
             })}>
             <Text>意见和说明</Text>
             <Text>></Text>

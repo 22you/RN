@@ -11,27 +11,6 @@ const baseUrl = serverUrl + 'hurong_proj_gd_chsy2/'
 
 export default {
     imageUrl: baseUrl + '',
-    serverURL: 'http://erp.xiaojinqb.com/mobile/indexmobile.html?recommendCode=',
-
-    environmental: {
-        environmental: 'test',//本地测试test，正式formal
-        channel: 'SH003',
-        //apiKey: 'bc6bad217b67409294f7107a083b5b59',//魔蝎sdk
-        apiKey: '76c41c1c6c9c446387a1fd3428334a93',//魔蝎sdk
-        codeTime: 120,//短信验证码倒计时 秒
-        enterpriseId: '20000003',//商户Ida
-        authentication: true, //流程认证项是否开启
-    },
-
-    header: {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        }
-    },
-
-
     api: {
         login: baseUrl + 'api/ajaxValidation.do?',//登录 userName,password
         prolist:baseUrl+'api/listPlManageMoneyPlan.do',//产品列表 start,limit
@@ -64,11 +43,12 @@ export default {
         Progress:baseUrl+'/jbpmImage?',//流程示意图  传参：runid,
         checkIdcard:baseUrl+'api/seePersonCsInvestmentperson.do?',//查看客户的身份证信息  传参：investId
         submit:baseUrl+'api/nextProcessActivity.do?',//提交下一流程 传参：
+        uploadFile:baseUrl+'api/uploadReportJSFileForm.do?',//上传材料 传参：
+        fileList:baseUrl+'api/ajaxGetFilesListFileForm.do?',//查看上传的资料列表  传参：mark: dataUploads.6542   typeisfile: typeisonlyfile
+        deleteFile:baseUrl+'api/DeleRsFileForm.do?',//删除已上传的资料
         common: {
             uploadFile: baseUrl + 'api/uploadPhotoProduceHelper.do',//chaohe 身份证上传 mark
             uploadMaterial: baseUrl + 'uploadMaterialFileFormApi.do',//上传材料
-            getNextCommon: baseUrl + 'getNextCommonApi.do',//获取省市区 node
-            memberInfo: baseUrl + 'memberInfoCommonApi.do',//获取用户的信息
         }
 
     },
