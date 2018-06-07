@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -12,6 +13,7 @@
 		00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302DC1ABCB9D200DB3ED1 /* libRCTNetwork.a */; };
 		00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302E41ABCB9EE00DB3ED1 /* libRCTVibration.a */; };
 		00E356F31AD99517003FC87E /* myProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* myProjectTests.m */; };
+		0888814520C8D27800568453 /* getFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0888814420C8D27800568453 /* getFileViewController.m */; };
 		08A06F7920C7DC87005C079D /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 08A06F5420C7DC87005C079D /* LICENSE */; };
 		08A06F7A20C7DC87005C079D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 08A06F5520C7DC87005C079D /* README.md */; };
 		08A06F7B20C7DC87005C079D /* UIProgressView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 08A06F5720C7DC87005C079D /* UIProgressView+AFNetworking.m */; };
@@ -29,9 +31,6 @@
 		08A06F8720C7DC87005C079D /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 08A06F7420C7DC87005C079D /* AFURLRequestSerialization.m */; };
 		08A06F8820C7DC87005C079D /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 08A06F7620C7DC87005C079D /* AFNetworkReachabilityManager.m */; };
 		08A06F8920C7DC87005C079D /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 08A06F7720C7DC87005C079D /* AFSecurityPolicy.m */; };
-		08A06F8C20C7DCEB005C079D /* uploadFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 08A06F8B20C7DCEB005C079D /* uploadFile.m */; };
-		08A06F8F20C7E5F6005C079D /* uploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08A06F8E20C7E5F6005C079D /* uploadViewController.m */; };
-		08A06F9220C7EAEF005C079D /* getFilenName.m in Sources */ = {isa = PBXBuildFile; fileRef = 08A06F9120C7EAEF005C079D /* getFilenName.m */; };
 		08CBFFB5B4F848589311E7B8 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B9AA19A628AC43A2ADE02B8D /* Feather.ttf */; };
 		0C0ABF59D19D4FA98C4CD134 /* libRCTBEEPickerManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B428DEB59154463FA8B0B21B /* libRCTBEEPickerManager.a */; };
 		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
@@ -426,6 +425,8 @@
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* myProjectTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = myProjectTests.m; sourceTree = "<group>"; };
 		05E33ADD9D2A4EB8AB2025B9 /* libBVLinearGradient.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libBVLinearGradient.a; sourceTree = "<group>"; };
+		0888814320C8D27800568453 /* getFileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = getFileViewController.h; sourceTree = "<group>"; };
+		0888814420C8D27800568453 /* getFileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = getFileViewController.m; sourceTree = "<group>"; };
 		08A06F5420C7DC87005C079D /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		08A06F5520C7DC87005C079D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		08A06F5720C7DC87005C079D /* UIProgressView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIProgressView+AFNetworking.m"; sourceTree = "<group>"; };
@@ -461,12 +462,6 @@
 		08A06F7620C7DC87005C079D /* AFNetworkReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkReachabilityManager.m; sourceTree = "<group>"; };
 		08A06F7720C7DC87005C079D /* AFSecurityPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFSecurityPolicy.m; sourceTree = "<group>"; };
 		08A06F7820C7DC87005C079D /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
-		08A06F8A20C7DCEB005C079D /* uploadFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = uploadFile.h; path = myProject/uploadFile.h; sourceTree = "<group>"; };
-		08A06F8B20C7DCEB005C079D /* uploadFile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = uploadFile.m; path = myProject/uploadFile.m; sourceTree = "<group>"; };
-		08A06F8D20C7E5F6005C079D /* uploadViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = uploadViewController.h; sourceTree = "<group>"; };
-		08A06F8E20C7E5F6005C079D /* uploadViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = uploadViewController.m; sourceTree = "<group>"; };
-		08A06F9020C7EAEF005C079D /* getFilenName.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = getFilenName.h; path = myProject/getFilenName.h; sourceTree = "<group>"; };
-		08A06F9120C7EAEF005C079D /* getFilenName.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = getFilenName.m; path = myProject/getFilenName.m; sourceTree = "<group>"; };
 		0F027E21D0CF4F6595081139 /* libRNSVG.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNSVG.a; sourceTree = "<group>"; };
 		0F9FA92FEB6947D6BCF9CF25 /* RNFS.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFS.xcodeproj; path = "../node_modules/react-native-fs/RNFS.xcodeproj"; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
@@ -639,7 +634,6 @@
 				88FB020C08624F6CAA538690 /* libRNSVG-tvOS.a */,
 				05E33ADD9D2A4EB8AB2025B9 /* libBVLinearGradient.a */,
 				A6BB61B263B941F9BA7C952F /* libRNFS.a */,
-				11F74839434842378B4DC475 /* libRNFetchBlob.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -802,12 +796,8 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
-				08A06F8A20C7DCEB005C079D /* uploadFile.h */,
-				08A06F8B20C7DCEB005C079D /* uploadFile.m */,
-				08A06F8D20C7E5F6005C079D /* uploadViewController.h */,
-				08A06F8E20C7E5F6005C079D /* uploadViewController.m */,
-				08A06F9020C7EAEF005C079D /* getFilenName.h */,
-				08A06F9120C7EAEF005C079D /* getFilenName.m */,
+				0888814320C8D27800568453 /* getFileViewController.h */,
+				0888814420C8D27800568453 /* getFileViewController.m */,
 			);
 			name = myProject;
 			sourceTree = "<group>";
@@ -1018,6 +1008,9 @@
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
+					};
+					13B07F861A680F5B00A75B9A = {
+						DevelopmentTeam = D7QHPS44P3;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -1549,12 +1542,10 @@
 				08A06F7B20C7DC87005C079D /* UIProgressView+AFNetworking.m in Sources */,
 				08A06F8820C7DC87005C079D /* AFNetworkReachabilityManager.m in Sources */,
 				08A06F8220C7DC87005C079D /* AFAutoPurgingImageCache.m in Sources */,
-				08A06F9220C7EAEF005C079D /* getFilenName.m in Sources */,
-				08A06F8C20C7DCEB005C079D /* uploadFile.m in Sources */,
 				08A06F7C20C7DC87005C079D /* UIRefreshControl+AFNetworking.m in Sources */,
 				08A06F8920C7DC87005C079D /* AFSecurityPolicy.m in Sources */,
+				0888814520C8D27800568453 /* getFileViewController.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
-				08A06F8F20C7E5F6005C079D /* uploadViewController.m in Sources */,
 				08A06F8020C7DC87005C079D /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				08A06F7D20C7DC87005C079D /* AFNetworkActivityIndicatorManager.m in Sources */,
 				08A06F8420C7DC87005C079D /* AFURLResponseSerialization.m in Sources */,
@@ -1629,9 +1620,7 @@
 				INFOPLIST_FILE = myProjectTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -1658,9 +1647,7 @@
 				INFOPLIST_FILE = myProjectTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -1676,6 +1663,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
+				DEVELOPMENT_TEAM = D7QHPS44P3;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-svg/ios/**",
@@ -1692,6 +1680,7 @@
 					"-ObjC",
 					"-lc++",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.myProject;
 				PRODUCT_NAME = myProject;
 				SWIFT_VERSION = "";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1703,6 +1692,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = D7QHPS44P3;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-svg/ios/**",
@@ -1719,6 +1709,7 @@
 					"-ObjC",
 					"-lc++",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.myProject;
 				PRODUCT_NAME = myProject;
 				SWIFT_VERSION = "";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1748,9 +1739,7 @@
 				);
 				INFOPLIST_FILE = "myProject-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -1786,9 +1775,7 @@
 				);
 				INFOPLIST_FILE = "myProject-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -1814,9 +1801,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "myProject-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.myProject-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
@@ -1838,9 +1823,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "myProject-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.myProject-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;

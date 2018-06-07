@@ -3,11 +3,11 @@
 // const baseUrl = serverUrl + 'gd_chsy/'
 
 // // //杨岳涛
-const serverUrl = 'http://172.16.10.222:8064/'
-const baseUrl = serverUrl + 'hurong_proj_gd_chsy2/'
+// const serverUrl = 'http://172.16.10.222:8064/'
+// const baseUrl = serverUrl + 'hurong_proj_gd_chsy2/'
 //
-//  const serverUrl = 'http://112.93.116.168:8181/'
-//  const baseUrl = serverUrl + 'hurong_proj_gd_chsy/'
+ const serverUrl = 'http://112.93.116.168:8181/'
+ const baseUrl = serverUrl + 'hurong_proj_gd_chsy/'
 
 export default {
     imageUrl: baseUrl + '',

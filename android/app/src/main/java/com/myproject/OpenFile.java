@@ -42,7 +42,7 @@ public class OpenFile extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void getFilenName(Callback successCallback){
+    public void getFileName(Callback successCallback){
         this.successCallback = successCallback;
         thisActivity = getCurrentActivity();
          Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
