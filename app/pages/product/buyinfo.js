@@ -17,11 +17,11 @@ import axios from 'axios';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import matchsize from '../../components/matchsize';
   export default class Buyinfo extends Component {
-    // static navigationOptions = {
-    //   headerRight: (
-    //     <View style={{height: 44,width: 55,justifyContent: 'center',paddingRight:15} }/>
-    // ),
-    // };
+    static navigationOptions = ({navigation})=>({
+      headerRight: (
+        <View style={{height: 44,width: 55,justifyContent: 'center',paddingRight:15} }/>
+    ),
+    });
     constructor(props) {
         super(props);
         // 初始状态

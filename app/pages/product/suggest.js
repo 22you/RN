@@ -14,11 +14,11 @@ import config from '../../common/config';
 import axios from 'axios';
   // import matchsize from '../../components/matchsize'
   export default class Suggest extends Component {
-    // static navigationOptions = {
-    //   headerRight: (
-    //     <View style={{height: 44,width: 55,paddingRight:15} }/>
-    // )
-    //   };
+    static navigationOptions = ({navigation})=>({
+      headerRight: (
+        <View style={{height: 44,width: 55,paddingRight:15} }/>
+    )
+      });
     constructor(props) {
 
         super(props);

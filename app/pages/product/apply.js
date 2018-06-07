@@ -13,11 +13,11 @@ import config from '../../common/config';
 import axios from 'axios';
 import Toast from 'teaset/components/Toast/Toast';
   export default class Adduser extends Component {
-    // static navigationOptions = {
-    //   headerRight: (
-    //     <View style={{height: 44,width: 55,justifyContent: 'center',paddingRight:15} }/>
-    // ),
-    // };
+    static navigationOptions =({navigation})=> ({
+      headerRight: (
+        <View style={{height: 44,width: 55,justifyContent: 'center',paddingRight:15} }/>
+    ),
+    });
     constructor(props) {
         super(props);
         // 初始状态
