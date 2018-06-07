@@ -138,8 +138,8 @@ var DataModule = require('react-native').NativeModules.getFileName;
                         <Icon name="trash" onPress={()=>{this.deleteFile(item)}} size={15}/>
                       </TouchableOpacity>)
             })}
-            <Image source={this.state.avatarSource ? this.state.avatarSource : require('../../images/idcard-fan.png')}
-               style={{width:80,height:80}}/>
+            {/* <Image source={this.state.avatarSource ? this.state.avatarSource : require('../../images/idcard-fan.png')}
+               style={{width:80,height:80}}/> */}
             <View style={{marginTop:15,marginHorizontal:'3%'}}>
             <Button title="下一步"
           accessibilityLabel="下一步" type="primary"

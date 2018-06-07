@@ -23,10 +23,7 @@ import config from '../common/config';
 import axios from 'axios'
 export default class Home extends Component {
   static navigationOptions =({navigation})=>({
-    //header:Header,
-    headerStyle: {
-      backgroundColor: '#f4511e',
-    },
+    headerLeft:null
   });
   constructor(props) {
     super(props);
