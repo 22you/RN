@@ -12,9 +12,9 @@ import {
   import matchsize from '../../components/matchsize'
   import {Button} from 'teaset'
   export default class Probase extends Component {
-   static navigationOptions={
+   static navigationOptions=({navigation})=>({
     headerLeft:null
-   }
+   })
     constructor(props) {
         super(props);
         // 初始状态
