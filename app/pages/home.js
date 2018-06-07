@@ -17,13 +17,11 @@ import {Button,Toast} from 'teaset'
 import matchsize from '../components/matchsize'
 import Swiper from 'react-native-swiper'
 import styles from '../styles/style-app'
-import Header from '../components/header'
-import Icon from 'react-native-vector-icons/FontAwesome';
 import config from '../common/config';
 import axios from 'axios'
 export default class Home extends Component {
   static navigationOptions =({navigation})=>({
-    headerLeft:null
+    header: null
   });
   constructor(props) {
     super(props);
