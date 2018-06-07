@@ -16,11 +16,11 @@ import config from '../../common/config';
 import axios from 'axios';
 import Icon from 'react-native-vector-icons/FontAwesome';
   export default class Investor extends Component {
-    static navigationOptions = {
-      headerRight: (
-        <View style={{height: 44,width: 55,justifyContent: 'center',paddingRight:15} }/>
-    ),
-    };
+    // static navigationOptions = {
+    //   headerRight: (
+    //     <View style={{height: 44,width: 55,justifyContent: 'center',paddingRight:15} }/>
+    // ),
+    // };
     constructor(props) {
         super(props);
         // 初始状态

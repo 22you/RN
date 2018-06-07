@@ -8,13 +8,13 @@ import {
   } from 'react-native';
 
   export default class Adduser extends Component {
-    static navigationOptions = {
-        headerRight: (
-          <View style={{height: 44,width: 55,justifyContent: 'center',paddingRight:15} }/>
-      ),
-        headerTintColor: '#fff',
+    // static navigationOptions = {
+    //     headerRight: (
+    //       <View style={{height: 44,width: 55,justifyContent: 'center',paddingRight:15} }/>
+    //   ),
+    //     headerTintColor: '#fff',
       
-      };
+    //   };
     constructor(props) {
 
         super(props);

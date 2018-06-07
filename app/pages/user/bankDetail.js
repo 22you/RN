@@ -17,12 +17,12 @@ import {
   import axios from 'axios';
   
   export default class BankDetail extends Component {
-    static navigationOptions = {
-     // headerTitle:'银行卡详细信息',
-      headerRight: (
-        <View style={{height: 44,width: 55,justifyContent: 'center',paddingRight:15} }/>
-    ),
-    }
+    // static navigationOptions = {
+    //  // headerTitle:'银行卡详细信息',
+    //   headerRight: (
+    //     <View style={{height: 44,width: 55,justifyContent: 'center',paddingRight:15} }/>
+    // ),
+    // }
     constructor(props) {
         super(props);
         // 初始状态

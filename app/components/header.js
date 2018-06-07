@@ -10,7 +10,7 @@ import {
     StatusBar
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-export default class Header extends React.Component {
+export default class Header extends Component {
 
     constructor(props) {
         super(props);

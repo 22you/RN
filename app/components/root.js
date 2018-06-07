@@ -273,7 +273,7 @@ const Addnavigator=StackNavigator({
       backgroundColor:"#34a1ff"
     }
   },
-  navigationOptions: {
+  navigationOptions:({navigation})=>({
   //   headerLeft:(
   //     <TouchableOpacity style={{flexDirection:'row',alignItems:'center'}} onPress={()=>{
   //       // navigation.goback();
@@ -304,7 +304,7 @@ const Addnavigator=StackNavigator({
       textAlign:'center'
             
     },
-  },
+  }),
 })
 ///
 

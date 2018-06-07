@@ -15,9 +15,9 @@ import {
   import axios from 'axios';
 
   export default class Mycustomer extends Component {
-    static navigationOptions={
-        headerLeft:null
-       }
+    // static navigationOptions={
+    //     headerLeft:null
+    //    }
        constructor(props){
            super(props)
            this.state={

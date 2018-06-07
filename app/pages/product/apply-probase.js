@@ -13,15 +13,15 @@ import {
   } from 'react-native';
 
   export default class Probase extends Component {
-    static navigationOptions = {
-        headerStyle: {
-          backgroundColor: '#34a1ff',
-        },
-        headerTintColor: '#fff',
-        headerTitleStyle: {
-            fontSize: 16,
-          },
-      };
+    // static navigationOptions = {
+    //     headerStyle: {
+    //       backgroundColor: '#34a1ff',
+    //     },
+    //     headerTintColor: '#fff',
+    //     headerTitleStyle: {
+    //         fontSize: 16,
+    //       },
+    //   };
     constructor(props) {
         super(props);
         // 初始状态

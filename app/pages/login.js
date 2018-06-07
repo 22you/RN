@@ -15,10 +15,10 @@ import {
   import Toast, {DURATION} from 'react-native-easy-toast'
 import axios from 'axios';
   export default class Login extends Component{
-      static navigationOptions={
-          headerLeft:null,
-          title:'登录'
-      }
+    //   static navigationOptions={
+    //       headerLeft:null,
+    //       title:'登录'
+    //   }
     constructor(props) {
         super(props);
         // 初始状态

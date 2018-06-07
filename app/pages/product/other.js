@@ -18,11 +18,11 @@ import TeamManageTree from '../../components/teamManageTree';
 import Tree from '../../components/treeItem';
 import Toast from 'teaset/components/Toast/Toast';
   export default class Other extends Component {
-    static navigationOptions = {
-      headerRight: (
-        <View style={{height: 44,width: 55,justifyContent: 'center',paddingRight:15} }/>
-    ),
-    };
+    // static navigationOptions = {
+    //   headerRight: (
+    //     <View style={{height: 44,width: 55,justifyContent: 'center',paddingRight:15} }/>
+    // ),
+    // };
     constructor(props) {
         super(props);
         // 初始状态

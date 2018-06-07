@@ -22,12 +22,12 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import config from '../common/config';
 import axios from 'axios'
 export default class Home extends Component {
-  static navigationOptions = {
-    header:Header,
+  static navigationOptions =({navigation})=>({
+    //header:Header,
     headerStyle: {
       backgroundColor: '#f4511e',
     },
-  };
+  });
   constructor(props) {
     super(props);
     this.state = {

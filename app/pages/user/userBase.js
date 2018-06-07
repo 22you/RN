@@ -18,11 +18,11 @@ import {
   import {Button} from 'teaset';
   import axios from 'axios';
   export default class Probase extends Component {
-    static navigationOptions = {
-      headerRight: (
-        <View style={{height: 44,width: 55,justifyContent: 'center',paddingRight:15} }/>
-    ),
-    }
+    // static navigationOptions = {
+    //   headerRight: (
+    //     <View style={{height: 44,width: 55,justifyContent: 'center',paddingRight:15} }/>
+    // ),
+    // }
     constructor(props) {
         super(props);
         // 初始状态
