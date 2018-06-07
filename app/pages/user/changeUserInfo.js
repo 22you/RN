@@ -16,7 +16,7 @@ import {
   import Icon from 'react-native-vector-icons/FontAwesome';
   import axios from 'axios';
   export default class ChangeUserInfo extends Component {
-    static navigationOptions =({navigation})=>( {
+    static navigationOptions =({navigation})=>({
       headerRight: (
        
         <TouchableOpacity onPress={()=>navigation.state.params.navigatePress()}> 
