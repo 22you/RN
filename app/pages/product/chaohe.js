@@ -260,7 +260,7 @@ export default class Chaohe extends Component {
                             }}
                             onDateChange={(date) => {
                                 itemList.sendTime=date;
-                                setValue(itemList,index)
+                                this.setValue(itemList,index)
                                 
                             }
                             }
