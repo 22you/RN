@@ -243,9 +243,8 @@ export default class Chaohe extends Component {
                             placeholder="请选择日期"
                             format="YYYY-MM-DD"
                             minDate={new Date()}
-                            maxDate={''}
                             confirmBtnText="确认"
-                            showIcon='false'
+                            showIcon={true}
                             cancelBtnText="取消"
                             style={{width:150}}
                             customStyles={{
