@@ -10,7 +10,11 @@ import {
   import matchsize from '../../components/matchsize'
   import ImagePicker from 'react-native-image-picker';
   export default class Userbase extends Component {
-   
+    static navigationOptions =({navigation})=> ({
+        headerRight: (
+          <View style={{height: 44,width: 55,justifyContent: 'center',paddingRight:15} }/>
+      ),
+      })
     constructor(props) {
         super(props);
         // 初始状态
