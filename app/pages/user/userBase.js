@@ -98,13 +98,17 @@ import {
         Alert.alert("请输入正确手机号码");
         return null;
     }
-    if (!regMobile.test(alternatePhone)) {
-          Alert.alert("请输入正确手机号码");
-          return null;
-      }
+    if(alternatePhone){
+      if (!regMobile.test(alternatePhone)) {
+        Alert.alert("请输入正确手机号码");
+        return null;
+    }
+    }
+   
     if(cardtype==309){
       if(!resIdCard.test(cardnumber)){
         Alert.alert('请输入正确的身份证号码')
+        return false;
       }
     }
     

@@ -1,18 +1,14 @@
 import React, { Component } from 'react';
 import {
-    Platform,
     StyleSheet,
     Text,
     View,
     TouchableOpacity,
-    ScrollView,
-    Alert,
     Image
   } from 'react-native';
   import {Button} from 'teaset'
   import matchsize from '../../components/matchsize'
   import ImagePicker from 'react-native-image-picker';
-  import axios from 'axios';
   export default class Userbase extends Component {
    
     constructor(props) {
@@ -103,31 +99,7 @@ import {
       console.log('获取用户登录数据报错信息: ' + error.message);
       Toast.message("请检查网络连接");
   })
-      // .then((responseText) => {
-      //     console.log('上传的身份证的返回的数据内容=====>',responseText.data)
-      //     if (responseText.success == true) {
-      //           if (isFont) {
-      //             this.setState({
-      //               myIdcardFront: {uri: responseText.uri},
-      //             })
-      //         } else {
-      //             this.setState({
-      //               myIdcardReverse: {uri: responseText.uri},
-      //             })
-      //         }
-      //     } else {
-      //         return Alert.alert('akns');
-
-
-      //     }
-
-      // }).catch((error) => {
-      //     console.log(error);
-          
-      //     return Alert.alert('上传失败');
-
-
-      // });
+      
 
   }
 
