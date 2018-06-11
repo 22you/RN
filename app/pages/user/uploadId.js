@@ -69,7 +69,7 @@ import {
                   })
               }
             //上传图片
-             this.uploadIdcard(response.uri,isFont);
+             this.uploadIdcard(response.uri,isFont,response.fileName);
         }
     })
     }
@@ -77,7 +77,7 @@ import {
     /**
      * 上传身份证图片
      */
-    uploadIdcard = (uri, isFont) => {
+    uploadIdcard = (uri, isFont,fileName) => {
      
       let formData = new FormData();
       const file = { uri: uri, type: 'multipart/form-data', name: 'image.jpg' };
