@@ -274,19 +274,7 @@ const Addnavigator=StackNavigator({
     }
   },
   navigationOptions:({navigation})=>({
-  //   headerLeft:(
-  //     <TouchableOpacity style={{flexDirection:'row',alignItems:'center'}} onPress={()=>{
-  //       // navigation.goback();
-  //       console.log(navigation)
-  //     }
-  //     }>
-  //       <Icon name="angle-left" style={{color:'#fff',marginLeft:matchsize(30),fontSize: matchsize(54)}}/>
-  //       <Text  style={{color:'#fff',fontSize: matchsize(30),marginLeft:matchsize(15)}}>返回</Text>
-  //     </TouchableOpacity>
-   
-  // ),
-  headerBackTitle:null,
-
+    headerBackTitle:null,
     headerStyle: Platform.OS==='ios'?{
       backgroundColor: '#34a1ff',
     }:{
